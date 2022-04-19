@@ -1,3 +1,9 @@
 b=7
 a = 32.4 *(-8.6 - b)/ 6.1E-8
 d = a ^ b // Esto es un comentario
+c = abc + d
+n + 5 = -67
+j *6 = 3.4
+f_6 = 6*( 34 - b2)
+h = 4 // Hola asdfgh
+s = 4/6.4
