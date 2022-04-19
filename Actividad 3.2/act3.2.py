@@ -19,28 +19,135 @@ def lexerAritmetico(nombre_archivo):
         
     # Lee cada enunciado del archivo
     for num, expresion in enumerate(lista_expresion):
+        
+        entero = ""
+        real = ""
+        resta = ""
+        comentario = ""
+        division = ""
+        var = ""
+        
+        floatBool = False
+        comentarioBool = False
+        variableBool = False
+        
         print(expresion)
         print ("Token\tTipo")
         
         # Lee cada caracter del enunciado
         for num2, token in enumerate(expresion):
-            if token.isalpha():
-                print(str(token) + "\tVariable")
-            elif token == "=":
-                print(str(token) + "\tAsignación")
+
+            if comentarioBool == True:
+                comentario = comentario + token
+
+            elif token == "=" or token == "*" or token == "+" or token == " " or token == "^" or token == "(" or token == ")":
+                if entero != "":
+                    print(entero + "\tEntero")
+                    entero = ""
+                elif real != "":
+                    print(real + "\tReal")
+                    real = ""
+                    floatBool = False
+                elif resta != "":
+                    print(resta + "\tResta")
+                    resta = ""
+                elif division != "":
+                    print(division + "\tDivision")
+                    division = ""
+                elif var != "":
+                    print(var + "\tVariable")
+                    var = ""
+                    variableBool = False
+                
+                if token == "=":
+                    print(str(token) + "\tAsignación")
+                elif token == "*":
+                    print(str(token) + "\tMultiplicación")
+                elif token == "+":
+                    print(str(token) + "\tSuma")
+                elif token == "^":
+                    print(str(token) + "\tPotencia")
+                elif token == "(":
+                    print(str(token) + "\tParéntesis que abre")
+                elif token == ")":
+                    print(str(token) + "\tParéntesis que cierra")
+
+            elif (token.isdigit() or token == "_") and variableBool == True:
+                if division == "/":
+                    print(var + "\tVariable")
+                    var = ""
+                    print(division + "\tDivision")
+                    division = ""
+                var = var + token
+                
             elif token.isdigit():
-                print(str(token) + "\tEntero")
+                
+                if floatBool == False:
+                    if division == "/":
+                        print(entero + "\tEntero")
+                        entero = ""
+                        print(division + "\tDivision")
+                        division = ""
+                    entero = resta + entero + str(token)
+                    resta = ""
+                else:
+                    if division == "/":
+                        print(real + "\tReal")
+                        real = ""
+                        print(division + "\tDivision")
+                        division = ""
+                    real = entero + real + str(token)
+                    floatBool = True
+                    resta = ""
+                
+            elif (token == "." or (token == "E" and floatBool == True) or (token == "-" and floatBool == True) ):
+                real = entero + real + str(token)
+                floatBool = True
+                entero = ""
+
+            elif token.isalpha():
+                if division == "/":
+                    print(var + "\tVariable")
+                    var = ""
+                    print(division + "\tDivision")
+                    division = ""
+                var = var + token
+                variableBool = True
+
+            elif token == "-":
+                resta = "-"
             
+            elif token == "/":
+                division = division + "/"
+
+                if division == "//":
+                    comentario = division
+                    division = ""
+                    comentarioBool = True
+            
+            
+        if entero != "":
+            print(entero + "\tEntero")
+        elif real != "":
+            print(real + "\tReal")
+
+        if comentario != "":
+            print(comentario + "\tComentario")
+
+        if var != "":
+            print(var + "\tVariable")
             
         print("\n")
-    
-    
-# Definición de la función main
-def main():
-    # Se llama a la función principal
-    lexerAritmetico("expresiones.txt")
-    
-    
-    
-# Llamar a la funcion main
-main()
+
+
+
+# Se llama a la función principal
+lexerAritmetico("expresiones.txt")
+
+'''
+Falta:
+- La "E" de los flotantes puede ser minuscula o mayuscula, seguida de un entero positivo o negativo
+- Diseño del autómata (Herramienta computacional para dibujarlo)
+- Documentación (Manual del usuario, indicando cómo correr su programa y qué se obtiene de salida)
+- Documentación (El autómata que resuelve el problema)
+'''
