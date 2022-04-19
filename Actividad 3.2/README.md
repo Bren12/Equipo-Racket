@@ -24,8 +24,6 @@ Las expresiones aritméticas sólo podrán contener los siguientes tipos de toke
     <li> Multiplicación </li>
     <li> División </li>
     <li> Potencia </li>
-    <li> Suma </li>
-    <li> Suma </li>
   </ul>
 </li>
 <li> Identificadores: 
