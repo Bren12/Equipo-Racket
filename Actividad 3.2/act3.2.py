@@ -163,7 +163,7 @@ def lexerAritmetico(nombre_archivo):
 
 
 # Se llama a la función principal
-lexerAritmetico("expresiones.txt")
+lexerAritmetico("./Actividad 3.2/expresiones.txt")
 
 '''
 Falta:
