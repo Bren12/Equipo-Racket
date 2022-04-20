@@ -31,7 +31,9 @@ def lexerAritmetico(nombre_archivo):
         comentarioBool = False
         variableBool = False
         adjunto = False
+        floatE = False
         
+        expresion = expresion.replace(" ","")
         print(expresion)
         print ("Token\tTipo")
         
@@ -54,7 +56,7 @@ def lexerAritmetico(nombre_archivo):
                 elif division != "":
                     print(division + "\tDivision")
                     division = ""
-                    adjunto = False
+                    adjunto = True
                 elif var != "":
                     print(var + "\tVariable")
                     var = ""
@@ -86,29 +88,43 @@ def lexerAritmetico(nombre_archivo):
                     var = ""
                     print(division + "\tDivision")
                     division = ""
-                    adjunto = False
                 var = var + token
+                adjunto = False
                 
             elif token.isdigit():
                 if floatBool == False:
                     if division == "/":
-                        if (entero != ""):
+                        if (var != ""):
+                            print(var + "\tVariable")
+                            var = ""
+                        elif (real != ""):
+                            print(str(real) + '\tEntero')
+                            real = ""
+                        elif (entero != ""):
                             print(str(entero) + '\tEntero')
                             entero = ""
                         print(division + "\tDivisión")
                         division = ""
                     if adjunto == True:
-                        entero = resta + entero + str(token)
+                        entero = resta + str(token)
                         resta = ""
                     else:
                         entero = entero + str(token)
                 else:
                     if division == "/":
-                        if (real != ""):
-                            print(str(real) + '\tReal')
+                        if (var != ""):
+                            print(var + "\tVariable")
+                            var = ""
+                        elif (entero != ""):
+                            print(str(entero) + '\tEntero')
+                            entero = ""
+                        elif (real != ""):
+                            print(str(real) + '\tEntero')
                             real = ""
                         print(division + "\tDivision")
                         division = ""
+                    if floatE == True:
+                        floatE = False
                     if adjunto == True:
                         real = resta + entero + real + str(token)
                         resta = ""
@@ -116,31 +132,61 @@ def lexerAritmetico(nombre_archivo):
                         real = entero + real + str(token)
                 adjunto = False
                 
-            elif token == "." or (token == "E" and floatBool == True) or (token == "e" and floatBool == True) or (token == "-" and floatBool == True):
+            elif token == "." or (floatBool == True and (token == "E" or token == "e" or (token == "-" and floatE == True))):
+                if token == "E" or token == "e":
+                    floatE = True
+                    adjunto = True
                 real = entero + real + str(token)
-                floatBool = True
                 entero = ""
+                floatBool = True
 
             elif token.isalpha():
                 if division == "/":
-                    print(var + "\tVariable")
-                    var = ""
+                    if (real != ""):
+                        print(str(real) + '\tReal')
+                        real = ""
+                    elif (entero != ""):
+                        print(str(entero) + '\tEntero')
+                        entero = ""
+                    elif (var != ""):
+                        print(var + "\tVariable")
+                        var = ""
                     print(division + "\tDivision")
                     division = ""
-                    adjunto = False
                 var = var + token
                 variableBool = True
+                adjunto = False
 
             elif token == "-":
                 resta = "-"
+                if entero != "":
+                    print(entero + "\tEntero")
+                    entero = ""
+                    adjunto = False
+                elif real != "":
+                    print(real + "\tReal")
+                    real = ""
+                    floatBool = False
+                    adjunto = False
+                elif var != "":
+                    print(var + "\tVariable")
+                    var = ""
+                    variableBool = False
+                    adjunto = False
+                if division != "":
+                    print(division + "\tDivisión")
+                    division = ""
+                    adjunto = True
+                    
             
             elif token == "/":
                 division = division + "/"
-
+                adjunto = True
                 if division == "//":
                     comentario = division
                     division = ""
                     comentarioBool = True
+                    adjunto = False
                     
             if resta != "" and adjunto == False:
                 print(resta + "\tResta")
@@ -151,12 +197,11 @@ def lexerAritmetico(nombre_archivo):
             print(entero + "\tEntero")
         elif real != "":
             print(real + "\tReal")
-
+        elif var != "":
+            print(var + "\tVariable")
+            
         if comentario != "":
             print(comentario + "\tComentario")
-
-        if var != "":
-            print(var + "\tVariable")
             
         print("\n")
 
