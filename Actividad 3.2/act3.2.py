@@ -4,8 +4,8 @@ Actividad 3.2 - Programando un DFA
 Fecha: 22-04-2020
 
 Equipo:
-    - 
-    -
+    - Diego Alberto Baños Lopez | A01275100
+    - José Ángel Rentería Campos | A00832436
     - Brenda Elena Saucedo González | A00829855
 '''
 
@@ -30,6 +30,7 @@ def lexerAritmetico(nombre_archivo):
         floatBool = False
         comentarioBool = False
         variableBool = False
+        adjunto = False
         
         print(expresion)
         print ("Token\tTipo")
@@ -44,33 +45,40 @@ def lexerAritmetico(nombre_archivo):
                 if entero != "":
                     print(entero + "\tEntero")
                     entero = ""
+                    adjunto = False
                 elif real != "":
                     print(real + "\tReal")
                     real = ""
                     floatBool = False
-                elif resta != "":
-                    print(resta + "\tResta")
-                    resta = ""
+                    adjunto = False
                 elif division != "":
                     print(division + "\tDivision")
                     division = ""
+                    adjunto = False
                 elif var != "":
                     print(var + "\tVariable")
                     var = ""
                     variableBool = False
+                    adjunto = False
                 
                 if token == "=":
                     print(str(token) + "\tAsignación")
+                    adjunto = True
                 elif token == "*":
                     print(str(token) + "\tMultiplicación")
+                    adjunto = False
                 elif token == "+":
                     print(str(token) + "\tSuma")
+                    adjunto = False
                 elif token == "^":
                     print(str(token) + "\tPotencia")
+                    adjunto = True
                 elif token == "(":
                     print(str(token) + "\tParéntesis que abre")
+                    adjunto = True
                 elif token == ")":
                     print(str(token) + "\tParéntesis que cierra")
+                    adjunto = False
 
             elif (token.isdigit() or token == "_") and variableBool == True:
                 if division == "/":
@@ -78,29 +86,37 @@ def lexerAritmetico(nombre_archivo):
                     var = ""
                     print(division + "\tDivision")
                     division = ""
+                    adjunto = False
                 var = var + token
                 
             elif token.isdigit():
-                
                 if floatBool == False:
                     if division == "/":
-                        print(entero + "\tEntero")
-                        entero = ""
-                        print(division + "\tDivision")
+                        if (entero != ""):
+                            print(str(entero) + '\tEntero')
+                            entero = ""
+                        print(division + "\tDivisión")
                         division = ""
-                    entero = resta + entero + str(token)
-                    resta = ""
+                    if adjunto == True:
+                        entero = resta + entero + str(token)
+                        resta = ""
+                    else:
+                        entero = entero + str(token)
                 else:
                     if division == "/":
-                        print(real + "\tReal")
-                        real = ""
+                        if (real != ""):
+                            print(str(real) + '\tReal')
+                            real = ""
                         print(division + "\tDivision")
                         division = ""
-                    real = entero + real + str(token)
-                    floatBool = True
-                    resta = ""
+                    if adjunto == True:
+                        real = resta + entero + real + str(token)
+                        resta = ""
+                    else:
+                        real = entero + real + str(token)
+                adjunto = False
                 
-            elif (token == "." or (token == "E" and floatBool == True) or (token == "-" and floatBool == True) ):
+            elif token == "." or (token == "E" and floatBool == True) or (token == "e" and floatBool == True) or (token == "-" and floatBool == True):
                 real = entero + real + str(token)
                 floatBool = True
                 entero = ""
@@ -111,6 +127,7 @@ def lexerAritmetico(nombre_archivo):
                     var = ""
                     print(division + "\tDivision")
                     division = ""
+                    adjunto = False
                 var = var + token
                 variableBool = True
 
@@ -124,6 +141,10 @@ def lexerAritmetico(nombre_archivo):
                     comentario = division
                     division = ""
                     comentarioBool = True
+                    
+            if resta != "" and adjunto == False:
+                print(resta + "\tResta")
+                resta = ""
             
             
         if entero != "":
@@ -146,7 +167,6 @@ lexerAritmetico("expresiones.txt")
 
 '''
 Falta:
-- La "E" de los flotantes puede ser minuscula o mayuscula, seguida de un entero positivo o negativo
 - Diseño del autómata (Herramienta computacional para dibujarlo)
 - Documentación (Manual del usuario, indicando cómo correr su programa y qué se obtiene de salida)
 - Documentación (El autómata que resuelve el problema)
