@@ -111,6 +111,8 @@ def lexerAritmetico(nombre_archivo):
                             real = ""
                         print(division + "\tDivision")
                         division = ""
+                    if floatE == True:
+                        floatE = False
                     if adjunto == True:
                         real = resta + entero + real + str(token)
                         resta = ""
@@ -121,10 +123,10 @@ def lexerAritmetico(nombre_archivo):
             elif token == "." or (floatBool == True and (token == "E" or token == "e" or (token == "-" and floatE == True))):
                 if token == "E" or token == "e":
                     floatE = True
+                    adjunto = True
                 real = entero + real + str(token)
                 entero = ""
                 floatBool = True
-                adjunto = True
 
             elif token.isalpha():
                 if division == "/":
