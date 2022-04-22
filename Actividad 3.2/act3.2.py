@@ -1,13 +1,23 @@
 '''
 Actividad 3.2 - Programando un DFA
 
-Fecha: 22-04-2020
+Fecha: 22-04-2022
 
 Equipo:
     - Diego Alberto Baños Lopez | A01275100
     - José Ángel Rentería Campos | A00832436
     - Brenda Elena Saucedo González | A00829855
 '''
+#Librerias a usar
+import os
+
+''' Definimos las variables que usaremos para abrir el archivo
+con la ayuda de la libreria OS.
+Esto nos ayudara a evitar conflictos a la hora de abrirlo en
+equipos distintos '''
+
+folder_actual = os.path.dirname(os.path.abspath(__file__))
+archivo_a_usar = os.path.join(folder_actual, "expresiones.txt")
 
 # Definición de función principal
 def lexerAritmetico(nombre_archivo):
@@ -208,7 +218,7 @@ def lexerAritmetico(nombre_archivo):
 
 
 # Se llama a la función principal
-lexerAritmetico("./Actividad 3.2/expresiones.txt")
+lexerAritmetico(archivo_a_usar)
 
 '''
 Falta:
