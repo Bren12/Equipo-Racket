@@ -27,6 +27,9 @@ def lexerAritmetico(nombre_archivo):
         # Leer todo el archivo y dejarlo en una lista de strings
         lista_expresion = archivo.readlines()
         
+    #Imprime la cabeza de la tabla
+    print ("Token\tTipo")
+    
     # Lee cada enunciado del archivo
     for num, expresion in enumerate(lista_expresion):
         
@@ -44,8 +47,6 @@ def lexerAritmetico(nombre_archivo):
         floatE = False
         
         expresion = expresion.replace(" ","")
-        print(expresion)
-        print ("Token\tTipo")
         
         # Lee cada caracter del enunciado
         for num2, token in enumerate(expresion):
@@ -212,8 +213,7 @@ def lexerAritmetico(nombre_archivo):
             
         if comentario != "":
             print(comentario + "\tComentario")
-            
-        print("\n")
+
 
 
 
