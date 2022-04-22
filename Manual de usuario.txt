@@ -1,5 +1,5 @@
 Actividad 3.2 - Programando un DFA
-Manual de Usuario 1.0
+Manual de Usuario 1.1
 
 Fecha: 22-04-2022
 
@@ -24,6 +24,10 @@ separados más de un espacio. Las expresiones aritméticas solo contendrán los 
 
 •	Números enteros
 •	Números flotantes (Reales)
+    o Notación cientifica: Este debe de estar anotado con e ya sea minuscula o mayuscula (E),
+    es importante notar que para que sea leido correctamente el programa debe de venir siempre como 
+    flotante:
+    Ejemplo: 4E^2 No es valido, deberá reescribirse como 4.0E^2 o 4.0e^2
 •	Operadores:
     o	Asignación (=)
     o	Suma (+)
