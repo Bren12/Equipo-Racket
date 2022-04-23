@@ -51,7 +51,7 @@ def lexerAritmetico(nombre_archivo):
         # Lee cada caracter del enunciado
         for num2, token in enumerate(expresion):
 
-            if comentarioBool == True:
+            if comentarioBool == True and token != "\n":
                 comentario = comentario + token
 
             elif token == "=" or token == "*" or token == "+" or token == " " or token == "^" or token == "(" or token == ")":
