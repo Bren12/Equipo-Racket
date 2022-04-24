@@ -1,7 +1,7 @@
 Actividad 3.2 - Programando un DFA
 Manual de Usuario 1.1
 
-Fecha: 22-04-2022
+Fecha: 23-04-2022
 
 Equipo:
     - Diego Alberto Baños Lopez | A01275100
@@ -9,7 +9,7 @@ Equipo:
     - Brenda Elena Saucedo González | A00829855 
 
 Este programa representa un Autómata Finito Determinista (DFA), el cual será un analizador léxico, este analizador léxico trabajará bajo 
-la lógica de nuestro diagrama del DFA que se encuentra incluida en el conjunto de archivos de esta actividad.
+la lógica de nuestra tabla de transición y diagrama del DFA que se encuentra incluida en el conjunto de archivos de esta actividad.
 
 ¿Cómo usar el programa?
 
@@ -27,7 +27,7 @@ separados más de un espacio. Las expresiones aritméticas solo contendrán los 
     o Notación cientifica: Este debe de estar anotado con e ya sea minuscula o mayuscula (E),
     es importante notar que para que sea leido correctamente el programa debe de venir siempre como 
     flotante:
-    Ejemplo: 4E^2 No es valido, deberá reescribirse como 4.0E^2 o 4.0e^2
+    Ejemplo: 4E2 No es valido, deberá reescribirse como 4.0E2 o 4.0e2
 •	Operadores:
     o	Asignación (=)
     o	Suma (+)
@@ -36,7 +36,7 @@ separados más de un espacio. Las expresiones aritméticas solo contendrán los 
     o	División (/)
     o	Potencia (^)
 •	Identificadores:
-    o	Variables (alfabeto)
+    o	Variables (Deben empezar con una letra, mayúscula o minúscula, y solo pueden estar formadas letras, números y underscore "_")
 •	Símbolos especiales:
     o	(
     o	)
@@ -44,17 +44,17 @@ separados más de un espacio. Las expresiones aritméticas solo contendrán los 
     o	// seguido de caracteres hasta que se acabe el renglón
 
 Una vez terminado de modificar el archivo, este debe de guardarse y acto seguido abrimos la terminal de nuestro sistema operativo, irnos con 
-los comandos de nuestro sistema operativo a nuestra carpeta que contiene el archivo con extensión py y acto lo abrimos con el comando que corresponda 
-en el sistema, en este instructivo se mostraran dos formas de abrir el archivo dependiendo en que consola uno este:
+los comandos de nuestro sistema operativo a nuestra carpeta que contiene el archivo con extensión py y acto seguido lo abrimos con el comando 
+que corresponda en el sistema, en este instructivo se mostraran dos formas de abrir el archivo dependiendo en que consola uno este:
 
 Caso CMD (Windows):
 -	Con CD te diriges a la carpeta en donde esta guardado el archivo act3.2.py
--	Una vez dentro de la carpeta simplemente escribe “act3.2.py” y presiona enter, si Python esta instalado correctamente este debería de mostrarla 
+-	Una vez dentro de la carpeta simplemente escribe “act3.2.py” y presiona enter, si Python esta instalado correctamente este debería de mostrar la 
 salida del programa.
 
 Caso Powershell:
 -	Con CD te diriges a la carpeta en donde esta guardado el archivo act3.2.py
--	Una vez dentro de la carpeta simplemente escribe “.\act3.2.py” y presiona enter, si Python está instalado correctamente este debería de mostrarla 
+-	Una vez dentro de la carpeta simplemente escribe “.\act3.2.py” y presiona enter, si Python está instalado correctamente este debería de mostrar la 
 salida del programa.
 
 Estos tokens serán sometidos a un grupo de condicionales definida dentro de la función lexerAritmetico, los cuales definirán el contenido de la tabla 
@@ -78,96 +78,93 @@ j^w = -34.3e-3 /n//fghjkkjnu uyhgbnjshf
 
 La salida del programa será la siguiente:
 
-Token   Tipo
-b       Variable
-=       Asignación
-7       Entero
-a       Variable
-=       Asignación
-32.4    Real
-*       Multiplicación
-(       Paréntesis que abre
--8.6    Real
--       Resta
-b       Variable
-)       Paréntesis que cierra
-/       División
-6.1E-8  Real
-d       Variable
-=       Asignación
-a       Variable
-^       Potencia
-b       Variable
-//Estoesuncomentario
-        Comentario
-c       Variable
-=       Asignación
-abc     Variable
-+       Suma
-d       Variable
-n       Variable
-+       Suma
-5       Entero
-=       Asignación
--67     Entero
-j       Variable
-*       Multiplicación
-6       Entero
-=       Asignación
-3.4     Real
-f_6     Variable
-=       Asignación
-6       Entero
-*       Multiplicación
-(       Paréntesis que abre
-34      Entero
--       Resta
-b2      Variable
-)       Paréntesis que cierra
-h       Variable
-=       Asignación
-4       Entero
-//Holaasdfgh
-        Comentario
-s       Variable
-=       Asignación
-4       Entero
-/       División
--6.4    Real
-e       Variable
-=       Asignación
-(       Paréntesis que abre
-eh3_2   Variable
--       Resta
-8.6     Real
-)       Paréntesis que cierra
-/       División
-4       Entero
-//noluahgy+-///
-        Comentario
-E       Variable
-=       Asignación
-4.0e5   Real
--       Resta
-4       Entero
-f       Variable
-=       Asignación
-10.0    Real
-g       Variable
-=       Asignación
-b       Variable
-^       Potencia
--3      Entero
-i       Variable
-=       Asignación
-a       Variable
-/       Division
-b3      Variable
-j       Variable
-^       Potencia
-w       Variable
-=       Asignación
--34.3e-3        Real
-/       Division
-n       Variable
-//fghjkkjnuuyhgbnjshf   Comentario
+Token	Tipo
+b	Variable
+=	Asignación
+7	Entero
+a	Variable
+=	Asignación
+32.4	Real
+*	Multiplicación
+(	Paréntesis que abre
+-8.6	Real
+-	Resta
+b	Variable
+)	Paréntesis que cierra
+/	Division
+6.1E-8	Real
+d	Variable
+=	Asignación
+a	Variable
+^	Potencia
+b	Variable
+// Esto es un comentario	Comentario
+c	Variable
+=	Asignación
+abc	Variable
++	Suma
+d	Variable
+n	Variable
++	Suma
+5	Entero
+=	Asignación
+-67	Entero
+j	Variable
+*	Multiplicación
+6	Entero
+=	Asignación
+3.4	Real
+f_6	Variable
+=	Asignación
+6	Entero
+*	Multiplicación
+(	Paréntesis que abre
+34	Entero
+-	Resta
+b2	Variable
+)	Paréntesis que cierra
+h	Variable
+=	Asignación
+4	Entero
+// Hola asdfgh	Comentario
+s	Variable
+=	Asignación
+4	Entero
+/	Division
+-6.4	Real
+e	Variable
+=	Asignación
+(	Paréntesis que abre
+eh3_2	Variable
+-	Resta
+8.6	Real
+)	Paréntesis que cierra
+/	Division
+4	Entero
+// no luah gy + -/ //	Comentario
+E	Variable
+=	Asignación
+4.0e5	Real
+-	Resta
+4	Entero
+f	Variable
+=	Asignación
+10.0	Real
+g	Variable
+=	Asignación
+b	Variable
+^	Potencia
+-3	Entero
+i	Variable
+=	Asignación
+a	Variable
+/	Division
+b3	Variable
+j	Variable
+^	Potencia
+w	Variable
+=	Asignación
+-34.3e-3	Real
+/	Division
+n	Variable
+//fghjkkjnu uyhgbnjshf	Comentario
