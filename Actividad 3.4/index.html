@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Resaltador de Sintaxix</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<span class="file">file.cpp</span>
+		<span class="error"></span>
+		<br>
+		<span class="comentario">// Solving SPOJ's TAP2014A - At random</span>
+		<br>
+		<span class="error">#include   "iostream"</span>
+		<br>
+		<span class="error">using   namespace   std ;</span>
+		<br>
+		<span class="error">const   auto   INF  =  1e18LL ;</span>
+		<br>
+		<span class="error">void   printAns ( bool   ans ) {</span>
+		<br>
+		<span class="error">    cout  << ( ans   ?   'B'  :  'M' ) <<  endl ;</span>
+		<br>
+		<span class="error">}</span>
+		<br>
+		<span class="error"></span>
+		<br>
+		<span class="error">int   main () {</span>
+		<br>
+		<span class="error">   int   t ;</span>
+		<br>
+		<span class="error">   cin  >>  t ;</span>
+		<br>
+		<span class="error">   while  ( t --) {</span>
+		<br>
+		<span class="error">    int   n ;</span>
+		<br>
+		<span class="error">    cin  >>  n ;</span>
+		<br>
+		<span class="error">    bool   ans  =  true ;  // will stay the same if condition meets</span>
+		<br>
+		<span class="error">    int   last  = - 1 ,  cur ;</span>
+		<br>
+		<span class="error">    char   prev  =  0 ,  now ;</span>
+		<br>
+		<span class="error">    for  ( int   i  =  0 ;  i  <  n ; ++ i ) {</span>
+		<br>
+		<span class="error">        cin  >>  cur  >>  now ;</span>
+		<br>
+		<span class="error">        // if any of the two numbers are the same, it changes value of ans</span>
+		<br>
+		<span class="error">        if  ( cur  ==  last  ||  now  ==  prev ) {</span>
+		<br>
+		<span class="error">            ans  =  false ;</span>
+		<br>
+		<span class="error">        }</span>
+		<br>
+		<span class="error">        last  =  cur ;</span>
+		<br>
+		<span class="error">        prev  =  now ;</span>
+		<br>
+		<span class="error">    }</span>
+		<br>
+		<span class="error">    printAns ( ans );</span>
+		<br>
+		<span class="error">    }</span>
+		<br>
+		<span class="error">    return   0 ;</span>
+		<br>
+		<span class="error"></span>
+		<br>
+    </body>
+</html>
