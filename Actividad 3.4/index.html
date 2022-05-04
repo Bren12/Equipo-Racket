@@ -7,67 +7,192 @@
 	</head>
 	<body>
 		<span class="file">file.cpp</span>
-		<span class="error"></span>
 		<br>
 		<span class="comentario">// Solving SPOJ's TAP2014A - At random</span>
 		<br>
-		<span class="error">#include   "iostream"</span>
+		<span class="error">#include</span>
+		<span class="error">"iostream"</span>
 		<br>
-		<span class="error">using   namespace   std ;</span>
+		<span class="error">using</span>
+		<span class="error">namespace</span>
+		<span class="error">std</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">const   auto   INF  =  1e18LL ;</span>
+		<span class="error">const</span>
+		<span class="error">auto</span>
+		<span class="error">INF</span>
+		<span class="operador">=</span>
+		<span class="error">1e18LL</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">void   printAns ( bool   ans ) {</span>
+		<span class="literal">void</span>
+		<span class="error">printAns</span>
+		<span class="error">(</span>
+		<span class="literal">bool</span>
+		<span class="error">ans</span>
+		<span class="error">)</span>
+		<span class="error">{</span>
 		<br>
-		<span class="error">    cout  << ( ans   ?   'B'  :  'M' ) <<  endl ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="operador"><<</span>
+		<span class="error">(</span>
+		<span class="error">ans</span>
+		<span class="operador">?</span>
+		<span class="error">'B'</span>
+		<span class="operador">:</span>
+		<span class="error">'M'</span>
+		<span class="error">)</span>
+		<span class="operador"><<</span>
+		<span class="error">endl</span>
+		<span class="error">;</span>
 		<br>
 		<span class="error">}</span>
 		<br>
-		<span class="error"></span>
 		<br>
-		<span class="error">int   main () {</span>
+		<span class="literal">int</span>
+		<span class="error">main</span>
+		<span class="error">()</span>
+		<span class="error">{</span>
 		<br>
-		<span class="error">   int   t ;</span>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="literal">int</span>
+		<span class="error">t</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">   cin  >>  t ;</span>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="operador">>></span>
+		<span class="error">t</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">   while  ( t --) {</span>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">while</span>
+		<span class="error">(</span>
+		<span class="error">t</span>
+		<span class="operador">--</span>
+		<span class="error">)</span>
+		<span class="error">{</span>
 		<br>
-		<span class="error">    int   n ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="literal">int</span>
+		<span class="error">n</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">    cin  >>  n ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="operador">>></span>
+		<span class="error">n</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">    bool   ans  =  true ;  // will stay the same if condition meets</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="literal">bool</span>
+		<span class="error">ans</span>
+		<span class="operador">=</span>
+		<span class="error">true</span>
+		<span class="error">;</span>
+		<span class="comentario">// will stay the same if condition meets</span>
 		<br>
-		<span class="error">    int   last  = - 1 ,  cur ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="literal">int</span>
+		<span class="error">last</span>
+		<span class="operador">=</span>
+		<span class="operador">-</span>
+		<span class="error">1</span>
+		<span class="error">,</span>
+		<span class="error">cur</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">    char   prev  =  0 ,  now ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="literal">char</span>
+		<span class="error">prev</span>
+		<span class="operador">=</span>
+		<span class="error">0</span>
+		<span class="error">,</span>
+		<span class="error">now</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">    for  ( int   i  =  0 ;  i  <  n ; ++ i ) {</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">for</span>
+		<span class="error">(</span>
+		<span class="literal">int</span>
+		<span class="error">i</span>
+		<span class="operador">=</span>
+		<span class="error">0</span>
+		<span class="error">;</span>
+		<span class="error">i</span>
+		<span class="operador"><</span>
+		<span class="error">n</span>
+		<span class="error">;</span>
+		<span class="operador">++</span>
+		<span class="error">i</span>
+		<span class="error">)</span>
+		<span class="error">{</span>
 		<br>
-		<span class="error">        cin  >>  cur  >>  now ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="operador">>></span>
+		<span class="error">cur</span>
+		<span class="operador">>></span>
+		<span class="error">now</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">        // if any of the two numbers are the same, it changes value of ans</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="comentario">// if any of the two numbers are the same, it changes value of ans</span>
 		<br>
-		<span class="error">        if  ( cur  ==  last  ||  now  ==  prev ) {</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">if</span>
+		<span class="error">(</span>
+		<span class="error">cur</span>
+		<span class="operador">==</span>
+		<span class="error">last</span>
+		<span class="operador">|</span>
+		<span class="operador">|</span>
+		<span class="error">now</span>
+		<span class="operador">==</span>
+		<span class="error">prev</span>
+		<span class="error">)</span>
+		<span class="error">{</span>
 		<br>
-		<span class="error">            ans  =  false ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">ans</span>
+		<span class="operador">=</span>
+		<span class="error">false</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">        }</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">}</span>
 		<br>
-		<span class="error">        last  =  cur ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">last</span>
+		<span class="operador">=</span>
+		<span class="error">cur</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">        prev  =  now ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">prev</span>
+		<span class="operador">=</span>
+		<span class="error">now</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error">    }</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">}</span>
 		<br>
-		<span class="error">    printAns ( ans );</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">printAns</span>
+		<span class="error">(</span>
+		<span class="error">ans</span>
+		<span class="error">);</span>
 		<br>
-		<span class="error">    }</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">}</span>
 		<br>
-		<span class="error">    return   0 ;</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">return</span>
+		<span class="error">0</span>
+		<span class="error">;</span>
 		<br>
-		<span class="error"></span>
+		<span class="error">}</span>
 		<br>
-    </body>
+	</body>
 </html>

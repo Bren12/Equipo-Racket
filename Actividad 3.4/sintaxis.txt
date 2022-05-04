@@ -11,21 +11,21 @@ int   main () {
    int   t ;
    cin  >>  t ;
    while  ( t --) {
-    int   n ;
-    cin  >>  n ;
-    bool   ans  =  true ;  // will stay the same if condition meets
-    int   last  = - 1 ,  cur ;
-    char   prev  =  0 ,  now ;
-    for  ( int   i  =  0 ;  i  <  n ; ++ i ) {
-        cin  >>  cur  >>  now ;
-        // if any of the two numbers are the same, it changes value of ans
-        if  ( cur  ==  last  ||  now  ==  prev ) {
-            ans  =  false ;
+       int   n ;
+       cin  >>  n ;
+       bool   ans  =  true ;  // will stay the same if condition meets
+       int   last  = - 1 ,  cur ;
+       char   prev  =  0 ,  now ;
+       for  ( int   i  =  0 ;  i  <  n ; ++ i ) {
+           cin  >>  cur  >>  now ;
+            // if any of the two numbers are the same, it changes value of ans
+            if  ( cur  ==  last  ||  now  ==  prev ) {
+                ans  =  false ;
+            }
+            last  =  cur ;
+            prev  =  now ;
         }
-        last  =  cur ;
-        prev  =  now ;
-    }
-    printAns ( ans );
+        printAns ( ans );
     }
     return   0 ;
 }
