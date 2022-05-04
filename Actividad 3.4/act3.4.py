@@ -13,6 +13,7 @@ En el presente programa se definen categorías léxicas pertenecientes al lengua
 
 #Librerias a usar
 import os
+import string
 
 # Definimos las variables que usaremos para abrir el archivo con la ayuda de la libreria OS.
 # Esto nos ayudara a evitar conflictos a la hora de abrirlo en equipos distintos.
@@ -48,6 +49,11 @@ def isComentario(expresion):
     return False
 
 def isLibreria(expresion):
+    #Busca el # que en C++ indica una libreria a incluir
+    pos = expresion.find("#")
+    #Dado caso de que la encuentre marcalo como verdadero
+    if (pos == 0):
+        return True
     return False
 
 def isReservada(expresion):
@@ -67,6 +73,10 @@ def isReservada(expresion):
         return False
 
 def isLiteral(expresion):
+    literales = ["b","B","x","X",".","E","e"]
+    for x in range(0, 10):
+        literales.append(str(x))
+    
     return False
 
 def isOperador(expresion, original, pos):
@@ -97,9 +107,21 @@ def isOperadorUnique(expresion, original, pos):
 def isDelimitador(expresion):
     return False
 
-def isIdentificador(expresion):
+def isIdentificador(expresion, original, pos):
+    #Se crea un diccionario para checar todos los identificadores
+    alfabeto = list(string.ascii_letters)
+    alfabeto.append("_")
+    numeros = []
+    #Añade los numeros del 0 al 9
+    for x in range(0, 10):
+        numeros.append(str(x))
+    
+    for i, op in enumerate(alfabeto):
+        # Si encontro el operador, se retorna verdadero
+        if (op == expresion or expresion.find(op) != -1 or (expresion in numeros)):
+            if (not (expresion[0] in numeros)):
+                return True
     return False
-
 # Definición de función principal
 def main():
     # Se abre el archivo html (index.html) y se empieza a escribir en el
@@ -170,8 +192,10 @@ def main():
                     del acumHTML [:]
                     break
                 elif (isLibreria(acumExp)):
-                    # Diego
-                    print("")
+                    file.write("\t\t<span class=\"libreria\">" + expresion + "</span>\n")
+                    acumExp = ""
+                    del acumHTML [:]
+                    break
                 elif (isReservada(acumExp)):
                     # Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
                     if (expresion[j+1] == " " or expresion[j+1] == "\n"):
@@ -179,8 +203,9 @@ def main():
                         acumExp = ""
                         del acumHTML [:]
                 elif (isLiteral(acumExp)):
-                    # Diego
-                    print("")
+                        file.write("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        del acumHTML [:]
                 elif (isOperador(acumExp,expresion,j)):
                     # Verifica que no hayan otros valores antes del operador en la expresión, sino, libera esa parte como un error de sintaxis a excepción del operador
                     if (len(acumExp) != 1 and acumExp[:j] != "" and not isOperadorUnique(acumExp,expresion,j)):
@@ -195,9 +220,11 @@ def main():
                 elif (isDelimitador(acumExp)):
                     # Jose Angel
                     print("")
-                elif (isIdentificador(acumExp)):
-                    # Diego
-                    print("")
+                elif (isIdentificador(acumExp, expresion, j)):
+                    if (expresion[j+1] == " " or expresion[j+1] == "\n"):
+                        file.write("\t\t<span class=\"identificador\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        del acumHTML [:]
 
             for i in range(len(acumHTML)):
                 file.write(acumHTML[i])
