@@ -119,7 +119,7 @@ def isIdentificador(expresion, original, pos):
     for i, op in enumerate(alfabeto):
         # Si encontro el operador, se retorna verdadero
         if (op == expresion or expresion.find(op) != -1 or (expresion in numeros)):
-            if (not (expresion[0] in numeros)):
+            if (not (expresion[0] in numeros) and (not ("\"" in expresion or "\'" in expresion))):
                 return True
     return False
 # Definición de función principal
