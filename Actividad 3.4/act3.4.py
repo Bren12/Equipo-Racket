@@ -51,23 +51,27 @@ def isLibreria(expresion):
     return False
 
 def isReservada(expresion):
-    return False
+    # Se definen las palabras reservadas como un diccionario
+    reservada = {"int": True, "bool": True, "char": True, "void": True, "float": True, "double": True, "string": True, "cin": True, "cout": True, "while": True, 
+    "as": True, "using": True, "namespace": True, "auto": True, "const": True, "asm": True, "dynamic_cast": True, "reinterpret_cast": True, "try": True, 
+    "explicit": True, "new": True, "static_cast": True, "static": True, "typeid": True, "catch": True, "false": True, "operator": True, "template": True, 
+    "typename": True, "class": True, "friend": True, "private": True, "this": True, "const_cast": True, "inline": True, "public": True, "throw": True, 
+    "virtual": True, "delete": True, "enum": True, "goto": True, "else": True, "mutable": True, "protected": True, "true": True, "wchar_t": True,
+    "sizeof": True, "register": True, "unsigned": True, "break": True, "continue": True, "extern": True, "if": True, "return": True, "switch": True, "case": True,
+    "default": True, "short": True, "struct": True, "volatile": True, "do": True, "for": True, "long": True, "signed": True, "union": True,}
+    
+    # Verifica si existe en la expresión cualquier palabra reservada, si no, retorna falso
+    try:
+        return reservada[expresion]
+    except:
+        return False
 
 def isLiteral(expresion):
-    # Se definen las literales
-    literal = ["int", "bool", "char", "void", "float", "double", "string"]
-
-    # Ciclo que itera cada literal de la lista definida
-    for i, lit in enumerate(literal):
-        # Si encontro la literal, se retorna verdadero
-        if (lit == expresion):
-            return True
-
     return False
 
 def isOperador(expresion, original, pos):
-    # Se definen los operadores
-    operador = ["+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", ":", "&", "|"]
+    # Se definen los operadores como una lista
+    operador = {"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", ":", "&", "&&", "||"}
 
     # Ciclo que itera cada operador de la lista definida
     for i, op in enumerate(operador):
@@ -78,16 +82,17 @@ def isOperador(expresion, original, pos):
     return False
 
 def isOperadorUnique(expresion, original, pos):
-    # Se definen los operadores
-    operador = ["+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", ":", "&", "|"]
+    # Se definen los operadores como un diccionario
+    operador = {"+": True, "+=": True, "++": True, "-": True, "-=": True, "--": True, "%": True, "%=": True, "*": True, "*=": True, "/=": True, "^": True, "<": True, "<<": True, ">": True, ">>": True, 
+    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, ":": True, "&": True, "&&": True, "||": True}
 
-    # Ciclo que itera cada operador de la lista definida
-    for i, op in enumerate(operador):
-        # Si encontro el operador, se retorna verdadero
-        if (op == expresion or (expresion == "/" and original[pos:pos+2] != "//")):
+    # Verifica si existe en la expresión cualquier operador, si no, retorna falso
+    try:
+        if (expresion == "/" and original[pos:pos+2] != "//"):
             return True
-
-    return False
+        return operador[expresion]
+    except:
+        return False
 
 def isDelimitador(expresion):
     return False
@@ -168,14 +173,14 @@ def main():
                     # Diego
                     print("")
                 elif (isReservada(acumExp)):
-                    # Jose Angel
-                    print("")
-                elif (isLiteral(acumExp)):
-                    # Verifica que despues de validar que la literal se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
+                    # Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
                     if (expresion[j+1] == " " or expresion[j+1] == "\n"):
-                        file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
+                        file.write("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
                         acumExp = ""
                         del acumHTML [:]
+                elif (isLiteral(acumExp)):
+                    # Diego
+                    print("")
                 elif (isOperador(acumExp,expresion,j)):
                     # Verifica que no hayan otros valores antes del operador en la expresión, sino, libera esa parte como un error de sintaxis a excepción del operador
                     if (len(acumExp) != 1 and acumExp[:j] != "" and not isOperadorUnique(acumExp,expresion,j)):
@@ -183,7 +188,7 @@ def main():
                         acumExp = acumExp[j:]
                         del acumHTML [:]
                     # Verifica que a continuación se encuentre cualquier otro valor que no sea un operador
-                    if (not isOperadorUnique(acumExp + expresion[j+1],expresion,j)):
+                    if (not isOperadorUnique(expresion[j+1],expresion,j)):
                         file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
                         acumExp = ""
                         del acumHTML [:]
