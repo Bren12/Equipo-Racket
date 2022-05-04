@@ -117,8 +117,9 @@ def isIdentificador(expresion, original, pos):
         numeros.append(str(x))
     
     for i, op in enumerate(alfabeto):
-        # Si encontro el operador, se retorna verdadero
+        # Si encontro el identificador, se retorna verdadero
         if (op == expresion or expresion.find(op) != -1 or (expresion in numeros)):
+            #Checa casos de excepcion que indican que no es un identificador
             if (not (expresion[0] in numeros) and (not ("\"" in expresion or "\'" in expresion))):
                 return True
     return False
