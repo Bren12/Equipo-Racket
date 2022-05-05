@@ -1,13 +1,10 @@
 '''
 Actividad Integradora 3.4 - Resaltador de sintaxis
-
 Fecha: 06-05-2020
-
 Equipo:
     - Diego Alberto Baños Lopez | A01275100
     - José Ángel Rentería Campos | A00832436
     - Brenda Elena Saucedo González | A00829855
-
 En el presente programa se definen categorías léxicas pertenecientes al lenguaje de programación de C++
 '''
 
@@ -72,13 +69,6 @@ def isReservada(expresion):
     except:
         return False
 
-def isLiteral(expresion):
-    literales = ["b","B","x","X",".","E","e"]
-    for x in range(0, 10):
-        literales.append(str(x))
-    
-    return False
-
 def isOperador(expresion, original, pos):
     # Se definen los operadores como una lista
     operador = {"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", ":", "&", "&&", "||"}
@@ -104,7 +94,15 @@ def isOperadorUnique(expresion, original, pos):
     except:
         return False
 
-def isDelimitador(expresion):
+def isDelimitador(expresion, original, pos):
+    delimitador = {"(", ")", "[", "]", "{", "}", ",", ";", "...", "*", "="}
+
+    # Ciclo que itera cada operador de la lista definida
+    for i, op in enumerate(delimitador):
+        # Si encontro el operador, se retorna verdadero
+        if (op == expresion or expresion.find(op) != -1 or (expresion == "/" and original[pos:pos+2] != "//") or (expresion.find("/") != -1 and original[pos:pos+2] != "//")):
+            return True
+
     return False
 
 def isIdentificador(expresion, original, pos):
@@ -123,6 +121,20 @@ def isIdentificador(expresion, original, pos):
             if (not (expresion[0] in numeros) and (not ("\"" in expresion or "\'" in expresion))):
                 return True
     return False
+
+def isLiteral(expresion, original, pos):
+    literales = ["-","f","F","'","b","B","x","X",".","E","e"]
+    numeros = []
+    for x in range(0, 10):
+        literales.append(str(x))
+        numeros.append(str(x))
+    
+    for i, op in enumerate(literales):
+        # Si se encuentra un literal en la expresion se retorna verdadero
+        if (op == expresion or expresion.find(op) != -1 or (expresion in numeros)):
+            return True
+    return False
+
 # Definición de función principal
 def main():
     # Se abre el archivo html (index.html) y se empieza a escribir en el
@@ -203,10 +215,7 @@ def main():
                         file.write("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
                         acumExp = ""
                         del acumHTML [:]
-                elif (isLiteral(acumExp)):
-                        file.write("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
-                        acumExp = ""
-                        del acumHTML [:]
+
                 elif (isOperador(acumExp,expresion,j)):
                     # Verifica que no hayan otros valores antes del operador en la expresión, sino, libera esa parte como un error de sintaxis a excepción del operador
                     if (len(acumExp) != 1 and acumExp[:j] != "" and not isOperadorUnique(acumExp,expresion,j)):
@@ -218,12 +227,21 @@ def main():
                         file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
                         acumExp = ""
                         del acumHTML [:]
-                elif (isDelimitador(acumExp)):
-                    # Jose Angel
-                    print("")
+
+                elif (isDelimitador(acumExp,expresion,j)):
+                    file.write("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
+                    acumExp = ""
+                    del acumHTML [:]
+
                 elif (isIdentificador(acumExp, expresion, j)):
                     if (expresion[j+1] == " " or expresion[j+1] == "\n"):
                         file.write("\t\t<span class=\"identificador\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        del acumHTML [:]
+                
+                elif (isLiteral(acumExp, expresion, j)):
+                    if (expresion[j+1] == " " or expresion[j+1] == "\n"):
+                        file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
                         acumExp = ""
                         del acumHTML [:]
 
