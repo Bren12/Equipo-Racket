@@ -123,7 +123,7 @@ def isIdentificador(expresion, original, pos):
     return False
 
 def isLiteral(expresion, original, pos):
-    literales = ["-","f","F","'","b","B","x","X",".","E","e"]
+    literales = ["-","f","F","b","B","x","X",".","E","e","\'","\""]
     numeros = []
     for x in range(0, 10):
         literales.append(str(x))
@@ -234,16 +234,22 @@ def main():
                     del acumHTML [:]
 
                 elif (isIdentificador(acumExp, expresion, j)):
-                    if (expresion[j+1] == " " or expresion[j+1] == "\n"):
+                    if (expresion[j+1] == " " or expresion[j+1] == "\n" or expresion[j+1] == ":"):
                         file.write("\t\t<span class=\"identificador\">" + acumExp + "</span>\n")
                         acumExp = ""
                         del acumHTML [:]
                 
                 elif (isLiteral(acumExp, expresion, j)):
-                    if (expresion[j+1] == " " or expresion[j+1] == "\n"):
-                        file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
-                        acumExp = ""
-                        del acumHTML [:]
+                    if (expresion[j+1] == " " or expresion[j+1] == "\n" or expresion[j+1] == ":"):
+                        if ((acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'") or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"")):
+                            file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
+                            acumExp = ""
+                            del acumHTML [:]
+
+                        elif(((acumExp[0] != "\'") and (acumExp[len(acumExp)-1] != "\'")) and (acumExp[0] != "\"" and acumExp[len(acumExp)-1] != "\"")):
+                            file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
+                            acumExp = ""
+                            del acumHTML [:]
 
             for i in range(len(acumHTML)):
                 file.write(acumHTML[i])
