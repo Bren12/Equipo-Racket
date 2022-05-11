@@ -97,8 +97,8 @@ def isOperadorUnique(expresion, original, pos):
         return False
 
 def isDelimitador(expresion, original, pos):
+    # Se definen los delimitadores como una lista
     delimitador = {"(", ")", "[", "]", "{", "}", ",", ";", ":", "...", "*", "="}
-
     # Ciclo que itera cada operador de la lista definida
     for i, op in enumerate(delimitador):
         # Si encontro el operador, se retorna verdadero
@@ -108,19 +108,18 @@ def isDelimitador(expresion, original, pos):
     return False
 
 def isIdentificador(expresion, original, pos):
-    # Se crea un diccionario para checar todos los identificadores
+    # Se crea una lista para checar todos los identificadores con letras
     alfabeto = list(string.ascii_letters)
-    alfabeto.append("_")
+    # Se crea una lista para números
     numeros = []
     #Añade los numeros del 0 al 9
     for x in range(0, 10):
         numeros.append(str(x))
-    
     for i, op in enumerate(alfabeto):
         # Si encontro el identificador, se retorna verdadero
-        if (op == expresion or expresion.find(op) != -1 or (expresion in numeros)):
+        if (op == expresion or expresion.find(op) != -1 or (expresion in numeros) or "_" in expresion):
             #Checa casos de excepcion que indican que no es un identificador
-            if (not (expresion[0] in numeros) and (not ("\"" in expresion or "\'" in expresion))):
+            if ((expresion[0] in alfabeto) and (not ("\"" in expresion or "\'" in expresion or "." in expresion))):
                 return True
     return False
 

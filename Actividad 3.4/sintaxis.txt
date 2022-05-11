@@ -1,4 +1,4 @@
-hola.cp 2_4fg
+_hola.cp 2_4fg 1.e a 0.3 using true
 // Solving SPOJ's TAP2014A - At random
 #include   "iostream"
 using   namespace   std ;
