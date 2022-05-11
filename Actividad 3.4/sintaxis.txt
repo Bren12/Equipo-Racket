@@ -1,4 +1,4 @@
-file.cpp
+hola.cpp
 // Solving SPOJ's TAP2014A - At random
 #include   "iostream"
 using   namespace   std ;
@@ -6,7 +6,7 @@ const   auto   INF  =  1e18LL ;
 void   printAns ( bool   ans ) {
     cout  << ( ans   ?   'B'  :  'M' ) <<  endl ;
 }
-
+/*
 int   main () {
    int   t ;
    cin  >>  t ;

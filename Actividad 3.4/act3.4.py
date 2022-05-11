@@ -20,18 +20,20 @@ nombre_archivo_html = os.path.join(folder_actual, "index.html")
 
 def isFile(expresion):
 
-    # Verifica si existen espacios
-    pos = expresion.find(" ")
+    # Busca si esta incluida la extensión del archivo en la expresión
+    pos = expresion.find(".cpp")
 
-    # Si no hay espacios, procedemos a continuar
-    if (pos == -1):
+    # Se definen algunos caracteres especiales que no son permitidos en los nombres de archivos
+    caracteres = ["\\","/",":","*","?","<",">","|"]
 
-        # Busca si esta incluida la extensión del archivo en la expresión
-        pos = expresion.find(".cpp")
-
-        # Retorna verdadero si encontro la extensión en la expresión
-        if (pos != -1):
-            return True
+    # Retorna verdadero si encontro la extensión en la expresión
+    if (pos > 0):
+        aux = expresion[pos+4:]
+        for i, caract in enumerate(caracteres):
+            for j, variable in enumerate(expresion[:pos]):
+                if (variable == caract):
+                    return False
+        return True
 
     return False
 
@@ -71,7 +73,7 @@ def isReservada(expresion):
 
 def isOperador(expresion, original, pos):
     # Se definen los operadores como una lista
-    operador = {"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", ":", "&", "&&", "||"}
+    operador = {"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"}
 
     # Ciclo que itera cada operador de la lista definida
     for i, op in enumerate(operador):
@@ -84,7 +86,7 @@ def isOperador(expresion, original, pos):
 def isOperadorUnique(expresion, original, pos):
     # Se definen los operadores como un diccionario
     operador = {"+": True, "+=": True, "++": True, "-": True, "-=": True, "--": True, "%": True, "%=": True, "*": True, "*=": True, "/=": True, "^": True, "<": True, "<<": True, ">": True, ">>": True, 
-    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, ":": True, "&": True, "&&": True, "||": True}
+    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, "&": True, "&&": True, "||": True}
 
     # Verifica si existe en la expresión cualquier operador, si no, retorna falso
     try:
@@ -95,7 +97,7 @@ def isOperadorUnique(expresion, original, pos):
         return False
 
 def isDelimitador(expresion, original, pos):
-    delimitador = {"(", ")", "[", "]", "{", "}", ",", ";", "...", "*", "="}
+    delimitador = {"(", ")", "[", "]", "{", "}", ",", ";", ":", "...", "*", "="}
 
     # Ciclo que itera cada operador de la lista definida
     for i, op in enumerate(delimitador):
@@ -106,7 +108,7 @@ def isDelimitador(expresion, original, pos):
     return False
 
 def isIdentificador(expresion, original, pos):
-    #Se crea un diccionario para checar todos los identificadores
+    # Se crea un diccionario para checar todos los identificadores
     alfabeto = list(string.ascii_letters)
     alfabeto.append("_")
     numeros = []
@@ -194,8 +196,10 @@ def main():
                     acumExp = acumExp + token
 
                 if (isFile(acumExp)):
+                    # Busca si esta incluida la extensión del archivo en la expresión
+                    pos = expresion.find(".cpp") + 4
                     # Verifica que despues de validar que la extensión se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
-                    if (expresion[j+1] == " " or expresion[j+1] == "\n"):
+                    if (expresion[pos] == " " or expresion[pos] == "\n" or isDelimitador(expresion[pos],expresion,pos) or isOperadorUnique(expresion[pos],expresion,pos) or expresion[pos:pos+2] == "//"):
                         file.write("\t\t<span class=\"file\">" + acumExp + "</span>\n")
                         acumExp = ""
                         del acumHTML [:]
@@ -218,7 +222,7 @@ def main():
 
                 elif (isOperador(acumExp,expresion,j)):
                     # Verifica que no hayan otros valores antes del operador en la expresión, sino, libera esa parte como un error de sintaxis a excepción del operador
-                    if (len(acumExp) != 1 and acumExp[:j] != "" and not isOperadorUnique(acumExp,expresion,j)):
+                    if (len(acumExp) != 1 and acumExp[:j] != "" and not isOperadorUnique(acumExp[0],expresion,j)):
                         file.write("\t\t<span class=\"error\">" + acumExp[:j] + "</span>\n")
                         acumExp = acumExp[j:]
                         del acumHTML [:]
