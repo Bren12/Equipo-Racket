@@ -132,7 +132,8 @@ def isLiteral(expresion, original, pos):
     for i, op in enumerate(literales):
         # Si se encuentra un literal en la expresion se retorna verdadero
         if (op == expresion or expresion.find(op) != -1 or (expresion in numeros)):
-            return True
+            if (not ("_" in expresion)):
+                return True
     return False
 
 # Definición de función principal
