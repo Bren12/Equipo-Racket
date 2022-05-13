@@ -91,7 +91,7 @@ def isOperadorUnique(expresion, original, pos):
     # Verifica si existe en la expresión cualquier operador, si no, retorna falso
     try:
         if (pos+2 < len(original)):
-            if (expresion == "/" and original[pos:pos+2] != "//"):
+            if ((expresion == "/" and original[pos:pos+2] != "//") and (expresion == "/" and original[pos:pos+2] != "/*")):
                 return True
             else:
                 return operador[expresion]
@@ -193,16 +193,19 @@ def main():
             # Lee todo el archivo y lo deja en una lista de strings
             lista_sintaxis = archivo.readlines()
 
+        comentarioLargo = [False]
+        posComentarioLargo = 0
+        originPos = 0
+
         # Lee cada enunciado del archivo de texto
         for i, expresion in enumerate(lista_sintaxis):
             
             # Acumulador de la expresion 
             acumExp = ""
-            # Acumulador de lo que se tiene que escribir en el html
-            acumHTML = list()
             # Variables para la indentación
             start = False
             espacio = ""
+
             nullSpace = False
             operadorOmit = [False]
 
@@ -220,55 +223,91 @@ def main():
                 start = True
 
                 # Si el valor actual del token es un espacio en blanco, liberamos todas las variables que tienen almacenados algún valor
-                if (token == " " and not nullSpace):
-                    # Verifica que no haya quedado nada en la lista acumHTML, sino, las despliega todas en el archivo HTML
-                    for x in range(len(acumHTML)):
-                        file.write(acumHTML[x])
+                if (token == " " and not nullSpace and not comentarioLargo[0]):
                     # Si acumExp no esta vacío, significa que no pertenece a ninguna categoría léxica
                     if (acumExp[:j] != ""):
                         file.write("\t\t<span class=\"error\">" + acumExp[:j] + "</span>\n")
                         acumExp = ""
-                        del acumHTML [:]
                 # Concatenamos al acumulador los demás caracteres de la expresión, a excepción del salto de línea y del espacio en blanco
-                elif (token != "\n"):
+                elif (token != "\n" and token != "\t"):
                     acumExp = acumExp + token
 
-                if (acumExp != "" and isFile(acumExp)):
+                if (acumExp == "/" and expresion[j:j+2] == "/*"):
+                    originPos = i
+                    for k in range(len(lista_sintaxis)- i):
+                        exp = lista_sintaxis[i+k]
+                        if ((exp[2:].find("*/") != -1 and i == i+k) or (exp.find("*/") != -1 and i != i+k)):
+                            if (not comentarioLargo[0]):
+                                posComentarioLargo = i+k
+                            comentarioLargo[0] = True
+                    if (not comentarioLargo[0]):
+                        file.write("\t\t<span class=\"error\">" + expresion[j:-1] + "</span>\n")
+                        for k in range(len(lista_sintaxis) - i - 1):
+                            file.write("\t\t<br>\n")
+                            exp = lista_sintaxis[i+k+1]
+                            if (exp[-1] == "\n"):
+                                exp[:-1]
+                            file.write("\t\t<span class=\"error\">" + exp + "</span>\n")
+                        return
+
+                if (comentarioLargo[0]):
+                    # Líneas de comentarios sin el cierre
+                    if (originPos != i and i != posComentarioLargo and j == len(expresion)-1):
+                        file.write("\t\t<span class=\"comentario\">" + expresion[:-1] + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                    # Primer línea de comentario y además cierra en la misma línea
+                    elif (acumExp[2:].find("*/") != -1 and originPos == i and i == posComentarioLargo):
+                        file.write("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                        comentarioLargo[0] = False
+                        posComentarioLargo = 0
+                        originPos = 0
+                    # Línea de comentario diferente a la línea de apertura que encontro el cierre
+                    elif (acumExp.find("*/") != -1 and i !=  originPos and posComentarioLargo == i):
+                        file.write("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                        comentarioLargo[0] = False
+                        posComentarioLargo = 0
+                        originPos = 0
+                    # En caso de ser la primera línea y que no tenga cierre
+                    elif (j == len(expresion)-1):
+                        file.write("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                elif (acumExp != "" and not comentarioLargo[0] and isFile(acumExp)):
                     # Busca si esta incluida la extensión del archivo en la expresión
                     pos = expresion.find(".cpp") + 4
                     # Verifica que despues de validar que la extensión se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
-                    if (j == len(expresion)-1 or expresion[pos] == " " or expresion[pos] == "\n" or isDelimitador(expresion[pos]) or isOperadorUnique(expresion[pos],expresion,pos) or expresion[pos:pos+2] == "//"):
+                    if (j == len(expresion)-1 or expresion[pos] == " " or expresion[pos] == "\n" or isDelimitador(expresion[pos]) or isOperadorUnique(expresion[pos],expresion,pos) or expresion[pos:pos+2] == "//" or expresion[pos:pos+2] == "/*"):
                         file.write("\t\t<span class=\"file\">" + acumExp + "</span>\n")
                         acumExp = ""
                         nullSpace = False
-                        del acumHTML [:]
-                elif (acumExp != "" and isComentario(acumExp)):
-                    file.write("\t\t<span class=\"comentario\">" + expresion[j-1:-1] + "</span>\n")
-                    acumExp = ""
-                    del acumHTML [:]
-                    nullSpace = False
-                    break
-                elif (acumExp != "" and isLibreria(acumExp)):
+                elif ((acumExp != "" and isComentario(acumExp)) and not comentarioLargo[0]):
+                        file.write("\t\t<span class=\"comentario\">" + expresion[j-1:-1] + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                        break
+                elif (acumExp != "" and not comentarioLargo[0] and isLibreria(acumExp)):
                     file.write("\t\t<span class=\"libreria\">" + expresion + "</span>\n")
                     acumExp = ""
-                    del acumHTML [:]
                     nullSpace = False
                     break
-                elif (acumExp != "" and isReservada(acumExp)):
+                elif (acumExp != "" and not comentarioLargo[0] and isReservada(acumExp)):
                     # Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isDelimitador(expresion[j+1]) or isOperadorUnique(expresion[j+1],expresion,j) or expresion[j+1] == "\"" or expresion[j+1] == "\'"):
                         file.write("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
                         acumExp = ""
-                        del acumHTML [:]
                         nullSpace = False
 
-                elif (acumExp != "" and isOperador(acumExp,expresion,j) and not operadorOmit[0] and not nullSpace):
+                elif (acumExp != "" and not comentarioLargo[0] and isOperador(acumExp,expresion,j) and not operadorOmit[0] and not nullSpace):
                     if (len(acumExp) > 1 and (not isOperadorUnique(acumExp[0],expresion,expresion.find(acumExp)) or isComentario(expresion[j:]))):
                         file.write("\t\t<span class=\"error\">" + acumExp[:-1] + "</span>\n")
                         acumExp = acumExp[-1]
                         nullSpace = False
                         operadorOmit[0] = False
-                        del acumHTML [:]
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
                         if (acumExp.find("_") == -1):
                             file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
@@ -278,14 +317,12 @@ def main():
                             acumExp = acumExp[acumExp.find("_"):]
                         nullSpace = False
                         operadorOmit[0]
-                        del acumHTML [:]
 
-                elif (acumExp != "" and isDelimitador(acumExp) and not nullSpace):
+                elif (acumExp != "" and not comentarioLargo[0] and isDelimitador(acumExp) and not nullSpace):
                     if (len(acumExp) > 1 and not isDelimitador(acumExp[0])):
                         file.write("\t\t<span class=\"error\">" + acumExp[:-1] + "</span>\n")
                         acumExp = acumExp[-1]
                         nullSpace = False
-                        del acumHTML [:]
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
                         if (acumExp.find("_") == -1):
                             file.write("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
@@ -294,16 +331,14 @@ def main():
                             file.write("\t\t<span class=\"delimitador\">" + acumExp[:acumExp.find("_")] + "</span>\n")
                             acumExp = acumExp[acumExp.find("_"):]
                         nullSpace = False
-                        del acumHTML [:]
 
-                elif (acumExp != "" and isIdentificador(acumExp, expresion, j)):
+                elif (acumExp != "" and not comentarioLargo[0] and isIdentificador(acumExp, expresion, j)):
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isDelimitador(expresion[j+1])):
                         file.write("\t\t<span class=\"identificador\">" + acumExp + "</span>\n")
                         acumExp = ""
                         nullSpace = False
-                        del acumHTML [:]
                 
-                elif (acumExp != "" and isLiteral(acumExp, expresion, j, operadorOmit)):
+                elif (acumExp != "" and not comentarioLargo[0] and isLiteral(acumExp, expresion, j, operadorOmit)):
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isDelimitador(expresion[j+1]) or (isOperadorUnique(expresion[j+1],expresion,j) and expresion[j+1] != "-") or isComentario(acumExp[j+1:]) or (acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'") or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"")):
                         if ((acumExp[0] == "\'" and expresion[j+1:].find("\'") != -1) or (acumExp[0] == "\"" and expresion[j+1:].find("\"") != -1)):
                             nullSpace = True
@@ -311,19 +346,14 @@ def main():
                         if ((acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'" and len(acumExp) != 1) or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"" and len(acumExp) != 1)):
                             file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
                             acumExp = ""
-                            del acumHTML [:]
                             operadorOmit[0] = False
                             nullSpace = False
 
                         elif(((acumExp[0] != "\'") and (acumExp[len(acumExp)-1] != "\'")) and (acumExp[0] != "\"" and acumExp[len(acumExp)-1] != "\"")):
                             file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
                             acumExp = ""
-                            del acumHTML [:]
                             operadorOmit[0] = False
                             nullSpace = False
-
-            for i in range(len(acumHTML)):
-                file.write(acumHTML[i])
 
             # Si al final no se vacía el acumulador, es un syntax error, ya que no pertenece a ninguna categoría léxica
             if (acumExp != ""):
