@@ -61,7 +61,7 @@ def isReservada(expresion):
     "as": True, "using": True, "namespace": True, "auto": True, "const": True, "asm": True, "dynamic_cast": True, "reinterpret_cast": True, "try": True, 
     "explicit": True, "new": True, "static_cast": True, "static": True, "typeid": True, "catch": True, "false": True, "operator": True, "template": True, 
     "typename": True, "class": True, "friend": True, "private": True, "this": True, "const_cast": True, "inline": True, "public": True, "throw": True, 
-    "virtual": True, "delete": True, "enum": True, "goto": True, "else": True, "mutable": True, "protected": True, "true": True, "wchar_t": True,
+    "virtual": True, "delete": True, "enum": True, "goto": True, "else": True, "mutable": True, "protected": True, "true": True, "wchar_t": True, "endl": True,
     "sizeof": True, "register": True, "unsigned": True, "break": True, "continue": True, "extern": True, "if": True, "return": True, "switch": True, "case": True,
     "default": True, "short": True, "struct": True, "volatile": True, "do": True, "for": True, "long": True, "signed": True, "union": True, "std": True,}
     
@@ -73,7 +73,7 @@ def isReservada(expresion):
 
 def isOperador(expresion, original, pos):
     # Se definen los operadores como una lista
-    operador = ["+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", ":", "&", "&&", "||"]
+    operador = ["+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"]
 
     # Ciclo que itera cada operador de la lista definida
     for i, op in enumerate(operador):
@@ -86,7 +86,7 @@ def isOperador(expresion, original, pos):
 def isOperadorUnique(expresion, original, pos):
     # Se definen los operadores como un diccionario
     operador = {"+": True, "+=": True, "++": True, "-": True, "-=": True, "--": True, "%": True, "%=": True, "*": True, "*=": True, "/=": True, "^": True, "<": True, "<<": True, ">": True, ">>": True, 
-    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, ":": True, "&": True, "&&": True, "||": True}
+    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, "&": True, "&&": True, "||": True}
 
     # Verifica si existe en la expresión cualquier operador, si no, retorna falso
     try:
@@ -99,7 +99,7 @@ def isOperadorUnique(expresion, original, pos):
         return False
 
 def isDelimitador(expresion):
-    delimitador = ["(", ")", "[", "]", "{", "}", ",", ";", "...", "*", "="]
+    delimitador = ["(", ")", "[", "]", "{", "}", ",", ";", "...", ":"]
 
     # Ciclo que itera cada operador de la lista definida
     for i, op in enumerate(delimitador):
@@ -150,10 +150,10 @@ def isLiteral(expresion, original, pos, operador):
             else:
                 if (expresion[i] == "." and not punto):
                     punto = True
-                elif ((expresion[i] == "L" or expresion[i] == "l") and not wait and ((lReal < 2 and not uReal) or (uReal and lReal == 0)) and not fReal):
+                elif ((expresion[i] == "L" or expresion[i] == "l") and not wait and ((lReal < 2 and not uReal) or (uReal and lReal == 0) or expresion[:i].find("ul") != -1) and not fReal):
                     lReal = lReal + 1
                     letter = True
-                elif ((expresion[i] == "U" or expresion[i] == "u") and not uReal and not eReal and original[pos2+i+1] != "."):
+                elif ((expresion[i] == "U" or expresion[i] == "u") and not uReal and not punto and not eReal and original[pos2+i+1] != "."):
                     uReal = uReal + 1
                     letter = True
                 elif ((expresion[i] == "E" or expresion[i] == "e") and not eReal and (original[pos2+i+1] in numeros or original[pos2+i+1] == "-")):
@@ -240,23 +240,27 @@ def main():
                     if (j == len(expresion)-1 or expresion[pos] == " " or expresion[pos] == "\n" or isDelimitador(expresion[pos]) or isOperadorUnique(expresion[pos],expresion,pos) or expresion[pos:pos+2] == "//"):
                         file.write("\t\t<span class=\"file\">" + acumExp + "</span>\n")
                         acumExp = ""
+                        nullSpace = False
                         del acumHTML [:]
                 elif (acumExp != "" and isComentario(acumExp)):
                     file.write("\t\t<span class=\"comentario\">" + expresion[j-1:-1] + "</span>\n")
                     acumExp = ""
                     del acumHTML [:]
+                    nullSpace = False
                     break
                 elif (acumExp != "" and isLibreria(acumExp)):
                     file.write("\t\t<span class=\"libreria\">" + expresion + "</span>\n")
                     acumExp = ""
                     del acumHTML [:]
+                    nullSpace = False
                     break
                 elif (acumExp != "" and isReservada(acumExp)):
                     # Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
-                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isDelimitador(expresion[j+1]) or isOperadorUnique(expresion[j+1],expresion,j)):
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isDelimitador(expresion[j+1]) or isOperadorUnique(expresion[j+1],expresion,j) or expresion[j+1] == "\"" or expresion[j+1] == "\'"):
                         file.write("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
                         acumExp = ""
                         del acumHTML [:]
+                        nullSpace = False
 
                 elif (acumExp != "" and isOperador(acumExp,expresion,j) and not operadorOmit[0]):
                     enter = True
@@ -267,6 +271,7 @@ def main():
                             acumExp = expresion[j]
                             del acumHTML [:]
                             enter = False
+                            nullSpace = False
                         elif (isOperadorUnique(acumExp[0],expresion,j) or acumExp[0].isdigit() or acumExp[0] == "."):
                             acumExp = acumExp
                         else:
@@ -277,30 +282,34 @@ def main():
                     if (not isOperadorUnique(expresion[j+1],expresion,j) and enter):
                         file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
                         acumExp = ""
+                        nullSpace = False
                         del acumHTML [:]
 
                 elif (acumExp != "" and isDelimitador(acumExp) and not operadorOmit[0]):
                     if (len(acumExp) > 1 and not isDelimitador(acumExp[0])):
                         file.write("\t\t<span class=\"error\">" + acumExp[:-1] + "</span>\n")
                         acumExp = acumExp[-1]
+                        nullSpace = False
                         del acumHTML [:]
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
                         file.write("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
                         acumExp = ""
+                        nullSpace = False
                         del acumHTML [:]
 
                 elif (acumExp != "" and isIdentificador(acumExp, expresion, j)):
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isDelimitador(expresion[j+1])):
                         file.write("\t\t<span class=\"identificador\">" + acumExp + "</span>\n")
                         acumExp = ""
+                        nullSpace = False
                         del acumHTML [:]
                 
                 elif (acumExp != "" and isLiteral(acumExp, expresion, j, operadorOmit)):
-                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isDelimitador(expresion[j+1]) or (isOperadorUnique(expresion[j+1],expresion,j) and expresion[j+1] != "-") or isComentario(acumExp[j+1:])):
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isDelimitador(expresion[j+1]) or (isOperadorUnique(expresion[j+1],expresion,j) and expresion[j+1] != "-") or isComentario(acumExp[j+1:]) or (acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'") or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"")):
                         if ((acumExp[0] == "\'" and expresion[j+1:].find("\'") != -1) or (acumExp[0] == "\"" and expresion[j+1:].find("\"") != -1)):
                             nullSpace = True
                             
-                        if ((acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'") or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"")):
+                        if ((acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'" and len(acumExp) != 1) or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"" and len(acumExp) != 1)):
                             file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
                             acumExp = ""
                             del acumHTML [:]
