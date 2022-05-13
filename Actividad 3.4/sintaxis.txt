@@ -1,8 +1,18 @@
-using   namespace   std;+//
-const   auto   INF  =  1e18LL ; 4abc
+_hola.cp 2_4fg 1.e a 0.3 using true
+
+// Solving SPOJ's TAP2014A - At random
+
+#include   "iostream"
+
+using   namespace   std ;
+
+const   auto   INF  =  1e18LL ;
+
 void   printAns ( bool   ans ) {
-    cout  << ( ans   ?   'B d3 25 f'  :  'M' ) <<  endl ;
+    cout  << ( ans   ?   'B'  :  'M' ) <<  endl ;
 }
+
+/*
 
 int   main () { + - + - + -/*+~^^//
    int   t ;

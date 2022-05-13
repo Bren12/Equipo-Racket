@@ -15,18 +15,20 @@
     font-weight: bold;
 }
 .literal{
-    color: rgb(26, 170, 21);
+    color: rgb(227, 155, 31);
     font-weight: bold;
 }
 .operador{
-    color: rgb(147, 176, 207);
+    color: rgb(93, 208, 220);
     font-weight: bold;
 }
 .identificador{
-    color: rgb(1, 177, 139);
+    color: rgb(1, 177, 80);
+    font-weight: bold;
 }
 .delimitador{
-    color: black;
+    color: rgb(231, 111, 235);
+    
 }
 .error{
     color: red;
