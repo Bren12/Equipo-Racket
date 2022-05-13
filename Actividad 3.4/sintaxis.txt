@@ -1,15 +1,15 @@
-!_hola.cpp 2_4fg 1.e a 0.3 using true
+!___hola.cpp 2_4fg 1.e a 0.3 using true
 _
 // Solving SPOJ's TAP2014A - At random
 
 #include   "iostream"
 +-+-+-+-
-using   namespace   std ;
+using   _namespace   std_ ;
 
-const   auto   INF  =  1e18LL ;
+const   auto   INF  =_  1e18LL_ ;
 
-void   printAns ( bool   ans ) {
-    cout  << ( ans   ?   '1_r , ; ( < + // using namespace # include use.cpp 1.5e1 '  :  'M' ) <<  endl ;
+void   printAns (_ bool   ans ) {
+    cout  << _( ans   _?   '1_r , ; ( < + // using namespace # include use.cpp 1.5e1 '  :  'M' ) <<  endl ;
 }
 
 /*

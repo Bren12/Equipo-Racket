@@ -270,8 +270,12 @@ def main():
                         operadorOmit[0] = False
                         del acumHTML [:]
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
-                        file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
-                        acumExp = ""
+                        if (acumExp.find("_") == -1):
+                            file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
+                            acumExp = ""
+                        else:
+                            file.write("\t\t<span class=\"operador\">" + acumExp[:acumExp.find("_")] + "</span>\n")
+                            acumExp = acumExp[acumExp.find("_"):]
                         nullSpace = False
                         operadorOmit[0]
                         del acumHTML [:]
@@ -283,8 +287,12 @@ def main():
                         nullSpace = False
                         del acumHTML [:]
                     if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
-                        file.write("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
-                        acumExp = ""
+                        if (acumExp.find("_") == -1):
+                            file.write("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
+                            acumExp = ""
+                        else:
+                            file.write("\t\t<span class=\"delimitador\">" + acumExp[:acumExp.find("_")] + "</span>\n")
+                            acumExp = acumExp[acumExp.find("_"):]
                         nullSpace = False
                         del acumHTML [:]
 
