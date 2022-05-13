@@ -263,26 +263,17 @@ def main():
                         nullSpace = False
 
                 elif (acumExp != "" and isOperador(acumExp,expresion,j) and not operadorOmit[0] and not nullSpace):
-                    enter = True
-                    # Verifica que no hayan otros valores antes del operador en la expresión, sino, libera esa parte como un error de sintaxis a excepción del operador
-                    if (len(acumExp) != 1 and acumExp[:j] != "" and not isOperadorUnique(acumExp,expresion,j)):
-                        if (expresion[j:j+2] == "//"):
-                            file.write("\t\t<span class=\"operador\">" + acumExp[:-1] + "</span>\n")
-                            acumExp = expresion[j]
-                            del acumHTML [:]
-                            enter = False
-                            nullSpace = False
-                        elif (isOperadorUnique(acumExp[0],expresion,j) or acumExp[0].isdigit() or acumExp[0] == "."):
-                            acumExp = acumExp
-                        else:
-                            file.write("\t\t<span class=\"error\">" + acumExp[:j] + "</span>\n")
-                            acumExp = acumExp[j:]
-                            del acumHTML [:]
-                    # Verifica que a continuación se encuentre cualquier otro valor que no sea un operador
-                    if (not isOperadorUnique(expresion[j+1],expresion,j) and enter):
+                    if (len(acumExp) > 1 and (not isOperadorUnique(acumExp[0],expresion,expresion.find(acumExp)) or isComentario(expresion[j:]))):
+                        file.write("\t\t<span class=\"error\">" + acumExp[:-1] + "</span>\n")
+                        acumExp = acumExp[-1]
+                        nullSpace = False
+                        operadorOmit[0] = False
+                        del acumHTML [:]
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
                         file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
                         acumExp = ""
                         nullSpace = False
+                        operadorOmit[0]
                         del acumHTML [:]
 
                 elif (acumExp != "" and isDelimitador(acumExp) and not nullSpace):

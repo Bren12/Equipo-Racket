@@ -1,5 +1,5 @@
 !_hola.cpp 2_4fg 1.e a 0.3 using true
-
+_
 // Solving SPOJ's TAP2014A - At random
 
 #include   "iostream"
@@ -14,7 +14,7 @@ void   printAns ( bool   ans ) {
 
 /*
 
-int   main () { + - + - + -/*+~^^//
+int   main () { + - + - + -/*+~^^
    int   t ;
    cin  >>  t ;
    while  ( t --) {
