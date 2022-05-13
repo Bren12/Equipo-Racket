@@ -262,7 +262,7 @@ def main():
                         del acumHTML [:]
                         nullSpace = False
 
-                elif (acumExp != "" and isOperador(acumExp,expresion,j) and not operadorOmit[0]):
+                elif (acumExp != "" and isOperador(acumExp,expresion,j) and not operadorOmit[0] and not nullSpace):
                     enter = True
                     # Verifica que no hayan otros valores antes del operador en la expresión, sino, libera esa parte como un error de sintaxis a excepción del operador
                     if (len(acumExp) != 1 and acumExp[:j] != "" and not isOperadorUnique(acumExp,expresion,j)):
@@ -285,7 +285,7 @@ def main():
                         nullSpace = False
                         del acumHTML [:]
 
-                elif (acumExp != "" and isDelimitador(acumExp) and not operadorOmit[0]):
+                elif (acumExp != "" and isDelimitador(acumExp) and not nullSpace):
                     if (len(acumExp) > 1 and not isDelimitador(acumExp[0])):
                         file.write("\t\t<span class=\"error\">" + acumExp[:-1] + "</span>\n")
                         acumExp = acumExp[-1]

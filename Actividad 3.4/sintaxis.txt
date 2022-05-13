@@ -3,13 +3,13 @@
 // Solving SPOJ's TAP2014A - At random
 
 #include   "iostream"
-
++-+-+-+-
 using   namespace   std ;
 
 const   auto   INF  =  1e18LL ;
 
 void   printAns ( bool   ans ) {
-    cout  << ( ans   ?   12s'  :  'M' ) <<  endl ;
+    cout  << ( ans   ?   '1_r , ; ( < + // using namespace # include use.cpp 1.5e1 '  :  'M' ) <<  endl ;
 }
 
 /*
