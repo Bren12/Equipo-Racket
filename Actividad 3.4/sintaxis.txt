@@ -1,13 +1,10 @@
-file.cpp
-// Solving SPOJ's TAP2014A - At random
-#include   "iostream"
-using   namespace   std ;
-const   auto   INF  =  1e18LL ;
+using   namespace   std;+//
+const   auto   INF  =  1e18LL ; 4abc
 void   printAns ( bool   ans ) {
-    cout  << ( ans   ?   'B'  :  'M' ) <<  endl ;
+    cout  << ( ans   ?   'B d3 25 f'  :  'M' ) <<  endl ;
 }
 
-int   main () {
+int   main () { + - + - + -/*+~^^//
    int   t ;
    cin  >>  t ;
    while  ( t --) {
@@ -17,9 +14,9 @@ int   main () {
        int   last  = - 1 ,  cur ;
        char   prev  =  0 ,  now ;
        for  ( int   i  =  0 ;  i  <  n ; ++ i ) {
-           j = 3 // 2
-           j = 3 / 2
-           j = 3/2
+           j = 3.5 // 2.1e-6
+           j = 3e12 / 2.1e
+           j = 3.02e6f/2e1l
            cin  >>  cur  >>  now ;
             // if any of the two numbers are the same, it changes value of ans
             if  ( cur  ==  last  ||  now  ==  prev ) {
@@ -27,6 +24,22 @@ int   main () {
             }
             last  =  cur ;
             prev  =  now ;
+            int INF = 12345678e9;
+            int a = 123.4;
+            int b = 123342;
+            int c = 123e-456789l;
+            int c = 123e-456789lL;
+            int d = 123e-456789f;
+            int d = 123e-456789ff;
+            int e = 12.3e-456789l;
+            int e = 12.3e-456789Ll;
+            int f = 12.3e-456789f;
+            int f = 12.3e-456789fl;
+            int f = 12.3e-456789ul;
+            int f = 12.3e-456789ull;
+            int f = 12.3456789ul;
+            int f = 123456789ull;
+            int f = 123456789lul;
         }
         printAns ( ans );
     }
