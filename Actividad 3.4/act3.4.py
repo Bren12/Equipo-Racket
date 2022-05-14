@@ -121,7 +121,7 @@ def isIdentificador(expresion, original, pos):
         # Si encontro el identificador, se retorna verdadero
         if (op == expresion or expresion.find(op) != -1 or (expresion in numeros) or "_" in expresion):
             #Checa casos de excepcion que indican que no es un identificador
-            if ((expresion[0] in alfabeto) and (not ("\"" in expresion or "\'" in expresion or "." in expresion))):
+            if ((expresion[0] in alfabeto) and (not ("\"" in expresion or "\'" in expresion or "." in expresion or "#" in expresion))):
                 return True
     return False
 
@@ -285,6 +285,7 @@ def main():
                         file.write("\t\t<span class=\"file\">" + acumExp + "</span>\n")
                         acumExp = ""
                         nullSpace = False
+
                 elif ((acumExp != "" and isComentario(acumExp)) and not comentarioLargo[0]):
                     file.write("\t\t<span class=\"comentario\">" + expresion[j-1:-1] + "</span>\n")
                     acumExp = ""
@@ -296,6 +297,7 @@ def main():
                     acumExp = ""
                     nullSpace = False
                     break
+
 
                 elif (acumExp != "" and not comentarioLargo[0] and isReservada(acumExp)):
                     # Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
