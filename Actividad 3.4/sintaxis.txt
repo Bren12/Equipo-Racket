@@ -17,8 +17,8 @@ int   main () {
        int   last  = - 1 ,  cur ;
        char   prev  =  0 ,  now ;
        for  ( int   i  =  0 ;  i  <  n ; ++ i ) {
-           j = 3 // 2
-           j = 3 / 2
+           j = 3.5 // 2
+           j = 3.523e-1 / 2
            j = 3/2
            cin  >>  cur  >>  now ;
             // if any of the two numbers are the same, it changes value of ans

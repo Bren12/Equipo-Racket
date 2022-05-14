@@ -401,13 +401,13 @@ def main():
                 # Verifica si es un operador - O(n)
                 elif (acumExp != "" and not comentarioLargo[0] and isOperador(acumExp,expresion,j) and not operadorOmit[0] and not nullSpace):
                     # Casos de excepción para marcar que son syntax error
-                    if (len(acumExp) > 1 and (not isOperadorUnique(acumExp[0],expresion,expresion.find(acumExp)) or isComentario(expresion[j:]))):
+                    if (len(acumExp) > 1 and (not isOperadorUnique(acumExp[0],expresion,expresion.find(acumExp)) or isComentario(expresion[j:])) and not isOperadorUnique(acumExp,expresion,j)):
                         file.write("\t\t<span class=\"error\">" + acumExp[:-1] + "</span>\n")
                         acumExp = acumExp[-1]
                         nullSpace = False
                         operadorOmit[0] = False
                     # Verifica una vez retirado la expresión erronea, hay un operador válido
-                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isDelimitador(expresion[j+1]) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
                         if (acumExp.find("_") == -1):
                             file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
                             acumExp = ""
