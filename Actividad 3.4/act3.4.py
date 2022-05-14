@@ -20,18 +20,20 @@ nombre_archivo_html = os.path.join(folder_actual, "index.html")
 
 def isFile(expresion):
 
-    # Verifica si existen espacios
-    pos = expresion.find(" ")
+    # Busca si esta incluida la extensión del archivo en la expresión
+    pos = expresion.find(".cpp")
 
-    # Si no hay espacios, procedemos a continuar
-    if (pos == -1):
+    # Se definen algunos caracteres especiales que no son permitidos en los nombres de archivos
+    caracteres = ["\\","/",":","*","?","<",">","|"]
 
-        # Busca si esta incluida la extensión del archivo en la expresión
-        pos = expresion.find(".cpp")
-
-        # Retorna verdadero si encontro la extensión en la expresión
-        if (pos != -1):
-            return True
+    # Retorna verdadero si encontro la extensión en la expresión
+    if (pos > 0):
+        aux = expresion[pos+4:]
+        for i, caract in enumerate(caracteres):
+            for j, variable in enumerate(expresion[:pos]):
+                if (variable == caract):
+                    return False
+        return True
 
     return False
 
@@ -59,9 +61,9 @@ def isReservada(expresion):
     "as": True, "using": True, "namespace": True, "auto": True, "const": True, "asm": True, "dynamic_cast": True, "reinterpret_cast": True, "try": True, 
     "explicit": True, "new": True, "static_cast": True, "static": True, "typeid": True, "catch": True, "false": True, "operator": True, "template": True, 
     "typename": True, "class": True, "friend": True, "private": True, "this": True, "const_cast": True, "inline": True, "public": True, "throw": True, 
-    "virtual": True, "delete": True, "enum": True, "goto": True, "else": True, "mutable": True, "protected": True, "true": True, "wchar_t": True,
+    "virtual": True, "delete": True, "enum": True, "goto": True, "else": True, "mutable": True, "protected": True, "true": True, "wchar_t": True, "endl": True,
     "sizeof": True, "register": True, "unsigned": True, "break": True, "continue": True, "extern": True, "if": True, "return": True, "switch": True, "case": True,
-    "default": True, "short": True, "struct": True, "volatile": True, "do": True, "for": True, "long": True, "signed": True, "union": True,}
+    "default": True, "short": True, "struct": True, "volatile": True, "do": True, "for": True, "long": True, "signed": True, "union": True, "std": True,}
     
     # Verifica si existe en la expresión cualquier palabra reservada, si no, retorna falso
     try:
@@ -71,7 +73,7 @@ def isReservada(expresion):
 
 def isOperador(expresion, original, pos):
     # Se definen los operadores como una lista
-    operador = {"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", ":", "&", "&&", "||"}
+    operador = ["+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"]
 
     # Ciclo que itera cada operador de la lista definida
     for i, op in enumerate(operador):
@@ -84,57 +86,92 @@ def isOperador(expresion, original, pos):
 def isOperadorUnique(expresion, original, pos):
     # Se definen los operadores como un diccionario
     operador = {"+": True, "+=": True, "++": True, "-": True, "-=": True, "--": True, "%": True, "%=": True, "*": True, "*=": True, "/=": True, "^": True, "<": True, "<<": True, ">": True, ">>": True, 
-    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, ":": True, "&": True, "&&": True, "||": True}
+    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, "&": True, "&&": True, "||": True}
 
     # Verifica si existe en la expresión cualquier operador, si no, retorna falso
     try:
-        if (expresion == "/" and original[pos:pos+2] != "//"):
-            return True
-        return operador[expresion]
+        if (pos+2 < len(original)):
+            if ((expresion == "/" and original[pos:pos+2] != "//") and (expresion == "/" and original[pos:pos+2] != "/*")):
+                return True
+            else:
+                return operador[expresion]
     except:
         return False
 
-def isDelimitador(expresion, original, pos):
-    delimitador = {"(", ")", "[", "]", "{", "}", ",", ";", "...", "*", "="}
+def isDelimitador(expresion):
+    delimitador = ["(", ")", "[", "]", "{", "}", ",", ";", "...", ":"]
 
     # Ciclo que itera cada operador de la lista definida
     for i, op in enumerate(delimitador):
         # Si encontro el operador, se retorna verdadero
-        if (op == expresion or expresion.find(op) != -1 or (expresion == "/" and original[pos:pos+2] != "//") or (expresion.find("/") != -1 and original[pos:pos+2] != "//")):
+        if (op == expresion or expresion.find(op) != -1):
             return True
 
     return False
 
 def isIdentificador(expresion, original, pos):
-    #Se crea un diccionario para checar todos los identificadores
+    # Se crea una lista para checar todos los identificadores con letras
     alfabeto = list(string.ascii_letters)
-    alfabeto.append("_")
+    # Se crea una lista para números
     numeros = []
     #Añade los numeros del 0 al 9
     for x in range(0, 10):
         numeros.append(str(x))
-    
     for i, op in enumerate(alfabeto):
         # Si encontro el identificador, se retorna verdadero
-        if (op == expresion or expresion.find(op) != -1 or (expresion in numeros)):
+        if (op == expresion or expresion.find(op) != -1 or (expresion in numeros) or "_" in expresion):
             #Checa casos de excepcion que indican que no es un identificador
-            if (not (expresion[0] in numeros) and (not ("\"" in expresion or "\'" in expresion))):
+            if ((expresion[0] in alfabeto) and (not ("\"" in expresion or "\'" in expresion or "." in expresion))):
                 return True
     return False
 
-def isLiteral(expresion, original, pos):
-    literales = ["-","f","F","b","B","x","X",".","E","e","\'","\""]
+def isLiteral(expresion, original, pos, operador):
     numeros = []
-    for x in range(0, 10):
-        literales.append(str(x))
-        numeros.append(str(x))
+    punto = False
+    guion = False
+    eReal = False
+    fReal = False
+    uReal = False
+    lReal = 0
+    wait = False
+    letter = False
     
-    for i, op in enumerate(literales):
-        # Si se encuentra un literal en la expresion se retorna verdadero
-        if (op == expresion or expresion.find(op) != -1 or (expresion in numeros)):
-            if (not ("_" in expresion)):
-                return True
-    return False
+    if (expresion[0] == "\'" or expresion[0] == "\""):
+        return True
+
+    for x in range(0, 10):
+        numeros.append(str(x))
+
+    try:
+        pos2 = original.find(expresion)
+        for i, x in enumerate(expresion):
+            if (expresion[i] in numeros and not letter):
+                wait = False
+            else:
+                if (expresion[i] == "." and not punto):
+                    punto = True
+                elif ((expresion[i] == "L" or expresion[i] == "l") and not wait and ((lReal < 2 and not uReal) or (uReal and lReal == 0) or expresion[:i].find("ul") != -1) and not fReal):
+                    lReal = lReal + 1
+                    letter = True
+                elif ((expresion[i] == "U" or expresion[i] == "u") and not uReal and not punto and not eReal and original[pos2+i+1] != "."):
+                    uReal = uReal + 1
+                    letter = True
+                elif ((expresion[i] == "E" or expresion[i] == "e") and not eReal and (original[pos2+i+1] in numeros or original[pos2+i+1] == "-")):
+                    operador[0] = True
+                    eReal = True
+                    wait = True
+                elif (expresion[i] == "-" and not guion and eReal and original[pos2+i+1] in numeros):
+                    guion = True
+                    wait = True
+                elif ((expresion[i] == "F" or expresion[i] == "f") and not wait and not uReal and lReal == 0 and eReal):
+                    fReal = fReal + 1
+                    letter = True
+                else:
+                    return False
+
+        return True
+    except:
+        return False
 
 # Definición de función principal
 def main():
@@ -156,16 +193,21 @@ def main():
             # Lee todo el archivo y lo deja en una lista de strings
             lista_sintaxis = archivo.readlines()
 
+        comentarioLargo = [False]
+        posComentarioLargo = 0
+        originPos = 0
+
         # Lee cada enunciado del archivo de texto
         for i, expresion in enumerate(lista_sintaxis):
             
             # Acumulador de la expresion 
             acumExp = ""
-            # Acumulador de lo que se tiene que escribir en el html
-            acumHTML = list()
             # Variables para la indentación
             start = False
             espacio = ""
+
+            nullSpace = False
+            operadorOmit = [False]
 
             # Lee cada caracter del enunciado
             for j, token in enumerate(expresion):
@@ -181,79 +223,139 @@ def main():
                 start = True
 
                 # Si el valor actual del token es un espacio en blanco, liberamos todas las variables que tienen almacenados algún valor
-                if (token == " "):
-                    # Verifica que no haya quedado nada en la lista acumHTML, sino, las despliega todas en el archivo HTML
-                    for x in range(len(acumHTML)):
-                        file.write(acumHTML[x])
+                if (token == " " and not nullSpace and not comentarioLargo[0]):
                     # Si acumExp no esta vacío, significa que no pertenece a ninguna categoría léxica
                     if (acumExp[:j] != ""):
                         file.write("\t\t<span class=\"error\">" + acumExp[:j] + "</span>\n")
                         acumExp = ""
-                        del acumHTML [:]
                 # Concatenamos al acumulador los demás caracteres de la expresión, a excepción del salto de línea y del espacio en blanco
-                elif (token != "\n"):
+                elif (token != "\n" and token != "\t"):
                     acumExp = acumExp + token
 
-                if (isFile(acumExp)):
+                if (acumExp == "/" and expresion[j:j+2] == "/*"):
+                    originPos = i
+                    for k in range(len(lista_sintaxis)- i):
+                        exp = lista_sintaxis[i+k]
+                        if ((exp[2:].find("*/") != -1 and i == i+k) or (exp.find("*/") != -1 and i != i+k)):
+                            if (not comentarioLargo[0]):
+                                posComentarioLargo = i+k
+                            comentarioLargo[0] = True
+                    if (not comentarioLargo[0]):
+                        file.write("\t\t<span class=\"error\">" + expresion[j:-1] + "</span>\n")
+                        for k in range(len(lista_sintaxis) - i - 1):
+                            file.write("\t\t<br>\n")
+                            exp = lista_sintaxis[i+k+1]
+                            if (exp[-1] == "\n"):
+                                exp[:-1]
+                            file.write("\t\t<span class=\"error\">" + exp + "</span>\n")
+                        return
+
+                if (comentarioLargo[0]):
+                    # Líneas de comentarios sin el cierre
+                    if (originPos != i and i != posComentarioLargo and j == len(expresion)-1):
+                        file.write("\t\t<span class=\"comentario\">" + expresion[:-1] + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                    # Primer línea de comentario y además cierra en la misma línea
+                    elif (acumExp[2:].find("*/") != -1 and originPos == i and i == posComentarioLargo):
+                        file.write("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                        comentarioLargo[0] = False
+                        posComentarioLargo = 0
+                        originPos = 0
+                    # Línea de comentario diferente a la línea de apertura que encontro el cierre
+                    elif (acumExp.find("*/") != -1 and i !=  originPos and posComentarioLargo == i):
+                        file.write("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                        comentarioLargo[0] = False
+                        posComentarioLargo = 0
+                        originPos = 0
+                    # En caso de ser la primera línea y que no tenga cierre
+                    elif (j == len(expresion)-1):
+                        file.write("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+                        acumExp = ""
+                        nullSpace = False
+                elif (acumExp != "" and not comentarioLargo[0] and isFile(acumExp)):
+                    # Busca si esta incluida la extensión del archivo en la expresión
+                    pos = expresion.find(".cpp") + 4
                     # Verifica que despues de validar que la extensión se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
-                    if (expresion[j+1] == " " or expresion[j+1] == "\n"):
+                    if (j == len(expresion)-1 or expresion[pos] == " " or expresion[pos] == "\n" or isDelimitador(expresion[pos]) or isOperadorUnique(expresion[pos],expresion,pos) or expresion[pos:pos+2] == "//" or expresion[pos:pos+2] == "/*"):
                         file.write("\t\t<span class=\"file\">" + acumExp + "</span>\n")
                         acumExp = ""
-                        del acumHTML [:]
-                elif (isComentario(acumExp)):
+                        nullSpace = False
+                elif ((acumExp != "" and isComentario(acumExp)) and not comentarioLargo[0]):
                     file.write("\t\t<span class=\"comentario\">" + expresion[j-1:-1] + "</span>\n")
                     acumExp = ""
-                    del acumHTML [:]
+                    nullSpace = False
                     break
-                elif (isLibreria(acumExp)):
-                    file.write("\t\t<span class=\"libreria\">" + expresion + "</span>\n")
+                
+                elif (acumExp != "" and not comentarioLargo[0] and isLibreria(acumExp) and j == 0):
+                    file.write("\t\t<span class=\"libreria\">" + expresion[j:-1] + "</span>\n")
                     acumExp = ""
-                    del acumHTML [:]
+                    nullSpace = False
                     break
-                elif (isReservada(acumExp)):
+
+                elif (acumExp != "" and not comentarioLargo[0] and isReservada(acumExp)):
                     # Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
-                    if (expresion[j+1] == " " or expresion[j+1] == "\n"):
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isDelimitador(expresion[j+1]) or isOperadorUnique(expresion[j+1],expresion,j) or expresion[j+1] == "\"" or expresion[j+1] == "\'"):
                         file.write("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
                         acumExp = ""
-                        del acumHTML [:]
+                        nullSpace = False
 
-                elif (isOperador(acumExp,expresion,j)):
-                    # Verifica que no hayan otros valores antes del operador en la expresión, sino, libera esa parte como un error de sintaxis a excepción del operador
-                    if (len(acumExp) != 1 and acumExp[:j] != "" and not isOperadorUnique(acumExp,expresion,j)):
-                        file.write("\t\t<span class=\"error\">" + acumExp[:j] + "</span>\n")
-                        acumExp = acumExp[j:]
-                        del acumHTML [:]
-                    # Verifica que a continuación se encuentre cualquier otro valor que no sea un operador
-                    if (not isOperadorUnique(expresion[j+1],expresion,j)):
-                        file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
-                        acumExp = ""
-                        del acumHTML [:]
+                elif (acumExp != "" and not comentarioLargo[0] and isOperador(acumExp,expresion,j) and not operadorOmit[0] and not nullSpace):
+                    if (len(acumExp) > 1 and (not isOperadorUnique(acumExp[0],expresion,expresion.find(acumExp)) or isComentario(expresion[j:]))):
+                        file.write("\t\t<span class=\"error\">" + acumExp[:-1] + "</span>\n")
+                        acumExp = acumExp[-1]
+                        nullSpace = False
+                        operadorOmit[0] = False
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
+                        if (acumExp.find("_") == -1):
+                            file.write("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
+                            acumExp = ""
+                        else:
+                            file.write("\t\t<span class=\"operador\">" + acumExp[:acumExp.find("_")] + "</span>\n")
+                            acumExp = acumExp[acumExp.find("_"):]
+                        nullSpace = False
+                        operadorOmit[0]
 
-                elif (isDelimitador(acumExp,expresion,j)):
-                    file.write("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
-                    acumExp = ""
-                    del acumHTML [:]
+                elif (acumExp != "" and not comentarioLargo[0] and isDelimitador(acumExp) and not nullSpace):
+                    if (len(acumExp) > 1 and not isDelimitador(acumExp[0])):
+                        file.write("\t\t<span class=\"error\">" + acumExp[:-1] + "</span>\n")
+                        acumExp = acumExp[-1]
+                        nullSpace = False
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
+                        if (acumExp.find("_") == -1):
+                            file.write("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
+                            acumExp = ""
+                        else:
+                            file.write("\t\t<span class=\"delimitador\">" + acumExp[:acumExp.find("_")] + "</span>\n")
+                            acumExp = acumExp[acumExp.find("_"):]
+                        nullSpace = False
 
-                elif (isIdentificador(acumExp, expresion, j)):
-                    if (expresion[j+1] == " " or expresion[j+1] == "\n" or expresion[j+1] == ":"):
+                elif (acumExp != "" and not comentarioLargo[0] and isIdentificador(acumExp, expresion, j)):
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isDelimitador(expresion[j+1])):
                         file.write("\t\t<span class=\"identificador\">" + acumExp + "</span>\n")
                         acumExp = ""
-                        del acumHTML [:]
+                        nullSpace = False
                 
-                elif (isLiteral(acumExp, expresion, j)):
-                    if (expresion[j+1] == " " or expresion[j+1] == "\n" or expresion[j+1] == ":"):
-                        if ((acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'") or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"")):
+                elif (acumExp != "" and not comentarioLargo[0] and isLiteral(acumExp, expresion, j, operadorOmit)):
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isDelimitador(expresion[j+1]) or (isOperadorUnique(expresion[j+1],expresion,j) and expresion[j+1] != "-") or isComentario(acumExp[j+1:]) or (acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'") or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"")):
+                        if ((acumExp[0] == "\'" and expresion[j+1:].find("\'") != -1) or (acumExp[0] == "\"" and expresion[j+1:].find("\"") != -1)):
+                            nullSpace = True
+                            
+                        if ((acumExp[0] == "\'" and acumExp[len(acumExp)-1] == "\'" and len(acumExp) != 1) or (acumExp[0] == "\"" and acumExp[len(acumExp)-1] == "\"" and len(acumExp) != 1)):
                             file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
                             acumExp = ""
-                            del acumHTML [:]
+                            operadorOmit[0] = False
+                            nullSpace = False
 
                         elif(((acumExp[0] != "\'") and (acumExp[len(acumExp)-1] != "\'")) and (acumExp[0] != "\"" and acumExp[len(acumExp)-1] != "\"")):
                             file.write("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
                             acumExp = ""
-                            del acumHTML [:]
-
-            for i in range(len(acumHTML)):
-                file.write(acumHTML[i])
+                            operadorOmit[0] = False
+                            nullSpace = False
 
             # Si al final no se vacía el acumulador, es un syntax error, ya que no pertenece a ninguna categoría léxica
             if (acumExp != ""):
