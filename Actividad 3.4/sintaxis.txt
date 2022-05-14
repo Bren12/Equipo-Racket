@@ -1,10 +1,10 @@
 // Brenda Elena Saucedo González - A00829855
 // 29 - Noviembre - 2020
 
-#include"Cliente.h"
-#include"Articulo.h"
-#include<iostream>
-#include<string>
+#  # include  "Cliente.h"
+# incl#ude   "Articulo.h";
+#   include<iostream>
+#   include <string>
 using namespace std;
 
 // Funcion para desplegar los datos de los clientes registrados y sus cuentas
