@@ -6,212 +6,1643 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<span class="file">file.cpp</span>
+		<span class="comentario">// Brenda Elena Saucedo González - A00829855</span>
 		<br>
-		<span class="comentario">// Solving SPOJ's TAP2014A - At random</span>
+		<span class="comentario">// 29 - Noviembre - 2020</span>
 		<br>
-		<span class="libreria">#include   "iostream"
-</span>
+		<br>
+		<span class="error">#</span>
+		<span class="error">#</span>
+		<span class="identificador">include</span>
+		<span class="literal">"Cliente.h"</span>
+		<br>
+		<span class="error">#</span>
+		<span class="error">incl#ude</span>
+		<span class="literal">"Articulo.h"</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="libreria">#   include< iostream></span>
+		<br>
+		<span class="libreria">#   include < string></span>
 		<br>
 		<span class="reservada">using</span>
 		<span class="reservada">namespace</span>
-		<span class="identificador">std</span>
-		<span class="error">;</span>
+		<span class="reservada">std</span>
+		<span class="delimitador">;</span>
 		<br>
-		<span class="reservada">const</span>
-		<span class="reservada">auto</span>
-		<span class="identificador">INF</span>
-		<span class="operador">=</span>
-		<span class="error">1e18LL</span>
-		<span class="error">;</span>
+		<br>
+		<span class="comentario">// Funcion para desplegar los datos de los clientes registrados y sus cuentas</span>
 		<br>
 		<span class="reservada">void</span>
-		<span class="identificador">printAns</span>
-		<span class="error">(</span>
-		<span class="reservada">bool</span>
-		<span class="identificador">ans</span>
-		<span class="error">)</span>
-		<span class="error">{</span>
+		<span class="identificador">opcion5</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[])</span>
+		<span class="delimitador">{</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
 		<span class="reservada">cout</span>
-		<span class="operador"><<</span>
-		<span class="error">(</span>
-		<span class="identificador">ans</span>
-		<span class="operador">?</span>
-		<span class="error">'B'</span>
-		<span class="operador">:</span>
-		<span class="error">'M'</span>
-		<span class="error">)</span>
-		<span class="operador"><<</span>
-		<span class="identificador">endl</span>
-		<span class="error">;</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nClientes registrados: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
 		<br>
-		<span class="error">}</span>
+		<span class="comentario">// Ciclo para desplegar los datos</span>
+		<br>
+		<span class="reservada">for</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="literal">5</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getNombre</span>
+		<span class="delimitador">()</span>
+		<span class="operador">!</span>
+		<span class="operador">=</span>
+		<span class="literal">"N/A"</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="literal">1</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">". Cliente: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getNombre</span>
+		<span class="delimitador">();</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"  |  Direccion: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getDireccion</span>
+		<span class="delimitador">();</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"  |  Clave bancaria: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getTarjeta</span>
+		<span class="delimitador">().</span>
+		<span class="identificador">getClave</span>
+		<span class="delimitador">();</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"  |  Saldo actual: $"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getTarjeta</span>
+		<span class="delimitador">().</span>
+		<span class="identificador">getSaldo</span>
+		<span class="delimitador">()</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">// Funcion para pagar</span>
+		<br>
+		<span class="reservada">void</span>
+		<span class="identificador">opcion4</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[],</span>
+		<span class="reservada">float</span>
+		<span class="identificador">subtotal</span>
+		<span class="delimitador">,</span>
+		<span class="reservada">int</span>
+		<span class="identificador">contP</span>
+		<span class="delimitador">,</span>
+		<span class="reservada">int</span>
+		<span class="operador">&</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[])</span>
+		<span class="delimitador">{</span>
+		<br>
+		<br>
+		<span class="comentario">// Ciclo que calcula el precio final de todos los articulos</span>
+		<br>
+		<span class="reservada">for</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="literal">5</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="operador">!</span>
+		<span class="operador">=</span>
+		<span class="literal">"N/A"</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">subtotal</span>
+		<span class="operador">+</span>
+		<span class="operador">=</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">total</span>
+		<span class="delimitador">();</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">// Si el saldo es mayor que el precio final, se descuenta el precio final del saldo</span>
+		<br>
+		<span class="comentario">// En caso contrario, despliega un mensaje que no hay saldo suficiente para hacer el pago</span>
+		<br>
+		<span class="identificador">CtaBanc</span>
+		<span class="identificador">temp</span>
+		<span class="operador">=</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">contP</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getTarjeta</span>
+		<span class="delimitador">();</span>
+		<br>
+		<span class="reservada">bool</span>
+		<span class="identificador">respuesta</span>
+		<span class="operador">=</span>
+		<span class="error">temp.retirar</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">subtotal</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">contP</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setTarjeta</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">temp</span>
+		<span class="delimitador">);</span>
+		<br>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">respuesta</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="reservada">true</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nPago realizado con exito!"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Sus pedidos llegaran dentro de 5 dias habiles a "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">contP</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getDireccion</span>
+		<span class="delimitador">()</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="comentario">// Al momento de pagar se reinician los articulos a sus valores iniciales</span>
+		<br>
+		<span class="identificador">cont</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">for</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="literal">5</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">temp</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setNombreArt</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setPrecio</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getPrecio</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setCantidad</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getCantidad</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="reservada">else</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nEl pago no se pudo realizar correctamente"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"El subtotal a pagar es de $"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">subtotal</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"En su cuenta bancaria usted cuenta con $"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">contP</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getTarjeta</span>
+		<span class="delimitador">().</span>
+		<span class="identificador">getSaldo</span>
+		<span class="delimitador">()</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">// Funcion para mostrar los articulos que hay en el carrito</span>
+		<br>
+		<span class="reservada">void</span>
+		<span class="identificador">opcion3</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[],</span>
+		<span class="reservada">float</span>
+		<span class="identificador">subtotal</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nEn el carrito hay: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="comentario">// Ciclo que muestra los datos de cada articulo</span>
+		<br>
+		<span class="reservada">for</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="literal">5</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="operador">!</span>
+		<span class="operador">=</span>
+		<span class="literal">"N/A"</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">carrito</span>
+		<span class="delimitador">();</span>
+		<br>
+		<span class="comentario">// Se va registrando el precio total de cada articulo</span>
+		<br>
+		<span class="identificador">subtotal</span>
+		<span class="operador">+</span>
+		<span class="operador">=</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">total</span>
+		<span class="delimitador">();</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"El subtotal a pagar es de $"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">subtotal</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">// Funcion para retirar articulos del carrito</span>
+		<br>
+		<span class="reservada">void</span>
+		<span class="identificador">opcion2</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[],</span>
+		<span class="reservada">int</span>
+		<span class="operador">&</span>
+		<span class="identificador">cont1</span>
+		<span class="delimitador">,</span>
+		<span class="reservada">float</span>
+		<span class="identificador">subtotal</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<br>
+		<span class="reservada">string</span>
+		<span class="identificador">articulo</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">int</span>
+		<span class="identificador">cant</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">pos</span>
+		<span class="operador">=</span>
+		<span class="operador">-</span>
+		<span class="literal">1</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nNombre del articulo que desea retirar: "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">articulo</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="comentario">// Ciclo que busca el nombre del articulo en el arreglo</span>
+		<br>
+		<span class="reservada">for</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="literal">5</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="identificador">articulo</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="comentario">// Se guarda la posicion en caso de encontrar el articulo</span>
+		<br>
+		<span class="identificador">pos</span>
+		<span class="operador">=</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">pos</span>
+		<span class="operador">></span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<br>
+		<span class="comentario">// Se recorren los datos de cada articulo en el arreglo a una posicion anterior, empezando desde la posicion guardada</span>
+		<br>
+		<span class="reservada">for</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="identificador">pos</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="literal">4</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setNombreArt</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="literal">1</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setPrecio</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="literal">1</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getPrecio</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setCantidad</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="literal">1</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getCantidad</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">// Se borrar los datos almacenados en el ultima posicion del arreglo</span>
+		<br>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">temp</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="literal">4</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setNombreArt</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="literal">4</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setPrecio</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getPrecio</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="literal">4</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setCantidad</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getCantidad</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<br>
+		<span class="comentario">// Se actualiza el contador</span>
+		<br>
+		<span class="identificador">cont1</span>
+		<span class="operador">-</span>
+		<span class="operador">-;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Articulo retirado del carrito con exito"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="reservada">else</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"No existe un articulo con ese nombre en el carrito"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">// Funcion para agregar articulos al carrito</span>
+		<br>
+		<span class="reservada">void</span>
+		<span class="identificador">opcion1</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[],</span>
+		<span class="reservada">int</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">string</span>
+		<span class="identificador">articulo</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">float</span>
+		<span class="identificador">precio</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">int</span>
+		<span class="identificador">cant</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nNombre del articulo que se desea comprar: "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">articulo</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Cual es el precio del articulo? "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">precio</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Cantidad de articulos que desea cargar al carrito: "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">cant</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setNombreArt</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">articulo</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setPrecio</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">precio</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setCantidad</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">cant</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">// Funcion que despliega las opciones del menu</span>
+		<br>
+		<span class="reservada">void</span>
+		<span class="identificador">menu</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[],</span>
+		<span class="reservada">int</span>
+		<span class="operador">&</span>
+		<span class="identificador">contP</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[])</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">int</span>
+		<span class="identificador">opcion</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont1</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">float</span>
+		<span class="identificador">subtotal</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="reservada">do</span>
+		<span class="delimitador">{</span>
+		<br>
+		<br>
+		<span class="comentario">// Variable para la opcion 6 que es la salida del programa cuando se tienen articulos en el carrito sin pagar</span>
+		<br>
+		<span class="reservada">int</span>
+		<span class="identificador">respuesta6</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\n---------------MENU---------------"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"1) Agregar un articulo al carrito"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"2) Retirar un articulo del carrito"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"3) Mostrar el carrito"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"4) Pagar"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"5) Mostrar lista de clientes"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"6) Salir"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nElija una opcion del menu: "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">opcion</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="reservada">switch</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">opcion</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">case</span>
+		<span class="literal">1</span>
+		<span class="delimitador">:</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="comentario">// Condicional que verifica que no se sobrepase la cantidad del arreglo Cliente personas</span>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">cont1</span>
+		<span class="operador"><</span>
+		<span class="literal">5</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">opcion1</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont1</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="comentario">// Actualizar contador</span>
+		<br>
+		<span class="identificador">cont1</span>
+		<span class="operador">+</span>
+		<span class="operador">+;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="reservada">else</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nSe ha sobrepasado el limite de articulos en el carrito!"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="reservada">break</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">case</span>
+		<span class="literal">2</span>
+		<span class="delimitador">:</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">opcion2</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont1</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">subtotal</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="reservada">break</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">case</span>
+		<span class="literal">3</span>
+		<span class="delimitador">:</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">opcion3</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">subtotal</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="reservada">break</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">case</span>
+		<span class="literal">4</span>
+		<span class="delimitador">:</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">opcion4</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">subtotal</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">contP</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont1</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="reservada">break</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">case</span>
+		<span class="literal">5</span>
+		<span class="delimitador">:</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">opcion5</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="reservada">break</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">case</span>
+		<span class="literal">6</span>
+		<span class="delimitador">:</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="comentario">// En caso de haber un articulo sin pagar le pregunta al usuario si en verdad quiere salir</span>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="literal">0</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="operador">!</span>
+		<span class="operador">=</span>
+		<span class="literal">"N/A"</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">while</span>
+		<span class="delimitador">((</span>
+		<span class="identificador">respuesta6</span>
+		<span class="operador"><</span>
+		<span class="literal">1</span>
+		<span class="delimitador">)</span>
+		<span class="error">|</span>
+		<span class="operador">|</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">respuesta6</span>
+		<span class="operador">></span>
+		<span class="literal">2</span>
+		<span class="delimitador">))</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nEn su carrito hay articulos sin pagar, desea salir sin realizar ninguna compra?"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"1) SI\n2) NO"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Opcion -> "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">respuesta6</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="comentario">// En caso que no quiera salir se cambia el numero de opcion del menu para que pueda regresar a el</span>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">respuesta6</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="literal">2</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">opcion</span>
+		<span class="operador">=</span>
+		<span class="literal">1</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="reservada">else</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">respuesta6</span>
+		<span class="operador">!</span>
+		<span class="operador">=</span>
+		<span class="literal">1</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Opcion incorrecta!"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">if</span>
+		<span class="delimitador">((</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="literal">0</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="literal">"N/A"</span>
+		<span class="delimitador">)</span>
+		<span class="error">|</span>
+		<span class="operador">|</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">respuesta6</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="literal">1</span>
+		<span class="delimitador">))</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nGracias por confiar en nosotros, que tenga un buen dia! :D"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="identificador">contP</span>
+		<span class="operador">+</span>
+		<span class="operador">+;</span>
+		<br>
+		<span class="reservada">for</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="literal">5</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">temp</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setNombreArt</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getNombreArt</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setPrecio</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getPrecio</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setCantidad</span>
+		<span class="delimitador">(</span>
+		<span class="error">temp.getCantidad</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="reservada">break</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">default</span>
+		<span class="delimitador">:</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Opcion incorrecta"</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">break</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<span class="delimitador">}</span>
+		<span class="reservada">while</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">opcion</span>
+		<span class="operador">!</span>
+		<span class="operador">=</span>
+		<span class="literal">6</span>
+		<span class="delimitador">);</span>
+		<br>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">// Funcion para que el cliente registre sus datos</span>
+		<br>
+		<span class="reservada">void</span>
+		<span class="identificador">registrar</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">string</span>
+		<span class="operador">&</span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">,</span>
+		<span class="reservada">string</span>
+		<span class="operador">&</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">,</span>
+		<span class="reservada">int</span>
+		<span class="operador">&</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">,</span>
+		<span class="reservada">float</span>
+		<span class="operador">&</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">,</span>
+		<span class="reservada">int</span>
+		<span class="operador">&</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[],</span>
+		<span class="identificador">CtaBanc</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[])</span>
+		<span class="delimitador">{</span>
+		<br>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Registrese para poder continuar"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Teclee su nombre: "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Tecle la direccion a la que van a llegar sus pedidos: "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Teclee los digitos de la clave de su cuenta bancaria: "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Teclee el saldo actual de su cuenta bancaria: "</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setNombre</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setDireccion</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setClave</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setSaldo</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">].</span>
+		<span class="identificador">setTarjeta</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">]);</span>
+		<br>
+		<span class="delimitador">}</span>
 		<br>
 		<br>
 		<span class="reservada">int</span>
 		<span class="identificador">main</span>
-		<span class="error">()</span>
-		<span class="error">{</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">{</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="literal">10</span>
+		<span class="delimitador">];</span>
+		<br>
+		<span class="identificador">CtaBanc</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[</span>
+		<span class="literal">10</span>
+		<span class="delimitador">];</span>
+		<br>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="literal">5</span>
+		<span class="delimitador">];</span>
+		<br>
 		<span class="reservada">int</span>
-		<span class="identificador">t</span>
-		<span class="error">;</span>
+		<span class="identificador">num</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">string</span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">float</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">;</span>
+		<br>
+		<br>
+		<span class="comentario">// Ciclo que se repite mientras el usuario no teclee un numero entre 1-10</span>
+		<br>
+		<span class="reservada">do</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Cuantas personas van a hacer compras online (maximo 10)? "</span>
+		<span class="delimitador">;</span>
+		<br>
 		<span class="reservada">cin</span>
-		<span class="operador">>></span>
-		<span class="identificador">t</span>
-		<span class="error">;</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">num</span>
+		<span class="delimitador">;</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
 		<span class="reservada">while</span>
-		<span class="error">(</span>
-		<span class="identificador">t</span>
-		<span class="operador">--</span>
-		<span class="error">)</span>
-		<span class="error">{</span>
+		<span class="delimitador">((</span>
+		<span class="identificador">num</span>
+		<span class="operador">></span>
+		<span class="literal">10</span>
+		<span class="delimitador">)</span>
+		<span class="error">|</span>
+		<span class="operador">|</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">num</span>
+		<span class="operador"><</span>
+		<span class="literal">0</span>
+		<span class="delimitador">));</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="reservada">int</span>
-		<span class="identificador">n</span>
-		<span class="error">;</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="reservada">cin</span>
-		<span class="operador">>></span>
-		<span class="identificador">n</span>
-		<span class="error">;</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="reservada">bool</span>
-		<span class="identificador">ans</span>
-		<span class="operador">=</span>
-		<span class="reservada">true</span>
-		<span class="error">;</span>
-		<span class="comentario">// will stay the same if condition meets</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="reservada">int</span>
-		<span class="identificador">last</span>
-		<span class="operador">=</span>
-		<span class="operador">-</span>
-		<span class="error">1</span>
-		<span class="error">,</span>
-		<span class="identificador">cur</span>
-		<span class="error">;</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="reservada">char</span>
-		<span class="identificador">prev</span>
-		<span class="operador">=</span>
-		<span class="error">0</span>
-		<span class="error">,</span>
-		<span class="identificador">now</span>
-		<span class="error">;</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">for</span>
-		<span class="error">(</span>
+		<span class="delimitador">(</span>
 		<span class="reservada">int</span>
 		<span class="identificador">i</span>
 		<span class="operador">=</span>
-		<span class="error">0</span>
-		<span class="error">;</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
 		<span class="identificador">i</span>
 		<span class="operador"><</span>
-		<span class="identificador">n</span>
-		<span class="error">;</span>
-		<span class="operador">++</span>
+		<span class="identificador">num</span>
+		<span class="delimitador">;</span>
 		<span class="identificador">i</span>
-		<span class="error">)</span>
-		<span class="error">{</span>
+		<span class="operador">+</span>
+		<span class="operador">+)</span>
+		<span class="delimitador">{</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="identificador">j</span>
-		<span class="operador">=</span>
-		<span class="error">3</span>
-		<span class="comentario">// 2</span>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nBienvenido a la Tienda Online Amazona!"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="identificador">j</span>
-		<span class="operador">=</span>
-		<span class="error">3</span>
-		<span class="operador">/</span>
-		<span class="error">2</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="identificador">j</span>
-		<span class="operador">=</span>
-		<span class="error">3/</span>
-		<span class="operador"></span>
-		<span class="error">2</span>
+		<span class="identificador">registrar</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">);</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="reservada">cin</span>
-		<span class="operador">>></span>
-		<span class="identificador">cur</span>
-		<span class="operador">>></span>
-		<span class="identificador">now</span>
-		<span class="error">;</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="comentario">// if any of the two numbers are the same, it changes value of ans</span>
+		<span class="identificador">menu</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">);</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="reservada">if</span>
-		<span class="error">(</span>
-		<span class="identificador">cur</span>
-		<span class="operador">==</span>
-		<span class="identificador">last</span>
-		<span class="operador">||</span>
-		<span class="identificador">now</span>
-		<span class="operador">==</span>
-		<span class="identificador">prev</span>
-		<span class="error">)</span>
-		<span class="error">{</span>
+		<span class="delimitador">}</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="identificador">ans</span>
-		<span class="operador">=</span>
-		<span class="reservada">false</span>
-		<span class="error">;</span>
 		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">}</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="identificador">last</span>
-		<span class="operador">=</span>
-		<span class="identificador">cur</span>
-		<span class="error">;</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="identificador">prev</span>
-		<span class="operador">=</span>
-		<span class="identificador">now</span>
-		<span class="error">;</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">}</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="identificador">printAns</span>
-		<span class="error">(</span>
-		<span class="identificador">ans</span>
-		<span class="error">);</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">}</span>
-		<br>
-		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">return</span>
-		<span class="error">0</span>
-		<span class="error">;</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
 		<br>
-		<span class="error">}</span>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="comentario">/*/////////////////////////////////////// Descripcion del Programa //////////////////////////////////////////</span>
+		<br>
+		<span class="comentario"></span>
+		<br>
+		<span class="comentario">Aplicacion que ejecuta las clases CtaBanc (control sobre la cuenta bancaria del cliente),</span>
+		<br>
+		<span class="comentario">Cliente (control sobre los datos del cliente), Articulo (control sobre los datos del articulo).</span>
+		<br>
+		<span class="comentario"></span>
+		<br>
+		<span class="comentario">En esta aplicacion podra registrarse un maximo de 10 clientes y 5 articulos, la diferencia con los articulos,</span>
+		<br>
+		<span class="comentario">es que a la hora de pagar, se vacia el carrito y se podra volver a llenar. Luego de que se registre un cliente</span>
+		<br>
+		<span class="comentario">se desplegara un menu enumerando las opciones que puede elegir, como lo es el agregar un articulo al carrito,</span>
+		<br>
+		<span class="comentario">retirar un articulo del carrito, mostrar los articulos que hay en el carrito y el precio final, pagar,</span>
+		<br>
+		<span class="comentario">desplegar los datos de los clientes que se han registrado por el momento y salir del programa.</span>
+		<br>
+		<span class="comentario"></span>
+		<br>
+		<span class="comentario">*/</span>
 		<br>
 	</body>
 </html>
