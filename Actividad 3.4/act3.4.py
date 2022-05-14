@@ -423,7 +423,7 @@ def main():
                         acumExp = acumExp[-1]
                         nullSpace = False
                     # Verifica que a continuación haya un caracter diferente válido para desplegarlo
-                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit)):
+                    if (j == len(expresion)-1 or expresion[j+1] == " " or expresion[j+1] == "\n" or isOperadorUnique(expresion[j+1],expresion,j) or isIdentificador(expresion[j+1],expresion,j) or isLiteral(expresion[j+1],expresion,j,operadorOmit) or expresion[j+1] == "."):
                         if (acumExp.find("_") == -1):
                             file.write("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
                             acumExp = ""
