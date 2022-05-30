@@ -48,6 +48,12 @@ func sec_prime(limit float64) float64 {
 func main() {
 	fmt.Println(sec_prime(5000000))
 	/*Reporte de Diego:
-	En un Ryzen 5 3500X en un nucleo el programa
-	(Metodo secuencial) termino en 64.748 segundos*/
+	En un Ryzen 5 3500X en un nucleo el programa (Metodo secuencial) termino en
+	64.748 segundos
+	Salida de consola:
+
+	[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\main.go"
+	8.38596693108e+11
+	[Done] exited with code=0 in 64.748 seconds
+	*/
 }
