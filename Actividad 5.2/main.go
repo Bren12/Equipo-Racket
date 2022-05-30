@@ -34,26 +34,32 @@ func check_prime(n float64) bool {
 	return true
 }
 
+/*func define_size_array(n int) int {
+
+}*/
+
 //Funcion para realizar la parte secuencial de la actividad
-func sec_prime(limit float64) float64 {
-	var sum float64
-	for i := 2.0; i < limit; i++ {
-		if check_prime(i) == true {
-			sum += i
+func sec_prime(limit int) int {
+	var sum int
+	for i := 2; i < limit; i++ {
+		if check_prime(float64(i)) == true {
+			sum += int(i)
 		}
 	}
 	return sum
 }
 
 func main() {
-	fmt.Println(sec_prime(5000000))
+	n := 5000000
+	fmt.Println(sec_prime(n))
 	/*Reporte de Diego:
 	En un Ryzen 5 3500X en un nucleo el programa (Metodo secuencial) termino en
-	64.748 segundos
+	64.424 segundos
 	Salida de consola:
 
 	[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\main.go"
-	8.38596693108e+11
-	[Done] exited with code=0 in 64.748 seconds
+	838596693108
+	[Done] exited with code=0 in 64.424 seconds
+
 	*/
 }
