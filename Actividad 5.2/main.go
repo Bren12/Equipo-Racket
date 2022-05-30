@@ -34,6 +34,20 @@ func check_prime(n float64) bool {
 	return true
 }
 
+//Funcion para realizar la parte secuencial de la actividad
+func sec_prime(limit float64) float64 {
+	var sum float64
+	for i := 2.0; i < limit; i++ {
+		if check_prime(i) == true {
+			sum += i
+		}
+	}
+	return sum
+}
+
 func main() {
-	fmt.Println("Test")
+	fmt.Println(sec_prime(5000000))
+	/*Reporte de Diego:
+	En un Ryzen 5 3500X en un nucleo el programa
+	(Metodo secuencial) termino en 64.748 segundos*/
 }
