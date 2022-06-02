@@ -1,4 +1,5 @@
 //Actividad 5.2 Programación paralela y concurrente
+//Archivo Paralelo
 
 /*Fecha: 27-05-2020
 Equipo:
@@ -23,6 +24,7 @@ import (
 
 //Declaracion de variables
 var n float64
+var hilos int
 
 //Checa si los numeros son primos
 func check_prime(n float64) bool {
@@ -33,10 +35,6 @@ func check_prime(n float64) bool {
 	}
 	return true
 }
-
-/*func define_size_array(n int) int {
-
-}*/
 
 //Funcion para realizar la parte secuencial de la actividad
 func sec_prime(limit int) int {
@@ -61,5 +59,11 @@ func main() {
 	838596693108
 	[Done] exited with code=0 in 64.424 seconds
 
+	En un Intel Core i5-11400H en un nucleo el programa (Metodo secuencial) termino en
+	47.425 segundos
+	Salida de consola:
+	[Running] go run "c:\Users\Upijijis\OneDrive\Documentos\git\Go\Act 5.2\main.go"
+	838596693108
+	[Done] exited with code=0 in 47.425 seconds
 	*/
 }
