@@ -26,6 +26,9 @@ import (
 
 //Declaracion de variables
 var n float64
+var wg sync.WaitGroup
+var mutex = &sync.Mutex{}
+var sum int
 
 type vector []int
 
@@ -40,15 +43,15 @@ func check_prime(n float64) bool {
 }
 
 //Funcion para sumar los numeros primos
-func sec_prime(begining, ending, step int, ch chan int, wg *sync.WaitGroup) {
-	sum := <-ch
+func sec_prime(begining, ending, step int, ch chan int) {
 	for i := begining; i < ending; i += step {
 		if check_prime(float64(i)) == true {
+			mutex.Lock()
 			sum += int(i)
+			mutex.Unlock()
 		}
 	}
 	ch <- sum
-	wg.Done()
 }
 
 /*Encargado de dividir el tiempo entre el numero de hilos asignados, con
@@ -56,11 +59,11 @@ el fin de aumentar la velocidad del chequeo*/
 func rango_div(hilos, limite int) vector {
 	var rango vector
 	unidad := limite / hilos
-	for i := 1; i < hilos; i++ {
+	for i := 1; i < hilos+1; i++ {
 		if i >= hilos && i*unidad != limite {
-			rango[i] = (unidad * i) + limite - (unidad * i)
+			rango = append(rango, (unidad*i)+limite-(unidad*i))
 		} else {
-			rango[i] = (unidad * i)
+			rango = append(rango, (unidad * i))
 		}
 	}
 	return rango
@@ -69,12 +72,11 @@ func main() {
 	hilos := runtime.NumCPU()
 	n := 5000000
 	sumCh := make(chan int)
-	var wg sync.WaitGroup
+
 	div_range := rango_div(hilos, n)
 	for i := 0; i < hilos-1; i++ {
-		wg.Add(1)
-		sec_prime(div_range[i], div_range[(i+1)], 1, sumCh, &wg)
-		wg.Wait()
+		go sec_prime(div_range[i], div_range[(i+1)], 1, sumCh)
+
 	}
 	result := <-sumCh
 	fmt.Println(result)
