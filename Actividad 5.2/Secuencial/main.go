@@ -24,7 +24,6 @@ import (
 
 //Declaracion de variables
 var n float64
-var hilos int
 
 //Checa si los numeros son primos
 func check_prime(n float64) bool {
