@@ -20,6 +20,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"runtime"
 	"sync"
 )
 
@@ -78,7 +79,7 @@ func rango_div(hilos, limite int) vector {
 func main() {
 	//Declaramos las variables a usar
 	//Hilos sera el numero de procesos a usar
-	hilos := 1024
+	hilos := runtime.NumCPU()
 	//n sera el numero a analizar
 	n := 5000000
 	// sumCh se usa para poder pasar la suma de las goroutines
@@ -103,8 +104,24 @@ func main() {
 /*Reporte de Diego:
 En un Ryzen 5 3500X en un nucleo el programa (Metodo paralelo) termino en
 64.424 segundos
-Salida de consola:
+Salida de consola (Hilos = 1024):
 
 [Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
 838596693108
-[Done] exited with code=0 in 11.894 seconds*/
+[Done] exited with code=0 in 11.894 seconds
+
+Salida de consola (Hilos = 12):
+[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
+838596693108
+[Done] exited with code=0 in 13.794 seconds
+
+Salida de consola (hilos := runtime.NumCPU(), que en este caso seria equivalente a hilos := 6)
+[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
+838596693108
+[Done] exited with code=0 in 15.573 seconds
+
+Tomando en cuenta el ultimo resultado en donde tenemos 6 procesos y el resultado de secuencial en donde
+p = 6
+T1 = 62.389
+T(p) = 15.573
+podemos decir que nuestro S(p) en esta ocación es de = 4.00622873*/
