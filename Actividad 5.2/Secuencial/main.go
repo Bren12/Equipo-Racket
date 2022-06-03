@@ -1,19 +1,21 @@
-//Actividad 5.2 Programación paralela y concurrente
-//Archivo Secuencial
+// Actividad 5.2 Programación paralela y concurrente
+// Archivo Secuencial
 
-/*Fecha: 27-05-2020
+/*
+Fecha: 03-06-2020
 Equipo:
     - Diego Alberto Baños Lopez | A01275100
     - José Ángel Rentería Campos | A00832436
-    - Brenda Elena Saucedo González | A00829855*/
+    - Brenda Elena Saucedo González | A00829855
 
-/*Utilizando el lenguaje de programaci ́on indicado por tu profesor (Scheme, Racket, Clojure), escribe dos versiones
-de un programa que calcule la suma de todos los n ́umeros primos menores a 5,000,000 (cinco millones):
-• La primera versi ́on debe ser una implementaci ́on convencional que realice el c ́omputo de manera secuencial.
-• La segunda versi ́on debe realizar el cómputo de manera paralela a trav ́es de los mecanismos provistos por
-el lenguaje siendo utilizado (por ejemplo places o la funci ́on pmap). Debes procurar paralelizar el c ́odigo
-aprovechando todos los n ́ucleos disponibles en tu sistema.
-Ambas versiones del programa deben dar 838,596,693,108 (838596693108) como resultado.*/
+Utilizando el lenguaje de programación indicado por tu profesor (Scheme, Racket, Clojure), escribe dos versiones
+de un programa que calcule la suma de todos los números primos menores a 5,000,000 (cinco millones):
+• La primera versión debe ser una implementación convencional que realice el cómputo de manera secuencial.
+• La segunda versión debe realizar el cómputo de manera paralela a través de los mecanismos provistos por
+el lenguaje siendo utilizado (por ejemplo places o la función pmap). Debes procurar paralelizar el código
+aprovechando todos los núcleos disponibles en tu sistema.
+Ambas versiones del programa deben dar 838,596,693,108 (838596693108) como resultado.
+*/
 
 package main
 
@@ -54,13 +56,14 @@ func main() {
 	n := 5000000
 	//imprimimos el resultado
 	fmt.Println(sec_prime(n))
-	/*Reporte de Diego:
-	En un Ryzen 5 3500X en un nucleo el programa (Metodo secuencial) termino en
-	64.424 segundos
-	Salida de consola:
-
-	[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Secuencial\main.go"
-	838596693108
-	[Done] exited with code=0 in 62.389 seconds
-	*/
 }
+
+/*
+Se utilizó el SO de Diego como referencia:
+	En un Ryzen 5 3500X termino en 62.389 segundos
+	
+	Salida de consola:
+		[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Secuencial\main.go"
+		838596693108
+		[Done] exited with code=0 in 62.389 seconds
+*/

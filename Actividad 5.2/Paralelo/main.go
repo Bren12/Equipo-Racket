@@ -1,19 +1,21 @@
-//Actividad 5.2 Programación paralela y concurrente
-//Archivo Paralelo
+// Actividad 5.2 Programación paralela y concurrente
+// Archivo Paralelo
 
-/*Fecha: 27-05-2020
+/*
+Fecha: 03-06-2020
 Equipo:
     - Diego Alberto Baños Lopez | A01275100
     - José Ángel Rentería Campos | A00832436
-    - Brenda Elena Saucedo González | A00829855*/
+    - Brenda Elena Saucedo González | A00829855
 
-/*Utilizando el lenguaje de programaci ́on indicado por tu profesor (Scheme, Racket, Clojure), escribe dos versiones
-de un programa que calcule la suma de todos los n ́umeros primos menores a 5,000,000 (cinco millones):
-• La primera versi ́on debe ser una implementaci ́on convencional que realice el c ́omputo de manera secuencial.
-• La segunda versi ́on debe realizar el cómputo de manera paralela a trav ́es de los mecanismos provistos por
-el lenguaje siendo utilizado (por ejemplo places o la funci ́on pmap). Debes procurar paralelizar el c ́odigo
-aprovechando todos los n ́ucleos disponibles en tu sistema.
-Ambas versiones del programa deben dar 838,596,693,108 (838596693108) como resultado.*/
+Utilizando el lenguaje de programación indicado por tu profesor (Scheme, Racket, Clojure), escribe dos versiones
+de un programa que calcule la suma de todos los números primos menores a 5,000,000 (cinco millones):
+• La primera versión debe ser una implementación convencional que realice el cómputo de manera secuencial.
+• La segunda versión debe realizar el cómputo de manera paralela a través de los mecanismos provistos por
+el lenguaje siendo utilizado (por ejemplo places o la función pmap). Debes procurar paralelizar el código
+aprovechando todos los núcleos disponibles en tu sistema.
+Ambas versiones del programa deben dar 838,596,693,108 (838596693108) como resultado.
+*/
 
 package main
 
@@ -101,27 +103,30 @@ func main() {
 	fmt.Println(result)
 }
 
-/*Reporte de Diego:
-En un Ryzen 5 3500X en un nucleo el programa (Metodo paralelo) termino en
-64.424 segundos
-Salida de consola (Hilos = 1024):
+/*
+Se utilizó el SO de Diego como referencia:
+	En un Ryzen 5 3500X termino en los siguientes tiempos con las siguientes configuraciones:
 
-[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
-838596693108
-[Done] exited with code=0 in 11.894 seconds
+	Salida de consola (Hilos = 1024):
+		[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
+		838596693108
+		[Done] exited with code=0 in 11.894 seconds
 
-Salida de consola (Hilos = 12):
-[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
-838596693108
-[Done] exited with code=0 in 13.794 seconds
+	Salida de consola (Hilos = 12):
+		[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
+		838596693108
+		[Done] exited with code=0 in 13.794 seconds
 
-Salida de consola (hilos := runtime.NumCPU(), que en este caso seria equivalente a hilos := 6)
-[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
-838596693108
-[Done] exited with code=0 in 15.573 seconds
+	Salida de consola (hilos := runtime.NumCPU(), que en este caso seria equivalente a hilos := 6)
+		[Running] go run "e:\Seagate_4tb\Documentos\Github_clone\Equipo-Racket-1\Actividad 5.2\Paralelo\main.go"
+		838596693108
+		[Done] exited with code=0 in 15.573 seconds
 
-Tomando en cuenta el ultimo resultado en donde tenemos 6 procesos y el resultado de secuencial en donde
-p = 6
-T1 = 62.389
-T(p) = 15.573
-podemos decir que nuestro S(p) en esta ocación es de = 4.00622873*/
+
+
+Tomando en cuenta el último resultado en donde tenemos 6 procesos (Versión paralela) y el resultado secuencial en donde
+	p = 6
+	T1 = 62.389
+	T(p) = 15.573
+podemos decir que nuestro S(p) en esta ocación es de = 4.00622873
+*/
