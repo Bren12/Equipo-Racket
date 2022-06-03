@@ -28,12 +28,15 @@ import (
 var n float64
 var wg sync.WaitGroup
 var mutex = &sync.Mutex{}
-var sum int
+var sum vector
 
 type vector []int
 
 //Checa si los numeros son primos
 func check_prime(n float64) bool {
+	if n <= 1 {
+		return false
+	}
 	for i := 2.0; i <= math.Sqrt(n); i += 1.0 {
 		if math.Mod(n, i) == 0 {
 			return false
@@ -43,11 +46,11 @@ func check_prime(n float64) bool {
 }
 
 //Funcion para sumar los numeros primos
-func sec_prime(begining, ending, step int, ch chan int) {
+func sec_prime(begining, ending, step int, ch chan vector) {
 	for i := begining; i < ending; i += step {
 		if check_prime(float64(i)) == true {
 			mutex.Lock()
-			sum += int(i)
+			sum = append(sum, i)
 			mutex.Unlock()
 		}
 	}
@@ -58,6 +61,7 @@ func sec_prime(begining, ending, step int, ch chan int) {
 el fin de aumentar la velocidad del chequeo*/
 func rango_div(hilos, limite int) vector {
 	var rango vector
+	rango = append(rango, 0)
 	unidad := limite / hilos
 	for i := 1; i < hilos+1; i++ {
 		if i >= hilos && i*unidad != limite {
@@ -68,16 +72,17 @@ func rango_div(hilos, limite int) vector {
 	}
 	return rango
 }
+
 func main() {
 	hilos := runtime.NumCPU()
-	n := 5000000
-	sumCh := make(chan int)
-
+	n := 10
+	vecCh := make(chan vector)
+	var result vector
 	div_range := rango_div(hilos, n)
-	for i := 0; i < hilos-1; i++ {
-		go sec_prime(div_range[i], div_range[(i+1)], 1, sumCh)
-
+	for i := 0; i < hilos; i++ {
+		go sec_prime(div_range[i], div_range[(i+1)], 1, vecCh)
+		e := <-vecCh
+		result = append(e)
 	}
-	result := <-sumCh
-	fmt.Println(result)
+	fmt.Println(result[0])
 }
