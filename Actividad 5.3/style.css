@@ -1,0 +1,37 @@
+.file{
+    font-size: 20px;
+	font-weight: bold;
+}
+.comentario{
+    color: rgb(155, 145, 28);
+    font-style: italic;
+}
+.libreria{
+    color: blue;
+    font-weight: bold;
+}
+.reservada{
+    color: blueviolet;
+    font-weight: bold;
+}
+.literal{
+    color: rgb(227, 155, 31);
+    font-weight: bold;
+}
+.operador{
+    color: rgb(93, 208, 220);
+    font-weight: bold;
+}
+.identificador{
+    color: rgb(1, 177, 80);
+    font-weight: bold;
+}
+.delimitador{
+    color: rgb(231, 111, 235);
+    
+}
+.error{
+    color: red;
+    text-decoration: underline;
+    text-decoration-color: red;
+}

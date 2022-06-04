@@ -1,0 +1,112 @@
+file.cpp
+// Solving SPOJ's TAP2014A - At random
+#include   "iostream"
+using   namespace   std ;
+const   auto   INF  =  1e18LL ;
+void   printAns ( bool   ans ) {
+    cout  << ( ans   ?   'B'  :  'M' ) <<  endl ;
+}
+
+int   main () {
+   int   t ;
+   cin  >>  t ;
+   while  ( t --) {
+       int   n ;
+       cin  >>  n ;
+       bool   ans  =  true ;  // will stay the same if condition meets
+       int   last  = - 1 ,  cur ;
+       char   prev  =  0 ,  now ;
+       for  ( int   i  =  0 ;  i  <  n ; ++ i ) {
+           j = 3.51 // 2
+           j = 3.523e-1 / 2
+           j = 3/2
+           cin  >>  cur  >>  now ;
+            // if any of the two numbers are the same, it changes value of ans
+            if  ( cur  ==  last  ||  now  ==  prev ) {
+                ans  =  false ;
+            }
+            last  =  cur ;
+            prev  =  now ;
+        }
+        printAns ( ans );
+    }
+    return   0 ;
+}
+
+amazon.cpp
+#   include<iostream>
+#   include "string"
+using namespace std;
+
+// Funcion para desplegar los datos de los clientes registrados y sus cuentas
+void opcion5(Cliente personas[], Cliente direccion[], Cliente clave[], Cliente saldo[]) {
+    cout << "\nClientes registrados: " << endl;
+    // Ciclo para desplegar los datos
+    for (int i = 0; i < 5; i++) {
+        if (personas[i] != "N/A") {
+            cout << i+1 << ". Cliente: " << personas[i];
+            cout << "  |  Direccion: " << direccion[i];
+            cout << "  |  Clave bancaria: " << clave[i];
+            cout << "  |  Saldo actual: $" << saldo[i] << endl;
+        }
+    }
+}
+
+// Funcion para que el cliente registre sus datos
+void registrar(string &nombre, string &direccion, int &clave, float &saldo, int &cont, Cliente personas[], CtaBanc cuenta[]) {
+	
+    cout << "Registrese para poder continuar" << endl;
+    cout << "Teclee su nombre: ";
+    cin >> nombre;
+    cout << "Tecle la direccion a la que van a llegar sus pedidos: ";
+    cin >> direccion;
+    cout << "Teclee los digitos de la clave de su cuenta bancaria: ";
+    cin >> clave;
+    cout << "Teclee el saldo actual de su cuenta bancaria: ";
+    cin >> saldo;
+	
+    personas[cont] = setNombre(nombre);
+    personas[cont] = setDireccion(direccion);
+    cuenta[cont]=setClave(clave);
+    cuenta[cont]=setSaldo(saldo);
+    personas[cont]=setTarjeta(cuenta[cont]);
+}
+
+int main() {
+	
+    Cliente personas[10];
+    CtaBanc cuenta[10];
+    Articulo art[5];
+    int num, clave, cont = 0;
+    string nombre, direccion;
+    float saldo;
+	
+    // Ciclo que se repite mientras el usuario no teclee un numero entre 1-10
+    do {
+        cout << "Cuantas personas van a hacer compras online (maximo 10)? ";
+        cin >> num;
+    } while ((num > 10) || (num < 0));
+	
+    for (int i = 0; i < num; i++) {
+        cout << "\nBienvenido a la Tienda Online Amazona!" << endl << endl;
+		
+        registrar(nombre,direccion,clave,saldo,cont,personas,cuenta);
+		
+        menu(personas,cont,art);
+    }
+	
+    return 0;
+}
+
+/*/////////////////////////////////////// Descripcion del Programa //////////////////////////////////////////
+
+Aplicacion que ejecuta las clases CtaBanc (control sobre la cuenta bancaria del cliente),
+Cliente (control sobre los datos del cliente), Articulo (control sobre los datos del articulo).
+
+En esta aplicacion podra registrarse un maximo de 10 clientes y 5 articulos, la diferencia con los articulos,
+es que a la hora de pagar, se vacia el carrito y se podra volver a llenar. Luego de que se registre un cliente
+se desplegara un menu enumerando las opciones que puede elegir, como lo es el agregar un articulo al carrito,
+retirar un articulo del carrito, mostrar los articulos que hay en el carrito y el precio final, pagar,
+desplegar los datos de los clientes que se han registrado por el momento y salir del programa.
+
+*/
