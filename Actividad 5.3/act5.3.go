@@ -54,9 +54,33 @@ func main() {
 	fileHtml.WriteString("\t</head>\n")
 	fileHtml.WriteString("\t<body>\n")
 
+	// Definimos variables para manejar comentarios largos
+	// comentarioLargo := false
+	// posComentarioLargo := 0
+	// originPos := 0
+	
 	/////////////////////////////////////// AQUÍ IRA LAS DEMAS FUNCIONES DE VERIFICACION DE SINTAXIX ///////////////////////////////////////
-	for i := 0; i < len(lista_sintaxis); i++ {
-		fmt.Println(lista_sintaxis[i])
+	// Lee cada enunciado del archivo de texto
+	for nRow := 0; nRow < len(lista_sintaxis); nRow++ {
+		// // Acumulador de la expresion 
+		// acumExp := ""
+		// // Variables para la indentación
+		// start = False
+		// espacio := ""
+		// // Variable para manejar espacios en literales de tipo string o char
+		// nullSpace := false
+		// // Variable para manejar "-" en los literales númericos
+		// operadorOmit := false
+		// // Variable para manejar las librerías
+		// libreria := false
+
+		// Lee cada caracter del enunciado
+		for nTok := 0; nTok < len(lista_sintaxis[nRow]); nTok++ {
+			expresion := lista_sintaxis[nRow]
+			token := expresion[nTok:nTok+1]
+			fmt.Print(token)
+		}
+		fmt.Println()
 	}
 
 	// Escribimos el final del archivo html
