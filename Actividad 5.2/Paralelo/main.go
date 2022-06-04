@@ -48,7 +48,7 @@ func check_prime(n float64) bool {
 }
 
 //Funcion para sumar los numeros primos
-func sec_prime(begining, ending, step int, ch chan int) {
+func pll_prime(begining, ending, step int, ch chan int) {
 	var sum int
 	for i := begining; i < ending; i += step {
 		if check_prime(float64(i)) == true {
@@ -92,7 +92,7 @@ func main() {
 	div_range := rango_div(hilos, n)
 	//Llamamos a los goroutines con el numero de procesos
 	for i := 0; i < hilos; i++ {
-		go sec_prime(div_range[i], div_range[(i+1)], 1, sumCh)
+		go pll_prime(div_range[i], div_range[(i+1)], 1, sumCh)
 	}
 	//Sumamos lo que tenga sumCh
 	for i := 0; i < hilos; i++ {
