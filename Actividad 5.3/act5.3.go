@@ -16,6 +16,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func indexOf(element string, strSlice []string) int {
@@ -31,6 +32,115 @@ func containsArray(s []string, e string) bool {
 	for _, a := range s {
 		if a == e {
 			return true
+		}
+	}
+	return false
+}
+
+func isLibreria(expresion []string) bool {
+	//Busca el # que en C++ indica una libreria a incluir
+	pos := indexOf("#", expresion)
+	//Dado caso de que la encuentre marcalo como verdadero
+	if pos == 0 {
+		return true
+	}
+	return false
+}
+
+func isReservada(expresion string) bool {
+	// Se definen las palabras reservadas como un diccionario
+	/*reservada = {"int": True, "bool": True, "char": True, "void": True, "float": True, "double": True, "string": True, "cin": True, "cout": True, "while": True,
+	  "as": True, "using": True, "namespace": True, "auto": True, "const": True, "asm": True, "dynamic_cast": True, "reinterpret_cast": True, "try": True,
+	  "explicit": True, "new": True, "static_cast": True, "static": True, "typeid": True, "catch": True, "false": True, "operator": True, "template": True,
+	  "typename": True, "class": True, "friend": True, "private": True, "this": True, "const_cast": True, "inline": True, "public": True, "throw": True,
+	  "virtual": True, "delete": True, "enum": True, "goto": True, "else": True, "mutable": True, "protected": True, "true": True, "wchar_t": True, "endl": True,
+	  "sizeof": True, "register": True, "unsigned": True, "break": True, "continue": True, "extern": True, "if": True, "return": True, "switch": True, "case": True,
+	  "default": True, "short": True, "struct": True, "volatile": True, "do": True, "for": True, "long": True, "signed": True, "union": True, "std": True,}*/
+
+	reservada := []string{"int", "bool", "char", "void", "float", "double", "string", "cin", "cout", "while",
+		"as", "using", "namespace", "auto", "const", "asm", "dynamic_cast", "reinterpret_cast", "try",
+		"explicit", "new", "static_cast", "static", "typeid", "catch", "false", "operator", "template",
+		"typename", "class", "friend", "private", "this", "const_cast", "inline", "public", "throw",
+		"virtual", "delete", "enum", "goto", "else", "mutable", "protected", "true", "wchar_t", "endl",
+		"sizeof", "register", "unsigned", "break", "continue", "extern", "if", "return", "switch", "case",
+		"default", "short", "struct", "volatile", "do", "for", "long", "signed", "union", "std"}
+	// Verifica si existe en la expresión cualquier palabra reservada, si no, retorna falso
+	for i := 0; i < len(reservada); i++ {
+		// Si encontro el delimitador, se retorna verdadero
+		if string(reservada[i]) == expresion || strings.Index(expresion, reservada[i]) != -1 {
+			return true
+		}
+	}
+	return false
+}
+
+func isOperador(expresion string, original string, pos int) bool {
+	// Se definen los operadores como una lista
+	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"}
+	// Ciclo que itera cada operador de la lista definida
+	for i := 0; i < len(operador); i++ {
+		// Si encontro el operador, se retorna verdadero
+		if operador[i] == expresion || strings.Index(expresion, operador[i]) != -1 || (expresion == "/" && string(original[pos:pos+2]) != "//") || (strings.Index(expresion, "/") != -1 && string(original[pos:pos+2]) != "//") {
+			return true
+		}
+	}
+	return false
+}
+
+/*
+def isOperadorUnique(expresion, original, pos):
+    # Se definen los operadores como un diccionario
+    operador = {"+": True, "+=": True, "++": True, "-": True, "-=": True, "--": True, "%": True, "%=": True, "*": True, "*=": True, "/=": True, "^": True, "<": True, "<<": True, ">": True, ">>": True,
+    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, "&": True, "&&": True, "||": True}
+    # Verifica si existe en la expresión cualquier operador, si no, retorna falso
+    try:
+        # Verifica que no vaya a sobrepasar la longitud de la expresión original
+        if (pos+2 < len(original)):
+            # Verifica que no sea un comentario lo que se esta leyendo
+            if ((expresion == "/" and original[pos:pos+2] != "//") and (expresion == "/" and original[pos:pos+2] != "/*")):
+                return True
+            # Si encuentra un operador retorna verdadero
+            else:
+                return operador[expresion]
+    # En caso contrario, retorna falso
+    except:
+        return False
+*/
+
+func isDelimitador(expresion string) bool {
+	// Se definen los delimitadores como una lista
+	delimitador := []string{"(", ")", "[", "]", "{", "}", ",", ";", "...", ":"}
+	// Ciclo que itera cada delimitador de la lista definida
+	for i := 0; i < len(delimitador); i++ {
+		// Si encontro el delimitador, se retorna verdadero
+		if string(delimitador[i]) == expresion || strings.Index(expresion, delimitador[i]) != -1 {
+			return true
+		}
+	}
+	return false
+}
+
+func isIdentificador(expresion string, original string, pos int) bool {
+	// Se crea una lista para checar todos los identificadores con letras
+	alfabeto := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+		"V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+		"w", "x", "y", "z"}
+
+	// Se crea una lista para números
+	numeros := []string{}
+	// Añade a la lista los numeros del 0 al 9
+	for i := 0; i < 10; i++ {
+		numeros = append(numeros, (strconv.Itoa(i)))
+	}
+
+	// Ciclo que itera cada letra del alfabeto
+	for i := 0; i < len(alfabeto); i++ {
+		// Si encontro una letra del afabeto o un guión entra a la siguiente condicional
+		if alfabeto[i] == expresion || strings.Index(expresion, alfabeto[i]) != -1 || strings.Contains(expresion, alfabeto[i]) || strings.Contains(expresion, "_") {
+			// Checa casos de excepcion que indican que no es un identificador
+			if containsArray(alfabeto, string(expresion[0])) && (!(strings.Contains(expresion, `"`) || strings.Contains(expresion, `'`) || strings.Contains(expresion, ".") || strings.Contains(expresion, "#"))) {
+				return true
+			}
 		}
 	}
 	return false
