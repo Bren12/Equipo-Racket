@@ -258,6 +258,12 @@ func main() {
 					acumExp = ""
 					nullSpace = false
 				}
+				// Verifica si es un comentario normal
+			} else if (acumExp != "" && isComentario(acumExp)) && !comentarioLargo && !libreria {
+				fileHtml.WriteString("\t\t<span class=\"comentario\">" + expresion[j-1:] + "</span>\n")
+				acumExp = ""
+				nullSpace = false
+				break
 			}
 
 		}
