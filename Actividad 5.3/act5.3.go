@@ -152,7 +152,7 @@ func isIdentificador(expresion string, original string, pos int) bool {
 	return false
 }
 
-func isLiteral(expresion []string, original []string, pos int, operador []bool) bool {
+func isLiteral(expresion string, original string, pos int, operador []bool) bool {
 	// Se declaran variables para manejar los casos de excepción que nos indican que no son literales
 	numeros := []string{}
 	punto := false
@@ -165,7 +165,7 @@ func isLiteral(expresion []string, original []string, pos int, operador []bool) 
 	letter := false
 
 	// Si se encontro una o doble comilla, retorna verdadero, ya que se esta por leer un string o char
-	if expresion[0] == `'` || expresion[0] == `"` {
+	if string(expresion[0]) == `'` || string(expresion[0]) == `"` {
 		return true
 	}
 
@@ -175,35 +175,36 @@ func isLiteral(expresion []string, original []string, pos int, operador []bool) 
 	}
 
 	// Guarda la posicion en la que se encuentra el inicio de la expresion
-	pos2 := indexOf(expresion[0], original)
+
+	pos2 := strings.Index(original, string(expresion[0]))
 
 	// Ciclo que itera cada caracter de la expresion
 	for i := 0; i < len(expresion); i++ {
 		//Verifica que sea un número
-		if (containsArray(numeros, expresion[i])) && (!letter) {
+		if (containsArray(numeros, string(expresion[i]))) && (!letter) {
 			wait = true
 		} else {
-			if (expresion[i] == ".") && (!punto) && (containsArray(numeros, original[pos2+i+1])) {
+			if (string(expresion[i]) == ".") && (!punto) && (containsArray(numeros, string(original[pos2+i+1]))) {
 				// Verifica si es real
 				punto = true
-			} else if (expresion[i] == "L" || expresion[i] == "l") && (!wait) && ((lReal < 2 && !uReal) || (uReal && lReal == 0) || (indexOf("ul", expresion[:i]) != -1)) && (!fReal) {
+			} else if (string(expresion[i]) == "L" || string(expresion[i]) == "l") && (!wait) && ((lReal < 2 && !uReal) || (uReal && lReal == 0) || (strings.Index(expresion[:i], "ul") != -1)) && (!fReal) {
 				// Verifica si es un dato de tipo long o long long
 				lReal = lReal + 1
 				letter = true
-			} else if (expresion[i] == "U" || expresion[i] == "u") && (!uReal) && (!punto) && (!eReal) && (original[pos2+i+1] != ".") {
+			} else if (string(expresion[i]) == "U" || string(expresion[i]) == "u") && (!uReal) && (!punto) && (!eReal) && (string(original[pos2+i+1]) != ".") {
 				// Verifica si es un dato de tipo unsigned
 				uReal = true // Antes era uReal + 1. Aquí parece que la intención es hacer que cambie de false a true. (???)
 				letter = true
-			} else if (expresion[i] == "E" || expresion[i] == "e") && (!eReal) && ((containsArray(numeros, original[pos2+i+1])) || original[pos2+i+1] == "-") {
+			} else if (string(expresion[i]) == "E" || string(expresion[i]) == "e") && (!eReal) && ((containsArray(numeros, string(original[pos2+i+1]))) || string(original[pos2+i+1]) == "-") {
 				// Verifica si se esta leyendo la "E" de la notación científica y que reciba un número o guión a continuación
 				operador[0] = true
 				eReal = true
 				wait = true
-			} else if expresion[i] == "-" && (!guion) && eReal && (containsArray(numeros, original[pos2+i+1])) {
+			} else if string(expresion[i]) == "-" && (!guion) && eReal && (containsArray(numeros, string(original[pos2+i+1]))) {
 				// Verifica si es un guión y que reciba un número a continuación
 				guion = true
 				wait = true
-			} else if (expresion[i] == "F" || expresion[i] == "f") && (!wait) && (!uReal) && (lReal == 0) && eReal {
+			} else if (string(expresion[i]) == "F" || string(expresion[i]) == "f") && (!wait) && (!uReal) && (lReal == 0) && eReal {
 				// Verifica si es un fast int
 				fReal = true // Antes era fReal + 1. Aquí parece que la intención es hacer que cambie de false a true. (???)
 				letter = true
