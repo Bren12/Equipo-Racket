@@ -87,25 +87,31 @@ func isOperador(expresion string, original string, pos int) bool {
 	return false
 }
 
-/*
-def isOperadorUnique(expresion, original, pos):
-    # Se definen los operadores como un diccionario
-    operador = {"+": True, "+=": True, "++": True, "-": True, "-=": True, "--": True, "%": True, "%=": True, "*": True, "*=": True, "/=": True, "^": True, "<": True, "<<": True, ">": True, ">>": True,
-    "<=": True, ">=": True, "=": True, "==": True, "!": True, "!=": True, "~": True, "?": True, "&": True, "&&": True, "||": True}
-    # Verifica si existe en la expresión cualquier operador, si no, retorna falso
-    try:
-        # Verifica que no vaya a sobrepasar la longitud de la expresión original
-        if (pos+2 < len(original)):
-            # Verifica que no sea un comentario lo que se esta leyendo
-            if ((expresion == "/" and original[pos:pos+2] != "//") and (expresion == "/" and original[pos:pos+2] != "/*")):
-                return True
-            # Si encuentra un operador retorna verdadero
-            else:
-                return operador[expresion]
-    # En caso contrario, retorna falso
-    except:
-        return False
-*/
+func isOperadorUnique(expresion string, original string, pos int) bool {
+	// Se definen los operadores como un diccionario
+	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>",
+		"<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"}
+
+	// Verifica si existe en la expresión cualquier operador, si no, retorna falso
+	// Para eso, primero se verifica que no vaya a sobrepasar la longitud de la expresión original
+	if pos+2 < len(original) {
+		// Verifica que no sea un comentario lo que se esta leyendo
+		if (expresion == "/" && string(original[pos:pos+2]) != "//") && (expresion == "/" && string(original[pos:pos+2]) != "/*") {
+			return true
+			// Si encuentra un operador retorna verdadero
+		} else {
+			//Expresion está ubicada en ooperador??
+			for i := 0; i < len(operador); i++ {
+				// Si encontro el delimitador, se retorna verdadero
+				if operador[i] == expresion || strings.Index(expresion, operador[i]) != -1 {
+					return true
+				}
+			}
+		}
+	}
+	// En caso contrario, retorna falso
+	return false
+}
 
 func isDelimitador(expresion string) bool {
 	// Se definen los delimitadores como una lista
@@ -113,7 +119,7 @@ func isDelimitador(expresion string) bool {
 	// Ciclo que itera cada delimitador de la lista definida
 	for i := 0; i < len(delimitador); i++ {
 		// Si encontro el delimitador, se retorna verdadero
-		if string(delimitador[i]) == expresion || strings.Index(expresion, delimitador[i]) != -1 {
+		if delimitador[i] == expresion || strings.Index(expresion, delimitador[i]) != -1 {
 			return true
 		}
 	}
