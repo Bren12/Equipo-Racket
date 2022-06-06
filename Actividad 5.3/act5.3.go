@@ -93,7 +93,7 @@ func main() {
 			}
 			start = true
 
-			if (token == " " && !nullSpace && !comentarioLargo && !libreria) || (j == len(lista_sintaxis[i])-1) {
+			if token == " " && !nullSpace && !comentarioLargo && !libreria {
 				// Si acumExp no esta vacío, significa que no pertenece a ninguna categoría léxica
 				if acumExp != "" {
 					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
@@ -125,8 +125,32 @@ func main() {
 					}
 					return
 				}
-				fmt.Println(originPos)
-				fmt.Println(posComentarioLargo)
+			}
+
+			if comentarioLargo {
+				if originPos != i && i != posComentarioLargo && j == len(expresion)-1 {
+					fileHtml.WriteString("\t\t<span class=\"comentario\">" + expresion + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+				} else if len(acumExp) > 1 && strings.Index(acumExp[2:], "*/") != -1 && originPos == i && i == posComentarioLargo {
+					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+					comentarioLargo = false
+					posComentarioLargo = 0
+					originPos = 0
+				} else if strings.Index(acumExp, "*/") != -1 && i != originPos && posComentarioLargo == i {
+					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+					comentarioLargo = false
+					posComentarioLargo = 0
+					originPos = 0
+				} else if j == len(expresion)-1 {
+					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+				}
 			}
 		}
 		fileHtml.WriteString("\t\t<br>\n")

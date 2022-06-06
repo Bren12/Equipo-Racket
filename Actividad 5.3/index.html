@@ -6,26 +6,566 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<span class="error">/*/////////////////////////////////////// Descripcion del Programa /////////////////////////////////////////</span>
+		<br>
+		<span class="error">//</span>
+		<span class="error">Solving</span>
+		<span class="error">SPOJ's</span>
+		<span class="error">TAP2014A</span>
+		<span class="error">-</span>
+		<span class="error">At</span>
+		<br>
+		<span class="error">#include</span>
+		<br>
+		<span class="error">using</span>
+		<span class="error">namespace</span>
+		<span class="error">std</span>
+		<br>
+		<span class="error">const</span>
+		<span class="error">auto</span>
+		<span class="error">INF</span>
+		<span class="error">=</span>
+		<span class="error">1e18LL</span>
+		<br>
+		<span class="error">void</span>
+		<span class="error">printAns</span>
+		<span class="error">(</span>
+		<span class="error">bool</span>
+		<span class="error">ans</span>
+		<span class="error">)</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">(</span>
+		<span class="error">ans</span>
+		<span class="error">?</span>
+		<span class="error">'B'</span>
+		<span class="error">:</span>
+		<span class="error">'M'</span>
+		<span class="error">)</span>
+		<span class="error"><<</span>
+		<span class="error">endl</span>
 		<br>
 		<br>
-		<span class="error">Aplicacion que ejecuta las clases CtaBanc (control sobre la cuenta bancaria del cliente)</span>
 		<br>
-		<span class="error">Cliente (control sobre los datos del cliente), Articulo (control sobre los datos del articulo)</span>
+		<span class="error">int</span>
+		<span class="error">main</span>
+		<span class="error">()</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">int</span>
+		<span class="error">t</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="error">>></span>
+		<span class="error">t</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">while</span>
+		<span class="error">(</span>
+		<span class="error">t</span>
+		<span class="error">--)</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">int</span>
+		<span class="error">n</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="error">>></span>
+		<span class="error">n</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">bool</span>
+		<span class="error">ans</span>
+		<span class="error">=</span>
+		<span class="error">true</span>
+		<span class="error">;</span>
+		<span class="error">//</span>
+		<span class="error">will</span>
+		<span class="error">stay</span>
+		<span class="error">the</span>
+		<span class="error">same</span>
+		<span class="error">if</span>
+		<span class="error">condition</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">int</span>
+		<span class="error">last</span>
+		<span class="error">=</span>
+		<span class="error">-</span>
+		<span class="error">1</span>
+		<span class="error">,</span>
+		<span class="error">cur</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">char</span>
+		<span class="error">prev</span>
+		<span class="error">=</span>
+		<span class="error">0</span>
+		<span class="error">,</span>
+		<span class="error">now</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">for</span>
+		<span class="error">(</span>
+		<span class="error">int</span>
+		<span class="error">i</span>
+		<span class="error">=</span>
+		<span class="error">0</span>
+		<span class="error">;</span>
+		<span class="error">i</span>
+		<span class="error"><</span>
+		<span class="error">n</span>
+		<span class="error">;</span>
+		<span class="error">++</span>
+		<span class="error">i</span>
+		<span class="error">)</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">j</span>
+		<span class="error">=</span>
+		<span class="error">3.51</span>
+		<span class="error">//</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">j</span>
+		<span class="error">=</span>
+		<span class="error">3.523e-1</span>
+		<span class="error">/</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">j</span>
+		<span class="error">=</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="error">>></span>
+		<span class="error">cur</span>
+		<span class="error">>></span>
+		<span class="error">now</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">//</span>
+		<span class="error">if</span>
+		<span class="error">any</span>
+		<span class="error">of</span>
+		<span class="error">the</span>
+		<span class="error">two</span>
+		<span class="error">numbers</span>
+		<span class="error">are</span>
+		<span class="error">the</span>
+		<span class="error">same,</span>
+		<span class="error">it</span>
+		<span class="error">changes</span>
+		<span class="error">value</span>
+		<span class="error">of</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">if</span>
+		<span class="error">(</span>
+		<span class="error">cur</span>
+		<span class="error">==</span>
+		<span class="error">last</span>
+		<span class="error">||</span>
+		<span class="error">now</span>
+		<span class="error">==</span>
+		<span class="error">prev</span>
+		<span class="error">)</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">ans</span>
+		<span class="error">=</span>
+		<span class="error">false</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">last</span>
+		<span class="error">=</span>
+		<span class="error">cur</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">prev</span>
+		<span class="error">=</span>
+		<span class="error">now</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">printAns</span>
+		<span class="error">(</span>
+		<span class="error">ans</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">return</span>
+		<span class="error">0</span>
 		<br>
 		<br>
-		<span class="error">En esta aplicacion podra registrarse un maximo de 10 clientes y 5 articulos, la diferencia con los articulos</span>
-		<br>
-		<span class="error">es que a la hora de pagar, se vacia el carrito y se podra volver a llenar. Luego de que se registre un client</span>
-		<br>
-		<span class="error">se desplegara un menu enumerando las opciones que puede elegir, como lo es el agregar un articulo al carrito</span>
-		<br>
-		<span class="error">retirar un articulo del carrito, mostrar los articulos que hay en el carrito y el precio final, pagar</span>
-		<br>
-		<span class="error">desplegar los datos de los clientes que se han registrado por el momento y salir del programa</span>
 		<br>
 		<br>
-		<span class="error">*</span>
+		<span class="error">#</span>
+		<br>
+		<span class="error">#</span>
+		<span class="error">include</span>
+		<br>
+		<span class="error">using</span>
+		<span class="error">namespace</span>
+		<br>
+		<br>
+		<span class="error">//</span>
+		<span class="error">Funcion</span>
+		<span class="error">para</span>
+		<span class="error">desplegar</span>
+		<span class="error">los</span>
+		<span class="error">datos</span>
+		<span class="error">de</span>
+		<span class="error">los</span>
+		<span class="error">clientes</span>
+		<span class="error">registrados</span>
+		<span class="error">y</span>
+		<span class="error">sus</span>
+		<br>
+		<span class="error">void</span>
+		<span class="error">opcion5(Cliente</span>
+		<span class="error">personas[],</span>
+		<span class="error">Cliente</span>
+		<span class="error">direccion[],</span>
+		<span class="error">Cliente</span>
+		<span class="error">clave[],</span>
+		<span class="error">Cliente</span>
+		<span class="error">saldo[])</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"\nClientes</span>
+		<span class="error">registrados:</span>
+		<span class="error">"</span>
+		<span class="error"><<</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">//</span>
+		<span class="error">Ciclo</span>
+		<span class="error">para</span>
+		<span class="error">desplegar</span>
+		<span class="error">los</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">for</span>
+		<span class="error">(int</span>
+		<span class="error">i</span>
+		<span class="error">=</span>
+		<span class="error">0;</span>
+		<span class="error">i</span>
+		<span class="error"><</span>
+		<span class="error">5;</span>
+		<span class="error">i++)</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">if</span>
+		<span class="error">(personas[i]</span>
+		<span class="error">!=</span>
+		<span class="error">"N/A")</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">i+1</span>
+		<span class="error"><<</span>
+		<span class="error">".</span>
+		<span class="error">Cliente:</span>
+		<span class="error">"</span>
+		<span class="error"><<</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"</span>
+		<span class="error">|</span>
+		<span class="error">Direccion:</span>
+		<span class="error">"</span>
+		<span class="error"><<</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"</span>
+		<span class="error">|</span>
+		<span class="error">Clave</span>
+		<span class="error">bancaria:</span>
+		<span class="error">"</span>
+		<span class="error"><<</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"</span>
+		<span class="error">|</span>
+		<span class="error">Saldo</span>
+		<span class="error">actual:</span>
+		<span class="error">$"</span>
+		<span class="error"><<</span>
+		<span class="error">saldo[i]</span>
+		<span class="error"><<</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<br>
+		<br>
+		<span class="error">//</span>
+		<span class="error">Funcion</span>
+		<span class="error">para</span>
+		<span class="error">que</span>
+		<span class="error">el</span>
+		<span class="error">cliente</span>
+		<span class="error">registre</span>
+		<span class="error">sus</span>
+		<br>
+		<span class="error">void</span>
+		<span class="error">registrar(string</span>
+		<span class="error">&nombre,</span>
+		<span class="error">string</span>
+		<span class="error">&direccion,</span>
+		<span class="error">int</span>
+		<span class="error">&clave,</span>
+		<span class="error">float</span>
+		<span class="error">&saldo,</span>
+		<span class="error">int</span>
+		<span class="error">&cont,</span>
+		<span class="error">Cliente</span>
+		<span class="error">personas[],</span>
+		<span class="error">CtaBanc</span>
+		<span class="error">cuenta[])</span>
+		<br>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"Registrese</span>
+		<span class="error">para</span>
+		<span class="error">poder</span>
+		<span class="error">continuar"</span>
+		<span class="error"><<</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"Teclee</span>
+		<span class="error">su</span>
+		<span class="error">nombre:</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="error">>></span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"Tecle</span>
+		<span class="error">la</span>
+		<span class="error">direccion</span>
+		<span class="error">a</span>
+		<span class="error">la</span>
+		<span class="error">que</span>
+		<span class="error">van</span>
+		<span class="error">a</span>
+		<span class="error">llegar</span>
+		<span class="error">sus</span>
+		<span class="error">pedidos:</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="error">>></span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"Teclee</span>
+		<span class="error">los</span>
+		<span class="error">digitos</span>
+		<span class="error">de</span>
+		<span class="error">la</span>
+		<span class="error">clave</span>
+		<span class="error">de</span>
+		<span class="error">su</span>
+		<span class="error">cuenta</span>
+		<span class="error">bancaria:</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="error">>></span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"Teclee</span>
+		<span class="error">el</span>
+		<span class="error">saldo</span>
+		<span class="error">actual</span>
+		<span class="error">de</span>
+		<span class="error">su</span>
+		<span class="error">cuenta</span>
+		<span class="error">bancaria:</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="error">>></span>
+		<br>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">personas[cont]</span>
+		<span class="error">=</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">personas[cont]</span>
+		<span class="error">=</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<br>
+		<br>
+		<span class="error">int</span>
+		<span class="error">main()</span>
+		<br>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">Cliente</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">CtaBanc</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">Articulo</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">int</span>
+		<span class="error">num,</span>
+		<span class="error">clave,</span>
+		<span class="error">cont</span>
+		<span class="error">=</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">string</span>
+		<span class="error">nombre,</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">float</span>
+		<br>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">//</span>
+		<span class="error">Ciclo</span>
+		<span class="error">que</span>
+		<span class="error">se</span>
+		<span class="error">repite</span>
+		<span class="error">mientras</span>
+		<span class="error">el</span>
+		<span class="error">usuario</span>
+		<span class="error">no</span>
+		<span class="error">teclee</span>
+		<span class="error">un</span>
+		<span class="error">numero</span>
+		<span class="error">entre</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">do</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"Cuantas</span>
+		<span class="error">personas</span>
+		<span class="error">van</span>
+		<span class="error">a</span>
+		<span class="error">hacer</span>
+		<span class="error">compras</span>
+		<span class="error">online</span>
+		<span class="error">(maximo</span>
+		<span class="error">10)?</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cin</span>
+		<span class="error">>></span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">}</span>
+		<span class="error">while</span>
+		<span class="error">((num</span>
+		<span class="error">></span>
+		<span class="error">10)</span>
+		<span class="error">||</span>
+		<span class="error">(num</span>
+		<span class="error"><</span>
+		<br>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">for</span>
+		<span class="error">(int</span>
+		<span class="error">i</span>
+		<span class="error">=</span>
+		<span class="error">0;</span>
+		<span class="error">i</span>
+		<span class="error"><</span>
+		<span class="error">num;</span>
+		<span class="error">i++)</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">cout</span>
+		<span class="error"><<</span>
+		<span class="error">"\nBienvenido</span>
+		<span class="error">a</span>
+		<span class="error">la</span>
+		<span class="error">Tienda</span>
+		<span class="error">Online</span>
+		<span class="error">Amazona!"</span>
+		<span class="error"><<</span>
+		<span class="error">endl</span>
+		<span class="error"><<</span>
+		<br>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="error">return</span>
+		<br>
+		<br>
+		<br>
+		<span class="comentario">/*/////////////////////////////////////// Descripcion del Programa //////////////////////////////////////////</span>
+		<br>
+		<br>
+		<span class="comentario">Aplicacion que ejecuta las clases CtaBanc (control sobre la cuenta bancaria del cliente),</span>
+		<br>
+		<span class="comentario">Cliente (control sobre los datos del cliente), Articulo (control sobre los datos del articulo).</span>
+		<br>
+		<br>
+		<span class="comentario">En esta aplicacion podra registrarse un maximo de 10 clientes y 5 articulos, la diferencia con los articulos,</span>
+		<br>
+		<span class="comentario">es que a la hora de pagar, se vacia el carrito y se podra volver a llenar. Luego de que se registre un cliente</span>
+		<br>
+		<span class="comentario">se desplegara un menu enumerando las opciones que puede elegir, como lo es el agregar un articulo al carrito,</span>
+		<br>
+		<span class="comentario">retirar un articulo del carrito, mostrar los articulos que hay en el carrito y el precio final, pagar,</span>
+		<br>
+		<span class="comentario">desplegar los datos de los clientes que se han registrado por el momento y salir del programa.</span>
+		<br>
+		<br>
+		<span class="comentario">*/</span>
 		<br>
 	</body>
 </html>
