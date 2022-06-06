@@ -12,9 +12,9 @@ package main
 
 // Librerias a usar
 import (
+	"bufio"
 	"fmt"
 	"os"
-	"bufio"
 )
 
 func main() {
@@ -40,9 +40,9 @@ func main() {
 
 	// Se abre o se crea un archivo html (index.html)
 	fileHtml, e := os.Create(dir + "\\Actividad 5.3\\index.html")
-    if e != nil {
-        fmt.Println(e)
-    }
+	if e != nil {
+		fmt.Println(e)
+	}
 
 	// Escribimos el head del archivo html
 	fileHtml.WriteString("<!DOCTYPE html>\n")
@@ -55,38 +55,61 @@ func main() {
 	fileHtml.WriteString("\t<body>\n")
 
 	// Definimos variables para manejar comentarios largos
-	// comentarioLargo := false
+	comentarioLargo := false
 	// posComentarioLargo := 0
 	// originPos := 0
-	
+
 	/////////////////////////////////////// AQUÍ IRA LAS DEMAS FUNCIONES DE VERIFICACION DE SINTAXIX ///////////////////////////////////////
 	// Lee cada enunciado del archivo de texto
-	for nRow := 0; nRow < len(lista_sintaxis); nRow++ {
-		// // Acumulador de la expresion 
-		// acumExp := ""
-		// // Variables para la indentación
-		// start = False
-		// espacio := ""
-		// // Variable para manejar espacios en literales de tipo string o char
-		// nullSpace := false
+	for i := 0; i < len(lista_sintaxis); i++ {
+		// Acumulador de la expresion
+		acumExp := ""
+		// Variables para la indentación
+		start := false
+		espacio := ""
+		// Variable para manejar espacios en literales de tipo string o char
+		nullSpace := false
 		// // Variable para manejar "-" en los literales númericos
 		// operadorOmit := false
-		// // Variable para manejar las librerías
-		// libreria := false
+		// Variable para manejar las librerías
+		libreria := false
 
 		// Lee cada caracter del enunciado
-		for nTok := 0; nTok < len(lista_sintaxis[nRow]); nTok++ {
-			expresion := lista_sintaxis[nRow]
-			token := expresion[nTok:nTok+1]
-			fmt.Print(token)
-		}
-		fmt.Println()
-	}
+		for j := 0; j < len(lista_sintaxis[i]); j++ {
+			expresion := lista_sintaxis[i]
+			token := expresion[j : j+1]
+			fmt.Println(token)
 
+			if !start {
+				k := 0
+				for expresion[k:k+1] == " " {
+					espacio += "&nbsp;"
+					k += 1
+					if expresion[k:k+1] != " " {
+						fileHtml.WriteString("\t\t<span>" + espacio + "</span>\n")
+					}
+				}
+			}
+			start = true
+
+			if (token == " " && !nullSpace && !comentarioLargo && !libreria) || (j == len(lista_sintaxis[i])-1) {
+				// Si acumExp no esta vacío, significa que no pertenece a ninguna categoría léxica
+				if acumExp != "" {
+					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+					acumExp = ""
+				}
+				// fileHtml.WriteString("\t\t<span>" + acumExp + "</span>\n")
+				// fileHtml.WriteString("\t\t<br>\n")
+			} else if token != "\n" && token != "\t" {
+				acumExp += token
+			}
+		}
+		fileHtml.WriteString("\t\t<br>\n")
+	}
 	// Escribimos el final del archivo html
-    fileHtml.WriteString("\t</body>\n")
-    fileHtml.WriteString("</html>")
+	fileHtml.WriteString("\t</body>\n")
+	fileHtml.WriteString("</html>")
 
 	// Cerramos el archivo HTML
-    fileHtml.Close()
+	fileHtml.Close()
 }
