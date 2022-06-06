@@ -18,6 +18,81 @@ import (
 	"strings"
 )
 
+func isFile(expresion string) bool {
+	// Busca si hay "//" en la expresión
+	pos := strings.Index(expresion, ".cpp")
+	// Se definen algunos caracteres especiales que no son permitidos en los nombres de archivos
+	caracteres := []string{"\\", "/", ":", "*", "?", "<", ">", "|"}
+	// Retorna verdadero si encontro la extensión en la expresión
+	if pos > 0 {
+		// Un ciclo para recorrer la lista de caracteres
+		for i, caract := range caracteres {
+			// Un ciclo para recorrer la expresión antes del ".cpp"
+			for j := 0; j < len(expresion[:pos]); j++ {
+				// Verifica que no este incluido un caracter especial no permitido en el nombre del archivo
+				if expresion[j:j+1] == caract {
+					fmt.Println(i)
+					return false
+				}
+			}
+		}
+		// Retorna verdadero ya que no encontro un caracter especial
+		return true
+	}
+	// Retorna falso si no encontro la extensión en la expresión
+	return false
+}
+
+func isComentario(expresion string) bool {
+	// Busca si hay "//" en la expresión
+	pos := strings.Index(expresion, "//")
+	// Retorna verdadero si encontro "//" en la expresión
+	if pos == 0 {
+		return true
+	}
+	// Retorna falso, en caso contrario
+	return false
+}
+
+func isOperadorUnique(expresion string, original string, pos int) bool {
+	// Se definen los operadores como un diccionario
+	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>",
+		"<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"}
+
+	// Verifica si existe en la expresión cualquier operador, si no, retorna falso
+	// Para eso, primero se verifica que no vaya a sobrepasar la longitud de la expresión original
+	if pos+2 < len(original) {
+		// Verifica que no sea un comentario lo que se esta leyendo
+		if (expresion == "/" && string(original[pos:pos+2]) != "//") && (expresion == "/" && original[pos:pos+2] != "/*") {
+			return true
+			// Si encuentra un operador retorna verdadero
+		} else {
+			//Expresion está ubicada en ooperador??
+			for i := 0; i < len(operador); i++ {
+				// Si encontro el delimitador, se retorna verdadero
+				if operador[i] == expresion {
+					return true
+				}
+			}
+		}
+	}
+	// En caso contrario, retorna falso
+	return false
+}
+
+func isDelimitador(expresion string) bool {
+	// Se definen los delimitadores como una lista
+	delimitador := []string{"(", ")", "[", "]", "{", "}", ",", ";", "...", ":"}
+	// Ciclo que itera cada delimitador de la lista definida
+	for i := 0; i < len(delimitador); i++ {
+		// Si encontro el delimitador, se retorna verdadero
+		if delimitador[i] == expresion || strings.Index(expresion, delimitador[i]) != -1 {
+			return true
+		}
+	}
+	return false
+}
+
 func main() {
 	// Definimos las variables que usaremos para abrir el archivo con la ayuda de la libreria OS.
 	// Esto nos ayudará a evitar conflictos a la hora de abrirlo en equipos distintos.
@@ -60,7 +135,6 @@ func main() {
 	posComentarioLargo := 0
 	originPos := 0
 
-	/////////////////////////////////////// AQUÍ IRA LAS DEMAS FUNCIONES DE VERIFICACION DE SINTAXIX ///////////////////////////////////////
 	// Lee cada enunciado del archivo de texto
 	for i := 0; i < len(lista_sintaxis); i++ {
 		// Acumulador de la expresion
@@ -77,10 +151,13 @@ func main() {
 
 		// Lee cada caracter del enunciado
 		for j := 0; j < len(lista_sintaxis[i]); j++ {
+			// Almacena el renglón
 			expresion := lista_sintaxis[i]
+			// Almacena un caracter del renglón
 			token := expresion[j : j+1]
 			fmt.Println(token)
 
+			// Condicional para realizar la indentación
 			if !start {
 				k := 0
 				for expresion[k:k+1] == " " {
@@ -91,47 +168,65 @@ func main() {
 					}
 				}
 			}
+			// Nos hace conocer que ya se leyó los primeros espacios en blanco de la expresión
 			start = true
 
+			// Si el valor actual del token es un espacio en blanco, a excepción de que se manejen comentarios largos
+			// o literales de tipo string o char. Liberamos todas las variables que se tienen almacenadas si entra en la condicional.
 			if token == " " && !nullSpace && !comentarioLargo && !libreria {
 				// Si acumExp no esta vacío, significa que no pertenece a ninguna categoría léxica
 				if acumExp != "" {
 					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
 					acumExp = ""
 				}
-				// fileHtml.WriteString("\t\t<span>" + acumExp + "</span>\n")
-				// fileHtml.WriteString("\t\t<br>\n")
+				// En caso contrario, concatenamos al acumulador los demás caracteres de la expresión,
+				// a excepción del salto de línea, del tab, y del espacio en blanco en caso de requerirlo
 			} else if token != "\n" && token != "\t" {
 				acumExp += token
 			}
 
+			// Verificamos si se leerá a continuación comentarios largos
 			if acumExp == "/" && expresion[j:j+2] == "/*" {
+				// Almacenamos la posición de la lista de la expresión en donde se comenzó
 				originPos = i
+				// Ciclo que itera la cantidad de renglones del archivo
 				for k := 0; k < len(lista_sintaxis)-i; k++ {
 					exp := lista_sintaxis[i+k]
+					// Busca el cierre del comentario largo
 					if (len(exp) >= 1 && strings.Index(exp[2:], "*/") != -1 && i == i+k) || (strings.Index(exp, "*/") != -1 && i != i+k) {
 						if !comentarioLargo {
+							// Almacena la posición de la lista en la que se encontro el cierre en la expresión
 							posComentarioLargo = i + k
 						}
+						// Marcamos que se encontro el cierre
 						comentarioLargo = true
 					}
 				}
+				// Si no encontramos el cierre, marcamos todo como error hasta el final del archivo
 				if !comentarioLargo {
 					fileHtml.WriteString("\t\t<span class=\"error\">" + expresion[j:] + "</span>\n")
+					// Ciclo que itera la cantidad de renglones del archivo
 					for k := 0; k < len(lista_sintaxis)-i-1; k++ {
+						// Despliega cada renglón como error de sintaxis
 						fileHtml.WriteString("\t\t<br>\n")
 						exp := lista_sintaxis[i+k+1]
 						fileHtml.WriteString("\t\t<span class=\"error\">" + exp + "</span>\n")
 					}
+					// Da por terminado la lectura del archivo
 					return
 				}
 			}
 
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			// Verifica si se activo la lectura de comentarios largos
 			if comentarioLargo {
+				// Líneas de comentarios sin el cierre
 				if originPos != i && i != posComentarioLargo && j == len(expresion)-1 {
 					fileHtml.WriteString("\t\t<span class=\"comentario\">" + expresion + "</span>\n")
 					acumExp = ""
 					nullSpace = false
+					// Primer línea de comentario y además cierra en la misma línea
 				} else if len(acumExp) > 1 && strings.Index(acumExp[2:], "*/") != -1 && originPos == i && i == posComentarioLargo {
 					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
 					acumExp = ""
@@ -139,6 +234,7 @@ func main() {
 					comentarioLargo = false
 					posComentarioLargo = 0
 					originPos = 0
+					// Línea de comentario diferente a la línea de apertura que encontro el cierre
 				} else if strings.Index(acumExp, "*/") != -1 && i != originPos && posComentarioLargo == i {
 					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
 					acumExp = ""
@@ -146,12 +242,24 @@ func main() {
 					comentarioLargo = false
 					posComentarioLargo = 0
 					originPos = 0
+					// En caso de ser la primera línea y que no tenga cierre
 				} else if j == len(expresion)-1 {
 					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
 					acumExp = ""
 					nullSpace = false
 				}
+				// Verifica si es un comentario normal
+			} else if acumExp != "" && isFile(acumExp) && !comentarioLargo && !libreria {
+				// Busca si esta incluida la extensión del archivo en la expresión
+				pos := strings.Index(expresion, ".cpp") + 4
+				// Verifica que despues de validar que la extensión se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación o un caracter válido para desplegarla
+				if j == len(expresion)-1 || expresion[pos:pos+1] == " " || pos == len(expresion)-1 || isDelimitador(expresion[pos:pos+1]) || isOperadorUnique(expresion[pos:pos+1], expresion, pos) || expresion[pos:pos+2] == "//" || expresion[pos:pos+2] == "/*" {
+					fileHtml.WriteString("\t\t<span class=\"file\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+				}
 			}
+
 		}
 		fileHtml.WriteString("\t\t<br>\n")
 	}
