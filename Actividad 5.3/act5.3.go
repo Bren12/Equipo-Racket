@@ -15,6 +15,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -56,8 +57,8 @@ func main() {
 
 	// Definimos variables para manejar comentarios largos
 	comentarioLargo := false
-	// posComentarioLargo := 0
-	// originPos := 0
+	posComentarioLargo := 0
+	originPos := 0
 
 	/////////////////////////////////////// AQUÍ IRA LAS DEMAS FUNCIONES DE VERIFICACION DE SINTAXIX ///////////////////////////////////////
 	// Lee cada enunciado del archivo de texto
@@ -102,6 +103,30 @@ func main() {
 				// fileHtml.WriteString("\t\t<br>\n")
 			} else if token != "\n" && token != "\t" {
 				acumExp += token
+			}
+
+			if acumExp == "/" && expresion[j:j+2] == "/*" {
+				originPos = i
+				for k := 0; k < len(lista_sintaxis)-i; k++ {
+					exp := lista_sintaxis[i+k]
+					if (len(exp) >= 1 && strings.Index(exp[2:], "*/") != -1 && i == i+k) || (strings.Index(exp, "*/") != -1 && i != i+k) {
+						if !comentarioLargo {
+							posComentarioLargo = i + k
+						}
+						comentarioLargo = true
+					}
+				}
+				if !comentarioLargo {
+					fileHtml.WriteString("\t\t<span class=\"error\">" + expresion[j:] + "</span>\n")
+					for k := 0; k < len(lista_sintaxis)-i-1; k++ {
+						fileHtml.WriteString("\t\t<br>\n")
+						exp := lista_sintaxis[i+k+1]
+						fileHtml.WriteString("\t\t<span class=\"error\">" + exp + "</span>\n")
+					}
+					return
+				}
+				fmt.Println(originPos)
+				fmt.Println(posComentarioLargo)
 			}
 		}
 		fileHtml.WriteString("\t\t<br>\n")
