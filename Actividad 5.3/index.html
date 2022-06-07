@@ -15,172 +15,214 @@
 		<span class="reservada">using</span>
 		<span class="reservada">namespace</span>
 		<span class="reservada">std</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span class="reservada">const</span>
 		<span class="reservada">auto</span>
-		<span class="error">INF</span>
-		<span class="error">=</span>
-		<span class="error">1e18LL</span>
+		<span class="identificador">INF</span>
+		<span class="operador">=</span>
+		<span class="literal">1e18LL</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span class="reservada">void</span>
-		<span class="error">printAns</span>
-		<span class="error">(</span>
+		<span class="identificador">printAns</span>
+		<span class="delimitador">(</span>
 		<span class="reservada">bool</span>
-		<span class="error">ans</span>
-		<span class="error">)</span>
+		<span class="identificador">ans</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">(</span>
-		<span class="error">ans</span>
-		<span class="error">?</span>
-		<span class="error">'B'</span>
-		<span class="error">:</span>
-		<span class="error">'M'</span>
-		<span class="error">)</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">ans</span>
+		<span class="operador">?</span>
+		<span class="literal">'B'</span>
+		<span class="delimitador">:</span>
+		<span class="literal">'M'</span>
+		<span class="delimitador">)</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
 		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
 		<br>
+		<span class="delimitador">}</span>
 		<br>
 		<br>
 		<span class="reservada">int</span>
-		<span class="error">main</span>
-		<span class="error">()</span>
+		<span class="identificador">main</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">int</span>
-		<span class="error">t</span>
+		<span class="identificador">t</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cin</span>
-		<span class="error">>></span>
-		<span class="error">t</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">t</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">while</span>
-		<span class="error">(</span>
-		<span class="error">t</span>
-		<span class="error">--)</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">t</span>
+		<span class="operador">-</span>
+		<span class="operador">-</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">int</span>
-		<span class="error">n</span>
+		<span class="identificador">n</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cin</span>
-		<span class="error">>></span>
-		<span class="error">n</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">n</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">bool</span>
-		<span class="error">ans</span>
-		<span class="error">=</span>
+		<span class="identificador">ans</span>
+		<span class="operador">=</span>
 		<span class="reservada">true</span>
-		<span class="error">;</span>
+		<span class="delimitador">;</span>
 		<span class="comentario">// will stay the same if condition meets</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">int</span>
-		<span class="error">last</span>
-		<span class="error">=</span>
-		<span class="error">-</span>
-		<span class="error">1</span>
-		<span class="error">,</span>
-		<span class="error">cur</span>
+		<span class="identificador">last</span>
+		<span class="operador">=</span>
+		<span class="operador">-</span>
+		<span class="literal">1</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cur</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">char</span>
-		<span class="error">prev</span>
-		<span class="error">=</span>
-		<span class="error">0</span>
-		<span class="error">,</span>
-		<span class="error">now</span>
+		<span class="identificador">prev</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">now</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">for</span>
-		<span class="error">(</span>
+		<span class="delimitador">(</span>
 		<span class="reservada">int</span>
-		<span class="error">i</span>
-		<span class="error">=</span>
-		<span class="error">0</span>
-		<span class="error">;</span>
-		<span class="error">i</span>
-		<span class="error"><</span>
-		<span class="error">n</span>
-		<span class="error">;</span>
-		<span class="error">++</span>
-		<span class="error">i</span>
-		<span class="error">)</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="identificador">n</span>
+		<span class="delimitador">;</span>
+		<span class="operador">+</span>
+		<span class="operador">+</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">j</span>
-		<span class="error">=</span>
-		<span class="error">3.51</span>
+		<span class="identificador">j</span>
+		<span class="operador">=</span>
+		<span class="literal">3.51</span>
 		<span class="comentario">// 2</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">j</span>
-		<span class="error">=</span>
-		<span class="error">3.523e-1</span>
-		<span class="error">/</span>
+		<span class="identificador">j</span>
+		<span class="operador">=</span>
+		<span class="error">3.523e-</span>
+		<span class="operador"></span>
+		<span class="literal">1</span>
+		<span class="operador">/</span>
+		<span class="literal">2</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">j</span>
-		<span class="error">=</span>
+		<span class="identificador">j</span>
+		<span class="operador">=</span>
+		<span class="literal">3</span>
+		<span class="operador">/</span>
+		<span class="literal">2</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cin</span>
-		<span class="error">>></span>
-		<span class="error">cur</span>
-		<span class="error">>></span>
-		<span class="error">now</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">cur</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">now</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="comentario">// if any of the two numbers are the same, it changes value of ans</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">if</span>
-		<span class="error">(</span>
-		<span class="error">cur</span>
-		<span class="error">==</span>
-		<span class="error">last</span>
-		<span class="error">||</span>
-		<span class="error">now</span>
-		<span class="error">==</span>
-		<span class="error">prev</span>
-		<span class="error">)</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">cur</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="identificador">last</span>
+		<span class="operador">||</span>
+		<span class="identificador">now</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="identificador">prev</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">ans</span>
-		<span class="error">=</span>
+		<span class="identificador">ans</span>
+		<span class="operador">=</span>
 		<span class="reservada">false</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">last</span>
-		<span class="error">=</span>
-		<span class="error">cur</span>
+		<span class="identificador">last</span>
+		<span class="operador">=</span>
+		<span class="identificador">cur</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">prev</span>
-		<span class="error">=</span>
-		<span class="error">now</span>
+		<span class="identificador">prev</span>
+		<span class="operador">=</span>
+		<span class="identificador">now</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">printAns</span>
-		<span class="error">(</span>
-		<span class="error">ans</span>
+		<span class="identificador">printAns</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">ans</span>
+		<span class="delimitador">);</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">return</span>
-		<span class="error">0</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
 		<br>
+		<span class="delimitador">}</span>
 		<br>
 		<br>
 		<span class="file">amazon.cpp</span>
@@ -192,233 +234,348 @@
 		<span class="reservada">using</span>
 		<span class="reservada">namespace</span>
 		<span class="reservada">std</span>
+		<span class="delimitador">;</span>
 		<br>
 		<br>
 		<span class="comentario">// Funcion para desplegar los datos de los clientes registrados y sus cuentas</span>
 		<br>
 		<span class="reservada">void</span>
-		<span class="error">opcion5(Cliente</span>
-		<span class="error">personas[],</span>
-		<span class="error">Cliente</span>
-		<span class="error">direccion[],</span>
-		<span class="error">Cliente</span>
-		<span class="error">clave[],</span>
-		<span class="error">Cliente</span>
-		<span class="error">saldo[])</span>
+		<span class="identificador">opcion5</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[],</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">[],</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">[],</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">[])</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"\nClientes</span>
-		<span class="error">registrados:</span>
-		<span class="error">"</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nClientes registrados: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
 		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="comentario">// Ciclo para desplegar los datos</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">for</span>
-		<span class="error">(int</span>
-		<span class="error">i</span>
-		<span class="error">=</span>
-		<span class="error">0;</span>
-		<span class="error">i</span>
-		<span class="error"><</span>
-		<span class="error">5;</span>
-		<span class="error">i++)</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="literal">5</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">if</span>
-		<span class="error">(personas[i]</span>
-		<span class="error">!=</span>
-		<span class="error">"N/A")</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">]</span>
+		<span class="operador">!</span>
+		<span class="operador">=</span>
+		<span class="literal">"N/A"</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">i+1</span>
-		<span class="error"><<</span>
-		<span class="error">".</span>
-		<span class="error">Cliente:</span>
-		<span class="error">"</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="literal">1</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">". Cliente: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">];</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"</span>
-		<span class="error">|</span>
-		<span class="error">Direccion:</span>
-		<span class="error">"</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"  |  Direccion: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">];</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"</span>
-		<span class="error">|</span>
-		<span class="error">Clave</span>
-		<span class="error">bancaria:</span>
-		<span class="error">"</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"  |  Clave bancaria: "</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">];</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"</span>
-		<span class="error">|</span>
-		<span class="error">Saldo</span>
-		<span class="error">actual:</span>
-		<span class="error">$"</span>
-		<span class="error"><<</span>
-		<span class="error">saldo[i]</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"  |  Saldo actual: $"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">]</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
 		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
 		<br>
+		<span class="delimitador">}</span>
 		<br>
 		<br>
 		<span class="comentario">// Funcion para que el cliente registre sus datos</span>
 		<br>
 		<span class="reservada">void</span>
-		<span class="error">registrar(string</span>
-		<span class="error">&nombre,</span>
+		<span class="identificador">registrar</span>
+		<span class="delimitador">(</span>
 		<span class="reservada">string</span>
-		<span class="error">&direccion,</span>
+		<span class="operador">&</span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">,</span>
+		<span class="reservada">string</span>
+		<span class="operador">&</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">,</span>
 		<span class="reservada">int</span>
-		<span class="error">&clave,</span>
+		<span class="operador">&</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">,</span>
 		<span class="reservada">float</span>
-		<span class="error">&saldo,</span>
+		<span class="operador">&</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">,</span>
 		<span class="reservada">int</span>
-		<span class="error">&cont,</span>
-		<span class="error">Cliente</span>
-		<span class="error">personas[],</span>
-		<span class="error">CtaBanc</span>
-		<span class="error">cuenta[])</span>
+		<span class="operador">&</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[],</span>
+		<span class="identificador">CtaBanc</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[])</span>
+		<span class="delimitador">{</span>
 		<br>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"Registrese</span>
-		<span class="error">para</span>
-		<span class="error">poder</span>
-		<span class="error">continuar"</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Registrese para poder continuar"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
 		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"Teclee</span>
-		<span class="error">su</span>
-		<span class="error">nombre:</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Teclee su nombre: "</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cin</span>
-		<span class="error">>></span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"Tecle</span>
-		<span class="error">la</span>
-		<span class="error">direccion</span>
-		<span class="error">a</span>
-		<span class="error">la</span>
-		<span class="error">que</span>
-		<span class="error">van</span>
-		<span class="error">a</span>
-		<span class="error">llegar</span>
-		<span class="error">sus</span>
-		<span class="error">pedidos:</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Tecle la direccion a la que van a llegar sus pedidos: "</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cin</span>
-		<span class="error">>></span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"Teclee</span>
-		<span class="error">los</span>
-		<span class="error">digitos</span>
-		<span class="error">de</span>
-		<span class="error">la</span>
-		<span class="error">clave</span>
-		<span class="error">de</span>
-		<span class="error">su</span>
-		<span class="error">cuenta</span>
-		<span class="error">bancaria:</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Teclee los digitos de la clave de su cuenta bancaria: "</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cin</span>
-		<span class="error">>></span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"Teclee</span>
-		<span class="error">el</span>
-		<span class="error">saldo</span>
-		<span class="error">actual</span>
-		<span class="error">de</span>
-		<span class="error">su</span>
-		<span class="error">cuenta</span>
-		<span class="error">bancaria:</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Teclee el saldo actual de su cuenta bancaria: "</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cin</span>
-		<span class="error">>></span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">;</span>
 		<br>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">personas[cont]</span>
-		<span class="error">=</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">]</span>
+		<span class="operador">=</span>
+		<span class="identificador">setNombre</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">);</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">personas[cont]</span>
-		<span class="error">=</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">]</span>
+		<span class="operador">=</span>
+		<span class="identificador">setDireccion</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">);</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">]</span>
+		<span class="operador">=</span>
+		<span class="identificador">setClave</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">);</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">]</span>
+		<span class="operador">=</span>
+		<span class="identificador">setSaldo</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">);</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">]</span>
+		<span class="operador">=</span>
+		<span class="identificador">setTarjeta</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">]);</span>
 		<br>
+		<span class="delimitador">}</span>
 		<br>
 		<br>
 		<span class="reservada">int</span>
-		<span class="error">main()</span>
+		<span class="identificador">main</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">{</span>
 		<br>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">Cliente</span>
+		<span class="identificador">Cliente</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">[</span>
+		<span class="literal">10</span>
+		<span class="delimitador">];</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">CtaBanc</span>
+		<span class="identificador">CtaBanc</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">[</span>
+		<span class="literal">10</span>
+		<span class="delimitador">];</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">Articulo</span>
+		<span class="identificador">Articulo</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">[</span>
+		<span class="literal">5</span>
+		<span class="delimitador">];</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">int</span>
-		<span class="error">num,</span>
-		<span class="error">clave,</span>
-		<span class="error">cont</span>
-		<span class="error">=</span>
+		<span class="identificador">num</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">string</span>
-		<span class="error">nombre,</span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">float</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">;</span>
 		<br>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -426,72 +583,109 @@
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">do</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"Cuantas</span>
-		<span class="error">personas</span>
-		<span class="error">van</span>
-		<span class="error">a</span>
-		<span class="error">hacer</span>
-		<span class="error">compras</span>
-		<span class="error">online</span>
-		<span class="error">(maximo</span>
-		<span class="error">10)?</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"Cuantas personas van a hacer compras online (maximo 10)? "</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cin</span>
-		<span class="error">>></span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">num</span>
+		<span class="delimitador">;</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="error">}</span>
+		<span class="delimitador">}</span>
 		<span class="reservada">while</span>
-		<span class="error">((num</span>
-		<span class="error">></span>
-		<span class="error">10)</span>
-		<span class="error">||</span>
-		<span class="error">(num</span>
-		<span class="error"><</span>
+		<span class="delimitador">((</span>
+		<span class="identificador">num</span>
+		<span class="operador">></span>
+		<span class="literal">10</span>
+		<span class="delimitador">)</span>
+		<span class="operador">||</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">num</span>
+		<span class="operador"><</span>
+		<span class="literal">0</span>
+		<span class="delimitador">));</span>
 		<br>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">for</span>
-		<span class="error">(int</span>
-		<span class="error">i</span>
-		<span class="error">=</span>
-		<span class="error">0;</span>
-		<span class="error">i</span>
-		<span class="error"><</span>
-		<span class="error">num;</span>
-		<span class="error">i++)</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="identificador">num</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador">+</span>
+		<span class="operador">+</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">cout</span>
-		<span class="error"><<</span>
-		<span class="error">"\nBienvenido</span>
-		<span class="error">a</span>
-		<span class="error">la</span>
-		<span class="error">Tienda</span>
-		<span class="error">Online</span>
-		<span class="error">Amazona!"</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="literal">"\nBienvenido a la Tienda Online Amazona!"</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
 		<span class="reservada">endl</span>
-		<span class="error"><<</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
 		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
 		<br>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">registrar</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">nombre</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">direccion</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">clave</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">saldo</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cuenta</span>
+		<span class="delimitador">);</span>
 		<br>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">menu</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">personas</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cont</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">art</span>
+		<span class="delimitador">);</span>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
 		<br>
 		<br>
 		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="reservada">return</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
 		<br>
+		<span class="delimitador">}</span>
 		<br>
 		<br>
 		<span class="comentario">/*/////////////////////////////////////// Descripcion del Programa //////////////////////////////////////////</span>

@@ -18,6 +18,15 @@ import (
 	"strings"
 )
 
+func containsArray(s []string, e string) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
 func isFile(expresion string) bool {
 	// Busca si hay "//" en la expresión
 	pos := strings.Index(expresion, ".cpp")
@@ -83,6 +92,19 @@ func isReservada(expresion string) bool {
 	return false
 }
 
+func isOperador(expresion string, original string, pos int) bool {
+	// Se definen los operadores como una lista
+	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"}
+	// Ciclo que itera cada operador de la lista definida
+	for i := 0; i < len(operador); i++ {
+		// Si encontro el operador, se retorna verdadero
+		if operador[i] == expresion || strings.Index(expresion, operador[i]) != -1 || (expresion == "/" && original[pos:pos+2] != "//") || (strings.Index(expresion, "/") != -1 && original[pos:pos+2] != "//") {
+			return true
+		}
+	}
+	return false
+}
+
 func isOperadorUnique(expresion string, original string, pos int) bool {
 	// Se definen los operadores como un diccionario
 	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>",
@@ -92,7 +114,7 @@ func isOperadorUnique(expresion string, original string, pos int) bool {
 	// Para eso, primero se verifica que no vaya a sobrepasar la longitud de la expresión original
 	if pos+2 < len(original) {
 		// Verifica que no sea un comentario lo que se esta leyendo
-		if (expresion == "/" && original[pos:pos+2] != "//") && (expresion == "/" && original[pos:pos+2] != "/*") {
+		if expresion == "/" && original[pos:pos+2] != "//" && original[pos:pos+2] != "/*" {
 			return true
 			// Si encuentra un operador retorna verdadero
 		} else {
@@ -118,6 +140,87 @@ func isDelimitador(expresion string) bool {
 		if delimitador[i] == expresion || strings.Index(expresion, delimitador[i]) != -1 {
 			return true
 		}
+	}
+	return false
+}
+
+func isIdentificador(expresion string, original string, pos int) bool {
+	// Se crea una lista para checar todos los identificadores con letras
+	alfabeto := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+		"V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+		"w", "x", "y", "z"}
+
+	// Se crea una lista para números
+	numeros := []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+	// Ciclo que itera cada letra del alfabeto
+	for i := 0; i < len(alfabeto); i++ {
+		// Si encontro una letra del afabeto o un guión entra a la siguiente condicional
+		if alfabeto[i] == expresion || strings.Index(expresion, alfabeto[i]) != -1 || containsArray(numeros, expresion) || strings.Contains(expresion, "_") {
+			// Checa casos de excepcion que indican que no es un identificador
+			if containsArray(alfabeto, string(expresion[0])) && (!(strings.Contains(expresion, "\"") || strings.Contains(expresion, "'") || strings.Contains(expresion, ".") || strings.Contains(expresion, "#"))) {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func isLiteral(expresion string, original string, pos int, operador *bool) bool {
+	// Se declaran variables para manejar los casos de excepción que nos indican que no son literales
+	numeros := []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+	punto := false
+	guion := false
+	eReal := false
+	fReal := false
+	uReal := false
+	lReal := 0
+	wait := false
+	letter := false
+
+	// Si se encontro una o doble comilla, retorna verdadero, ya que se esta por leer un string o char
+	if string(expresion[0]) == "'" || string(expresion[0]) == "\"" {
+		return true
+	}
+
+	// Guarda la posicion en la que se encuentra el inicio de la expresion
+	pos2 := strings.Index(original, string(expresion[0]))
+
+	// Ciclo que itera cada caracter de la expresion
+	for i := 0; i < len(expresion); i++ {
+		//Verifica que sea un número
+		if (containsArray(numeros, string(expresion[i]))) && (!letter) {
+			wait = false
+		} else {
+			if (string(expresion[i]) == ".") && (!punto) && (containsArray(numeros, string(original[pos2+i+1]))) {
+				// Verifica si es real
+				punto = true
+			} else if (string(expresion[i]) == "L" || string(expresion[i]) == "l") && (!wait) && ((lReal < 2 && !uReal) || (uReal && lReal == 0) || (strings.Index(expresion[:i], "ul") != -1)) && (!fReal) {
+				// Verifica si es un dato de tipo long o long long
+				lReal = lReal + 1
+				letter = true
+			} else if (string(expresion[i]) == "U" || string(expresion[i]) == "u") && (!uReal) && (!punto) && (!eReal) && (string(original[pos2+i+1]) != ".") {
+				// Verifica si es un dato de tipo unsigned
+				uReal = true
+				letter = true
+			} else if (string(expresion[i]) == "E" || string(expresion[i]) == "e") && (!eReal) && ((containsArray(numeros, string(original[pos2+i+1]))) || string(original[pos2+i+1]) == "-") {
+				// Verifica si se esta leyendo la "E" de la notación científica y que reciba un número o guión a continuación
+				*operador = true
+				eReal = true
+				wait = true
+			} else if string(expresion[i]) == "-" && (!guion) && eReal && (containsArray(numeros, string(original[pos2+i+1]))) {
+				// Verifica si es un guión y que reciba un número a continuación
+				guion = true
+				wait = true
+			} else if (string(expresion[i]) == "F" || string(expresion[i]) == "f") && (!wait) && (!uReal) && (lReal == 0) && eReal {
+				// Verifica si es un fast int
+				fReal = true
+				letter = true
+			} else {
+				return false
+			}
+		}
+		return true
 	}
 	return false
 }
@@ -173,8 +276,8 @@ func main() {
 		espacio := ""
 		// Variable para manejar espacios en literales de tipo string o char
 		nullSpace := false
-		// // Variable para manejar "-" en los literales númericos
-		// operadorOmit := false
+		// Variable para manejar "-" en los literales númericos
+		operadorOmit := false
 		// Variable para manejar las librerías
 		libreria := false
 
@@ -360,8 +463,82 @@ func main() {
 					acumExp = ""
 					nullSpace = false
 				}
+				// Verifica si es un operador
+			} else if acumExp != "" && !comentarioLargo && isOperador(acumExp, expresion, j) && !operadorOmit && !nullSpace {
+				// Casos de excepción para marcar que son syntax error
+				if len(acumExp) > 1 && (!isOperadorUnique(string(acumExp[0]), expresion, strings.Index(expresion, acumExp)) || isComentario(expresion[j:])) && !isOperadorUnique(acumExp, expresion, j) {
+					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+					operadorOmit = false
+				}
+				// Verifica una vez retirado la expresión erronea, hay un operador válido
+				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isOperadorUnique(string(expresion[j+1]), expresion, j) || isDelimitador(string(expresion[j+1])) || isIdentificador(string(expresion[j+1]), expresion, j) || isLiteral(string(expresion[j+1]), expresion, j, &operadorOmit) {
+					if strings.Index(acumExp, "_") == -1 {
+						fileHtml.WriteString("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
+						acumExp = ""
+					} else {
+						fileHtml.WriteString("\t\t<span class=\"operador\">" + acumExp[:strings.Index(acumExp, "_")] + "</span>\n")
+						acumExp = acumExp[strings.Index(acumExp, "_"):]
+					}
+					nullSpace = false
+				}
+				// Verifica si es un delimitador
+			} else if acumExp != "" && !comentarioLargo && isDelimitador(acumExp) && !nullSpace {
+				if len(acumExp) > 1 && !isDelimitador(string(acumExp[0])) {
+					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+				}
+				// Verifica que a continuación haya un caracter diferente válido para desplegarlo
+				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isOperadorUnique(string(expresion[j+1]), expresion, j) || isIdentificador(string(expresion[j+1]), expresion, j) || isLiteral(string(expresion[j+1]), expresion, j, &operadorOmit) || string(expresion[j+1]) == "." {
+					if strings.Index(acumExp, "_") == -1 {
+						fileHtml.WriteString("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
+						acumExp = ""
+					} else {
+						fileHtml.WriteString("\t\t<span class=\"delimitador\">" + acumExp[:strings.Index(acumExp, "_")] + "</span>\n")
+						acumExp = acumExp[strings.Index(acumExp, "_"):]
+					}
+					nullSpace = false
+				}
+				// Verifica si es un identificador
+			} else if acumExp != "" && !comentarioLargo && isIdentificador(acumExp, expresion, j) {
+				// Verifica que a continuación haya un caracter diferente válido para desplegarlo
+				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isOperadorUnique(string(expresion[j+1]), expresion, j) || isDelimitador(string(expresion[j+1])) {
+					fileHtml.WriteString("\t\t<span class=\"identificador\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+				}
+				// Verifica si es una literal
+			} else if acumExp != "" && !comentarioLargo && isLiteral(acumExp, expresion, j, &operadorOmit) {
+				// Verifica que a continuación haya un caracter diferente válido para desplegarlo
+				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isDelimitador(string(expresion[j+1])) || (isOperadorUnique(string(expresion[j+1]), expresion, j) && string(expresion[j+1]) != "-") || (j+1 <= len(acumExp) && isComentario(string(acumExp[j+1:]))) || (string(acumExp[0]) == "'" && string(acumExp[len(acumExp)-1]) == "'") || (string(acumExp[0]) == "\"" && string(acumExp[len(acumExp)-1]) == "\"") {
+					// Verifica que esten ambas comillas en la literal para poder habilitar la opción de leer espacios en blanco y otros caracteres
+					if (string(acumExp[0]) == "'" && strings.Index(expresion[j+1:], "'") != -1) || (string(acumExp[0]) == "\"" && strings.Index(expresion[j+1:], "\"") != -1) {
+						nullSpace = true
+					}
+					// Verifica que sea una literal de tipo string o char
+					if (string(acumExp[0]) == "'" && string(acumExp[len(acumExp)-1]) == "'" && len(acumExp) != 1) || (string(acumExp[0]) == "\"" && string(acumExp[len(acumExp)-1]) == "\"" && len(acumExp) != 1) {
+						fileHtml.WriteString("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
+						acumExp = ""
+						operadorOmit = false
+						nullSpace = false
+						// Verifica que sea una literal de tipo númerica
+					} else if ((string(acumExp[0]) != "'") && (string(acumExp[len(acumExp)-1]) != "'")) && (string(acumExp[0]) != "\"" && string(acumExp[len(acumExp)-1]) != "\"") {
+						fileHtml.WriteString("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
+						acumExp = ""
+						operadorOmit = false
+						nullSpace = false
+					}
+				}
 			}
 		}
+		// Si al final no se vacía el acumulador, es un syntax error, ya que no pertenece a ninguna categoría léxica
+		if acumExp != "" {
+			fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+		}
+
+		// Escribimos saltos de línea cuando termine de leer un renglón por completo, por cuestiones de diseño del html
 		fileHtml.WriteString("\t\t<br>\n")
 	}
 	// Escribimos el final del archivo html
