@@ -184,7 +184,7 @@ func isLiteral(expresion string, original string, pos int, operador *bool) bool 
 	}
 
 	// Guarda la posicion en la que se encuentra el inicio de la expresion
-	pos2 := strings.Index(original, string(expresion[0]))
+	pos2 := strings.Index(original, expresion)
 
 	// Ciclo que itera cada caracter de la expresion
 	for i := 0; i < len(expresion); i++ {
@@ -192,8 +192,8 @@ func isLiteral(expresion string, original string, pos int, operador *bool) bool 
 		if (containsArray(numeros, string(expresion[i]))) && (!letter) {
 			wait = false
 		} else {
+			// Verifica si es real
 			if (string(expresion[i]) == ".") && (!punto) && (containsArray(numeros, string(original[pos2+i+1]))) {
-				// Verifica si es real
 				punto = true
 			} else if (string(expresion[i]) == "L" || string(expresion[i]) == "l") && (!wait) && ((lReal < 2 && !uReal) || (uReal && lReal == 0) || (strings.Index(expresion[:i], "ul") != -1)) && (!fReal) {
 				// Verifica si es un dato de tipo long o long long
@@ -220,9 +220,8 @@ func isLiteral(expresion string, original string, pos int, operador *bool) bool 
 				return false
 			}
 		}
-		return true
 	}
-	return false
+	return true
 }
 
 func main() {
@@ -325,7 +324,7 @@ func main() {
 				for k := 0; k < len(lista_sintaxis)-i; k++ {
 					exp := lista_sintaxis[i+k]
 					// Busca el cierre del comentario largo
-					if (len(exp) >= 1 && strings.Index(exp[2:], "*/") != -1 && i == i+k) || (strings.Index(exp, "*/") != -1 && i != i+k) {
+					if (len(exp) > 1 && strings.Index(exp[2:], "*/") != -1 && i == i+k) || (strings.Index(exp, "*/") != -1 && i != i+k) {
 						if !comentarioLargo {
 							// Almacena la posición de la lista en la que se encontro el cierre en la expresión
 							posComentarioLargo = i + k
