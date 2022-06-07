@@ -64,6 +64,25 @@ func isLibreria(expresion string) bool {
 	return false
 }
 
+func isReservada(expresion string) bool {
+	// Se definen las palabras reservadas como un array
+	reservada := []string{"int", "bool", "char", "void", "float", "double", "string", "cin", "cout", "while",
+		"as", "using", "namespace", "auto", "const", "asm", "dynamic_cast", "reinterpret_cast", "try",
+		"explicit", "new", "static_cast", "static", "typeid", "catch", "false", "operator", "template",
+		"typename", "class", "friend", "private", "this", "const_cast", "inline", "public", "throw",
+		"virtual", "delete", "enum", "goto", "else", "mutable", "protected", "true", "wchar_t", "endl",
+		"sizeof", "register", "unsigned", "break", "continue", "extern", "if", "return", "switch", "case",
+		"default", "short", "struct", "volatile", "do", "for", "long", "signed", "union", "std"}
+	// Verifica si existe en la expresión cualquier palabra reservada, si no, retorna falso
+	for i := 0; i < len(reservada); i++ {
+		// Si encontro el delimitador, se retorna verdadero
+		if reservada[i] == expresion {
+			return true
+		}
+	}
+	return false
+}
+
 func isOperadorUnique(expresion string, original string, pos int) bool {
 	// Se definen los operadores como un diccionario
 	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>",
@@ -332,6 +351,14 @@ func main() {
 					acumExp = ""
 					nullSpace = false
 					libreria = false
+				}
+				// Verifica si es una palabra reservada
+			} else if acumExp != "" && !comentarioLargo && isReservada(acumExp) {
+				// Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
+				if j == len(expresion)-1 || expresion[j+1:j+2] == " " || isDelimitador(expresion[j+1:j+2]) || isOperadorUnique(expresion[j+1:j+2], expresion, j) || expresion[j+1:j+2] == "\"" || expresion[j+1:j+2] == "'" {
+					fileHtml.WriteString("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
 				}
 			}
 		}
