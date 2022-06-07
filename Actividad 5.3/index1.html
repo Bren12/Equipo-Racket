@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Resaltador de Sintaxix</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<span class="file">file.cpp</span>
+		<br>
+		<span class="comentario">// Solving SPOJ's TAP2014A - At random</span>
+		<br>
+		<span class="libreria">#include   "iostream"</span>
+		<br>
+		<span class="reservada">using</span>
+		<span class="reservada">namespace</span>
+		<span class="reservada">std</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">const</span>
+		<span class="reservada">auto</span>
+		<span class="identificador">INF</span>
+		<span class="operador">=</span>
+		<span class="literal">1e18LL</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="reservada">void</span>
+		<span class="identificador">printAns</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">bool</span>
+		<span class="identificador">ans</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">cout</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">ans</span>
+		<span class="operador">?</span>
+		<span class="literal">'B'</span>
+		<span class="delimitador">:</span>
+		<span class="literal">'M'</span>
+		<span class="delimitador">)</span>
+		<span class="operador"><</span>
+		<span class="operador"><</span>
+		<span class="reservada">endl</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+		<br>
+		<span class="reservada">int</span>
+		<span class="identificador">main</span>
+		<span class="delimitador">()</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">int</span>
+		<span class="identificador">t</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">t</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">while</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">t</span>
+		<span class="operador">-</span>
+		<span class="operador">-</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">int</span>
+		<span class="identificador">n</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">n</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">bool</span>
+		<span class="identificador">ans</span>
+		<span class="operador">=</span>
+		<span class="reservada">true</span>
+		<span class="delimitador">;</span>
+		<span class="comentario">// will stay the same if condition meets</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">int</span>
+		<span class="identificador">last</span>
+		<span class="operador">=</span>
+		<span class="operador">-</span>
+		<span class="literal">1</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">cur</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">char</span>
+		<span class="identificador">prev</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">,</span>
+		<span class="identificador">now</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">for</span>
+		<span class="delimitador">(</span>
+		<span class="reservada">int</span>
+		<span class="identificador">i</span>
+		<span class="operador">=</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<span class="identificador">i</span>
+		<span class="operador"><</span>
+		<span class="identificador">n</span>
+		<span class="delimitador">;</span>
+		<span class="operador">+</span>
+		<span class="operador">+</span>
+		<span class="identificador">i</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">j</span>
+		<span class="operador">=</span>
+		<span class="literal">3.51</span>
+		<span class="comentario">// 2</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">j</span>
+		<span class="operador">=</span>
+		<span class="literal">3.523e-1</span>
+		<span class="operador">/</span>
+		<span class="literal">2</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">j</span>
+		<span class="operador">=</span>
+		<span class="literal">3</span>
+		<span class="operador">/</span>
+		<span class="literal">2</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">cin</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">cur</span>
+		<span class="operador">></span>
+		<span class="operador">></span>
+		<span class="identificador">now</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="comentario">// if any of the two numbers are the same, it changes value of ans</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">if</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">cur</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="identificador">last</span>
+		<span class="operador">||</span>
+		<span class="identificador">now</span>
+		<span class="operador">=</span>
+		<span class="operador">=</span>
+		<span class="identificador">prev</span>
+		<span class="delimitador">)</span>
+		<span class="delimitador">{</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">ans</span>
+		<span class="operador">=</span>
+		<span class="reservada">false</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">last</span>
+		<span class="operador">=</span>
+		<span class="identificador">cur</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">prev</span>
+		<span class="operador">=</span>
+		<span class="identificador">now</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="identificador">printAns</span>
+		<span class="delimitador">(</span>
+		<span class="identificador">ans</span>
+		<span class="delimitador">);</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="delimitador">}</span>
+		<br>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="reservada">return</span>
+		<span class="literal">0</span>
+		<span class="delimitador">;</span>
+		<br>
+		<span class="delimitador">}</span>
+		<br>
+	</body>
+</html>
