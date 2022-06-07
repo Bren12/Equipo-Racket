@@ -54,6 +54,16 @@ func isComentario(expresion string) bool {
 	return false
 }
 
+func isLibreria(expresion string) bool {
+	//Busca el # que en C++ indica una libreria a incluir
+	pos := strings.Index(expresion, "#")
+	//Dado caso de que la encuentre marcalo como verdadero
+	if pos == 0 {
+		return true
+	}
+	return false
+}
+
 func isOperadorUnique(expresion string, original string, pos int) bool {
 	// Se definen los operadores como un diccionario
 	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>",
@@ -63,7 +73,7 @@ func isOperadorUnique(expresion string, original string, pos int) bool {
 	// Para eso, primero se verifica que no vaya a sobrepasar la longitud de la expresión original
 	if pos+2 < len(original) {
 		// Verifica que no sea un comentario lo que se esta leyendo
-		if (expresion == "/" && string(original[pos:pos+2]) != "//") && (expresion == "/" && original[pos:pos+2] != "/*") {
+		if (expresion == "/" && original[pos:pos+2] != "//") && (expresion == "/" && original[pos:pos+2] != "/*") {
 			return true
 			// Si encuentra un operador retorna verdadero
 		} else {
@@ -264,8 +274,66 @@ func main() {
 				acumExp = ""
 				nullSpace = false
 				break
-			}
+				// Verifica si es una librería - O(n^2)
+			} else if acumExp != "" && !comentarioLargo && isLibreria(acumExp) {
+				libreria = true
+				posI := strings.Index(expresion, "include")
+				posC := strings.Index(expresion, "\"")
+				posCC := strings.Index(expresion[posC+1:], "\"")
+				posF := strings.Index(expresion, "<")
+				posFF := strings.Index(expresion, ">")
+				posExp := strings.Index(expresion, acumExp)
+				expSub := ""
 
+				// Extrae de la expresión original una copia de la librería
+				if posFF != -1 {
+					expSub = expresion[posExp : posFF+1]
+				} else if posCC != -1 {
+					expSub = expresion[posExp : posCC+2+posC]
+					posCC = posCC + 1 + posC
+				}
+
+				// Verifica que no haya errores
+				for l := 0; l < posI-1; l++ {
+					if expresion[l+1:l+2] != " " {
+						libreria = false
+					}
+				}
+
+				// Verifica que no haya errores
+				if posC > posF {
+					for l := posI + 7; l < posC; l++ {
+						if expresion[l:l+1] != " " {
+							libreria = false
+						}
+					}
+				} else {
+					for l := posI + 7; l < posF; l++ {
+						if expresion[l:l+1] != " " {
+							libreria = false
+						}
+					}
+				}
+
+				// Verifica que todo este correcto
+				if posI > 0 && ((posC > posI && posCC > posC+1) || (posF > posI && posFF > posF+1)) {
+					if expSub == acumExp {
+						if posFF != -1 {
+							fileHtml.WriteString("\t\t<span class=\"libreria\">" + acumExp[:posF+1] + " " + acumExp[posF+1:] + "</span>\n")
+						} else {
+							fileHtml.WriteString("\t\t<span class=\"libreria\">" + acumExp + "</span>\n")
+						}
+						acumExp = ""
+						nullSpace = false
+						libreria = false
+					}
+				} else if posCC == -1 || posFF == -1 || posI == -1 {
+					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+					acumExp = ""
+					nullSpace = false
+					libreria = false
+				}
+			}
 		}
 		fileHtml.WriteString("\t\t<br>\n")
 	}
