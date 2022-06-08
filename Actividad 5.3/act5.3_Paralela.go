@@ -225,7 +225,7 @@ func isLiteral(expresion string, original string, pos int, operador *bool) bool 
 	return true
 }
 
-func resaltador(file string, dir string, iFile int) {
+func resaltador(file string, dir string, c chan string) {
 	// Lista que guardará el contenido del archivo TXT
 	lista_sintaxis := []string{}
 
@@ -239,21 +239,15 @@ func resaltador(file string, dir string, iFile int) {
 		lista_sintaxis = append(lista_sintaxis, scanner.Text())
 	}
 
-	// Se abre o se crea un archivo html (index.html)
-	fileHtml, e := os.Create(dir + "\\Actividad 5.3\\index" + fmt.Sprint(iFile) + ".html")
-	if e != nil {
-		fmt.Println(e)
-	}
-
 	// Escribimos el head del archivo html
-	fileHtml.WriteString("<!DOCTYPE html>\n")
-	fileHtml.WriteString("<html>\n")
-	fileHtml.WriteString("\t<head>\n")
-	fileHtml.WriteString("\t\t<meta charset=\"utf-8\"/>\n")
-	fileHtml.WriteString("\t\t<title>Resaltador de Sintaxix</title>\n")
-	fileHtml.WriteString("\t\t<link rel=\"stylesheet\" href=\"style.css\">\n")
-	fileHtml.WriteString("\t</head>\n")
-	fileHtml.WriteString("\t<body>\n")
+	str := "<!DOCTYPE html>\n"
+	str += "<html>\n"
+	str += "\t<head>\n"
+	str += "\t\t<meta charset=\"utf-8\"/>\n"
+	str += "\t\t<title>Resaltador de Sintaxix</title>\n"
+	str += "\t\t<link rel=\"stylesheet\" href=\"style.css\">\n"
+	str += "\t</head>\n"
+	str += "\t<body>\n"
 
 	// Definimos variables para manejar comentarios largos
 	comentarioLargo := false
@@ -289,7 +283,7 @@ func resaltador(file string, dir string, iFile int) {
 					espacio += "&nbsp;"
 					k += 1
 					if expresion[k:k+1] != " " {
-						fileHtml.WriteString("\t\t<span>" + espacio + "</span>\n")
+						str += "\t\t<span>" + espacio + "</span>\n"
 					}
 				}
 			}
@@ -301,7 +295,7 @@ func resaltador(file string, dir string, iFile int) {
 			if token == " " && !nullSpace && !comentarioLargo && !libreria {
 				// Si acumExp no esta vacío, significa que no pertenece a ninguna categoría léxica
 				if acumExp != "" {
-					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"error\">" + acumExp + "</span>\n"
 					acumExp = ""
 				}
 				// En caso contrario, concatenamos al acumulador los demás caracteres de la expresión,
@@ -329,13 +323,13 @@ func resaltador(file string, dir string, iFile int) {
 				}
 				// Si no encontramos el cierre, marcamos todo como error hasta el final del archivo
 				if !comentarioLargo {
-					fileHtml.WriteString("\t\t<span class=\"error\">" + expresion[j:] + "</span>\n")
+					str += "\t\t<span class=\"error\">" + expresion[j:] + "</span>\n"
 					// Ciclo que itera la cantidad de renglones del archivo
 					for k := 0; k < len(lista_sintaxis)-i-1; k++ {
 						// Despliega cada renglón como error de sintaxis
-						fileHtml.WriteString("\t\t<br>\n")
+						str += "\t\t<br>\n"
 						exp := lista_sintaxis[i+k+1]
-						fileHtml.WriteString("\t\t<span class=\"error\">" + exp + "</span>\n")
+						str += "\t\t<span class=\"error\">" + exp + "</span>\n"
 					}
 					// Da por terminado la lectura del archivo
 					return
@@ -348,12 +342,12 @@ func resaltador(file string, dir string, iFile int) {
 			if comentarioLargo {
 				// Líneas de comentarios sin el cierre
 				if originPos != i && i != posComentarioLargo && j == len(expresion)-1 {
-					fileHtml.WriteString("\t\t<span class=\"comentario\">" + expresion + "</span>\n")
+					str += "\t\t<span class=\"comentario\">" + expresion + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 					// Primer línea de comentario y además cierra en la misma línea
 				} else if len(acumExp) > 1 && strings.Index(acumExp[2:], "*/") != -1 && originPos == i && i == posComentarioLargo {
-					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"comentario\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 					comentarioLargo = false
@@ -361,7 +355,7 @@ func resaltador(file string, dir string, iFile int) {
 					originPos = 0
 					// Línea de comentario diferente a la línea de apertura que encontro el cierre
 				} else if strings.Index(acumExp, "*/") != -1 && i != originPos && posComentarioLargo == i {
-					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"comentario\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 					comentarioLargo = false
@@ -369,7 +363,7 @@ func resaltador(file string, dir string, iFile int) {
 					originPos = 0
 					// En caso de ser la primera línea y que no tenga cierre
 				} else if j == len(expresion)-1 {
-					fileHtml.WriteString("\t\t<span class=\"comentario\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"comentario\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 				}
@@ -379,13 +373,13 @@ func resaltador(file string, dir string, iFile int) {
 				pos := strings.Index(expresion, ".cpp") + 4
 				// Verifica que despues de validar que la extensión se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación o un caracter válido para desplegarla
 				if j == len(expresion)-1 || expresion[pos:pos+1] == " " || pos == len(expresion)-1 || isDelimitador(expresion[pos:pos+1]) || isOperadorUnique(expresion[pos:pos+1], expresion, pos) || expresion[pos:pos+2] == "//" || expresion[pos:pos+2] == "/*" {
-					fileHtml.WriteString("\t\t<span class=\"file\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"file\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 				}
 				// Verifica si es un comentario normal
 			} else if (acumExp != "" && isComentario(acumExp)) && !comentarioLargo && !libreria {
-				fileHtml.WriteString("\t\t<span class=\"comentario\">" + expresion[j-1:] + "</span>\n")
+				str += "\t\t<span class=\"comentario\">" + expresion[j-1:] + "</span>\n"
 				acumExp = ""
 				nullSpace = false
 				break
@@ -434,16 +428,16 @@ func resaltador(file string, dir string, iFile int) {
 				if posI > 0 && ((posC > posI && posCC > posC+1) || (posF > posI && posFF > posF+1)) {
 					if expSub == acumExp {
 						if posFF != -1 {
-							fileHtml.WriteString("\t\t<span class=\"libreria\">" + acumExp[:posF+1] + " " + acumExp[posF+1:] + "</span>\n")
+							str += "\t\t<span class=\"libreria\">" + acumExp[:posF+1] + " " + acumExp[posF+1:] + "</span>\n"
 						} else {
-							fileHtml.WriteString("\t\t<span class=\"libreria\">" + acumExp + "</span>\n")
+							str += "\t\t<span class=\"libreria\">" + acumExp + "</span>\n"
 						}
 						acumExp = ""
 						nullSpace = false
 						libreria = false
 					}
 				} else if posCC == -1 || posFF == -1 || posI == -1 {
-					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"error\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 					libreria = false
@@ -452,7 +446,7 @@ func resaltador(file string, dir string, iFile int) {
 			} else if acumExp != "" && !comentarioLargo && isReservada(acumExp) {
 				// Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
 				if j == len(expresion)-1 || expresion[j+1:j+2] == " " || isDelimitador(expresion[j+1:j+2]) || isOperadorUnique(expresion[j+1:j+2], expresion, j) || expresion[j+1:j+2] == "\"" || expresion[j+1:j+2] == "'" {
-					fileHtml.WriteString("\t\t<span class=\"reservada\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"reservada\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 				}
@@ -460,7 +454,7 @@ func resaltador(file string, dir string, iFile int) {
 			} else if acumExp != "" && !comentarioLargo && isOperador(acumExp, expresion, j) && !operadorOmit && !nullSpace {
 				// Casos de excepción para marcar que son syntax error
 				if len(acumExp) > 1 && (!isOperadorUnique(string(acumExp[0]), expresion, strings.Index(expresion, acumExp)) || isComentario(expresion[j:])) && !isOperadorUnique(acumExp, expresion, j) {
-					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"error\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 					operadorOmit = false
@@ -468,10 +462,10 @@ func resaltador(file string, dir string, iFile int) {
 				// Verifica una vez retirado la expresión erronea, hay un operador válido
 				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isOperadorUnique(string(expresion[j+1]), expresion, j) || isDelimitador(string(expresion[j+1])) || isIdentificador(string(expresion[j+1]), expresion, j) || isLiteral(string(expresion[j+1]), expresion, j, &operadorOmit) {
 					if strings.Index(acumExp, "_") == -1 {
-						fileHtml.WriteString("\t\t<span class=\"operador\">" + acumExp + "</span>\n")
+						str += "\t\t<span class=\"operador\">" + acumExp + "</span>\n"
 						acumExp = ""
 					} else {
-						fileHtml.WriteString("\t\t<span class=\"operador\">" + acumExp[:strings.Index(acumExp, "_")] + "</span>\n")
+						str += "\t\t<span class=\"operador\">" + acumExp[:strings.Index(acumExp, "_")] + "</span>\n"
 						acumExp = acumExp[strings.Index(acumExp, "_"):]
 					}
 					nullSpace = false
@@ -479,17 +473,17 @@ func resaltador(file string, dir string, iFile int) {
 				// Verifica si es un delimitador
 			} else if acumExp != "" && !comentarioLargo && isDelimitador(acumExp) && !nullSpace {
 				if len(acumExp) > 1 && !isDelimitador(string(acumExp[0])) {
-					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"error\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 				}
 				// Verifica que a continuación haya un caracter diferente válido para desplegarlo
 				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isOperadorUnique(string(expresion[j+1]), expresion, j) || isIdentificador(string(expresion[j+1]), expresion, j) || isLiteral(string(expresion[j+1]), expresion, j, &operadorOmit) || string(expresion[j+1]) == "." {
 					if strings.Index(acumExp, "_") == -1 {
-						fileHtml.WriteString("\t\t<span class=\"delimitador\">" + acumExp + "</span>\n")
+						str += "\t\t<span class=\"delimitador\">" + acumExp + "</span>\n"
 						acumExp = ""
 					} else {
-						fileHtml.WriteString("\t\t<span class=\"delimitador\">" + acumExp[:strings.Index(acumExp, "_")] + "</span>\n")
+						str += "\t\t<span class=\"delimitador\">" + acumExp[:strings.Index(acumExp, "_")] + "</span>\n"
 						acumExp = acumExp[strings.Index(acumExp, "_"):]
 					}
 					nullSpace = false
@@ -498,7 +492,7 @@ func resaltador(file string, dir string, iFile int) {
 			} else if acumExp != "" && !comentarioLargo && isIdentificador(acumExp, expresion, j) {
 				// Verifica que a continuación haya un caracter diferente válido para desplegarlo
 				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isOperadorUnique(string(expresion[j+1]), expresion, j) || isDelimitador(string(expresion[j+1])) {
-					fileHtml.WriteString("\t\t<span class=\"identificador\">" + acumExp + "</span>\n")
+					str += "\t\t<span class=\"identificador\">" + acumExp + "</span>\n"
 					acumExp = ""
 					nullSpace = false
 				}
@@ -512,13 +506,13 @@ func resaltador(file string, dir string, iFile int) {
 					}
 					// Verifica que sea una literal de tipo string o char
 					if (string(acumExp[0]) == "'" && string(acumExp[len(acumExp)-1]) == "'" && len(acumExp) != 1) || (string(acumExp[0]) == "\"" && string(acumExp[len(acumExp)-1]) == "\"" && len(acumExp) != 1) {
-						fileHtml.WriteString("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
+						str += "\t\t<span class=\"literal\">" + acumExp + "</span>\n"
 						acumExp = ""
 						operadorOmit = false
 						nullSpace = false
 						// Verifica que sea una literal de tipo númerica
 					} else if ((string(acumExp[0]) != "'") && (string(acumExp[len(acumExp)-1]) != "'")) && (string(acumExp[0]) != "\"" && string(acumExp[len(acumExp)-1]) != "\"") {
-						fileHtml.WriteString("\t\t<span class=\"literal\">" + acumExp + "</span>\n")
+						str += "\t\t<span class=\"literal\">" + acumExp + "</span>\n"
 						acumExp = ""
 						operadorOmit = false
 						nullSpace = false
@@ -528,18 +522,17 @@ func resaltador(file string, dir string, iFile int) {
 		}
 		// Si al final no se vacía el acumulador, es un syntax error, ya que no pertenece a ninguna categoría léxica
 		if acumExp != "" {
-			fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
+			str += "\t\t<span class=\"error\">" + acumExp + "</span>\n"
 		}
 
 		// Escribimos saltos de línea cuando termine de leer un renglón por completo, por cuestiones de diseño del html
-		fileHtml.WriteString("\t\t<br>\n")
+		str += "\t\t<br>\n"
 	}
 	// Escribimos el final del archivo html
-	fileHtml.WriteString("\t</body>\n")
-	fileHtml.WriteString("</html>")
+	str += "\t</body>\n"
+	str += "</html>"
 
-	// Cerramos el archivo HTML
-	fileHtml.Close()
+	c <- str
 }
 
 func main() {
@@ -568,8 +561,20 @@ func main() {
 		}
 	}
 
+	c := make(chan string)
+
 	// Ciclo para que procese varios archivos
 	for iFile := 0; iFile < len(lista_file); iFile++ {
-		resaltador(lista_file[iFile], dir, iFile+1)
+		go resaltador(lista_file[iFile], dir, c)
+
+		result := <-c
+
+		// Se abre o se crea un archivo html (index.html)
+		fileHtml, e := os.Create(dir + "\\Actividad 5.3\\index" + fmt.Sprint(iFile+1) + ".html")
+		if e != nil {
+			fmt.Println(e)
+		}
+		fileHtml.WriteString(result)
 	}
+
 }
