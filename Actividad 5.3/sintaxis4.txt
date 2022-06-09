@@ -1,0 +1,3024 @@
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
+fraccion.cpp
+
+#include <iostream>
+#include <fstream>
+#include <time.h> 
+#include <stdlib.h>
+#include "Fraccion.h"
+using namespace std;
+
+void leerArchivo(Fraccion *, Fraccion *, int &);
+void simplificar(Fraccion *, Fraccion *, int);
+void operaciones(Fraccion *, Fraccion *, int);
+void estadistica(Fraccion *, int);
+
+int main() {
+    system("color f0");
+    srand(time(NULL));
+
+    Fraccion f1[100], f2[100];
+    int tam = 0, resp, *r, *size;
+
+    r = &resp;
+    size = &tam;
+
+    leerArchivo(f1,f2,*size);
+
+    cout << "Operandos:" << endl;
+    for (int i = 0; i < tam; i++) {
+        imprimir(f1[i]);
+        cout << "\t";
+        imprimir(f2[i]);
+        cout << endl;
+    }
+
+    simplificar(f1,f2,tam);
+
+    do {
+        cout << "\nOperaciones:\n";
+        operaciones(f1,f2,tam);
+
+        cout << "\nDesea volver a ejecutar el programa con las mismos operandos?\n1 = Si\n2 = No\nRespuesta -> ";
+        cin >> *r;
+    } while (resp == 1);
+
+    estadistica(f1,tam);
+
+    return 0;
+}
