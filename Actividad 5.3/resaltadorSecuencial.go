@@ -17,6 +17,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"time"
 )
 
 func containsArray(s []string, e string) bool {
@@ -545,6 +546,8 @@ func resaltador(file string, dir string, iFile int) {
 func main() {
 	// Definimos las variables que usaremos para abrir el archivo con la ayuda de la libreria OS.
 	// Esto nos ayudará a evitar conflictos a la hora de abrirlo en equipos distintos.
+	start := time.Now()
+
 	dir, err := os.Getwd()
 	if err != nil {
 		fmt.Errorf("Dir %v does not exists", err)
@@ -572,4 +575,7 @@ func main() {
 	for iFile := 0; iFile < len(lista_file); iFile++ {
 		resaltador(lista_file[iFile], dir, iFile+1)
 	}
+	sinceStart := time.Since(start)
+
+	log.Printf("%s", sinceStart)
 }
