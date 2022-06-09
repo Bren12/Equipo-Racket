@@ -17,7 +17,11 @@ import (
 	"log"
 	"os"
 	"strings"
+	"sync"
+	"time"
 )
+
+var wg sync.WaitGroup
 
 func containsArray(s []string, e string) bool {
 	for _, a := range s {
@@ -540,11 +544,14 @@ func resaltador(file string, dir string, iFile int) {
 
 	// Cerramos el archivo HTML
 	fileHtml.Close()
+	defer wg.Done()
 }
 
 func main() {
 	// Definimos las variables que usaremos para abrir el archivo con la ayuda de la libreria OS.
 	// Esto nos ayudará a evitar conflictos a la hora de abrirlo en equipos distintos.
+	start := time.Now()
+
 	dir, err := os.Getwd()
 	if err != nil {
 		fmt.Errorf("Dir %v does not exists", err)
@@ -570,6 +577,12 @@ func main() {
 
 	// Ciclo para que procese varios archivos
 	for iFile := 0; iFile < len(lista_file); iFile++ {
-		resaltador(lista_file[iFile], dir, iFile+1)
+		wg.Add(1)
+		go resaltador(lista_file[iFile], dir, iFile+1)
 	}
+
+	wg.Wait()
+	sinceStart := time.Since(start)
+
+	log.Printf("%s", sinceStart)
 }
