@@ -14,7 +14,7 @@ void estadistica(Fraccion *, int);
 
 int main() {
     system("color f0");
-    srand(time(NULL));
+    srand(time(0));
 
     Fraccion f1[100], f2[100];
     int tam = 0, resp, *r, *size;

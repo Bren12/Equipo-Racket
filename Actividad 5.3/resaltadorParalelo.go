@@ -23,6 +23,9 @@ import (
 
 var wg sync.WaitGroup
 
+// Complejidad: O(x), porque se maneja 1 ciclo que depende de un parametro que puede ser variable.
+// Complejidad para el fin que se utiliza: O(1), porque aunque se maneja 1 ciclo, la cantidad de veces que va a estar iterando es constante,
+//                    ya que cuando se utiliza esta función en el programa, depende de parametros constantes.
 func containsArray(s []string, e string) bool {
 	for _, a := range s {
 		if a == e {
@@ -32,6 +35,9 @@ func containsArray(s []string, e string) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido es un archivo .cpp
+// Complejidad: O(n), porque aunque se manejan 2 ciclos, uno de ellos siempre van a ser constantes (caracteres), su valor no es variable, ni dependen de un parametro.
+//              Por otro lado, el 2do ciclo maneja un valor que no es constante, ya que depende de la longitud del parametro recibido, el cual si es variable.
 func isFile(expresion string) bool {
 	// Busca si hay "//" en la expresión
 	pos := strings.Index(expresion, ".cpp")
@@ -57,6 +63,8 @@ func isFile(expresion string) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido es un comentario
+// Complejidad: O(1), porque no realiza ningun ciclo o recursión, lee las instrucciones 1 sola vez.
 func isComentario(expresion string) bool {
 	// Busca si hay "//" en la expresión
 	pos := strings.Index(expresion, "//")
@@ -68,6 +76,8 @@ func isComentario(expresion string) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido es una librería
+// Complejidad: O(1), porque no realiza ningun ciclo o recursión, lee las instrucciones 1 sola vez.
 func isLibreria(expresion string) bool {
 	//Busca el # que en C++ indica una libreria a incluir
 	pos := strings.Index(expresion, "#")
@@ -78,6 +88,8 @@ func isLibreria(expresion string) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido es una palabra reservada
+// Complejidad: O(1), porque aunque se maneja 1 ciclo, este siempre va a ser constante, su valor no es variable, ni depende de un parametro.
 func isReservada(expresion string) bool {
 	// Se definen las palabras reservadas como un array
 	reservada := []string{"int", "bool", "char", "void", "float", "double", "string", "cin", "cout", "while",
@@ -97,6 +109,8 @@ func isReservada(expresion string) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido (expresion) contiene un operador.
+// Complejidad: O(1), porque aunque se maneja 1 ciclo, este siempre va a ser constante, su valor no es variable, ni depende de un parametro.
 func isOperador(expresion string, original string, pos int) bool {
 	// Se definen los operadores como una lista
 	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>", "<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"}
@@ -110,8 +124,10 @@ func isOperador(expresion string, original string, pos int) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido (expresion) es un operador.
+// Complejidad: O(1), porque aunque se maneja 1 ciclo, este siempre va a ser constante, su valor no es variable, ni depende de un parametro.
 func isOperadorUnique(expresion string, original string, pos int) bool {
-	// Se definen los operadores como un diccionario
+	// Se definen los operadores como una lista
 	operador := []string{"+", "+=", "++", "-", "-=", "--", "%", "%=", "*", "*=", "/=", "^", "<", "<<", ">", ">>",
 		"<=", ">=", "=", "==", "!", "!=", "~", "?", "&", "&&", "||"}
 
@@ -136,6 +152,8 @@ func isOperadorUnique(expresion string, original string, pos int) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido (expresion) es un delimitador.
+// Complejidad: O(1), porque aunque se maneja 1 ciclo, este siempre va a ser constante, su valor no es variable, ni depende de un parametro.
 func isDelimitador(expresion string) bool {
 	// Se definen los delimitadores como una lista
 	delimitador := []string{"(", ")", "[", "]", "{", "}", ",", ";", "...", ":"}
@@ -149,6 +167,8 @@ func isDelimitador(expresion string) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido (expresion) es un identificador.
+// Complejidad: O(1), porque aunque se maneja 1 ciclo, este siempre va a ser constante, su valor no es variable, ni depende de un parametro.
 func isIdentificador(expresion string, original string, pos int) bool {
 	// Se crea una lista para checar todos los identificadores con letras
 	alfabeto := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
@@ -171,6 +191,8 @@ func isIdentificador(expresion string, original string, pos int) bool {
 	return false
 }
 
+// Definimos una función que verifica si el parametro recibido (expresion) es una literal.
+// Complejidad: O(n), porque se tiene un ciclo que maneja un parametro que es variable, puesto que depende de la longitud de la expresion.
 func isLiteral(expresion string, original string, pos int, operador *bool) bool {
 	// Se declaran variables para manejar los casos de excepción que nos indican que no son literales
 	numeros := []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
@@ -229,6 +251,8 @@ func isLiteral(expresion string, original string, pos int, operador *bool) bool 
 	return true
 }
 
+// Complejidad en el mejor de los casos: O(n^2 * r^2), en donde el contenido del archivo tiene comentarios largos sin error de sintaxis.
+// Complejidad en el peor de los casos: O(n^8 * r), en donde el archivo tiene un contenido que identificará como literales o en ninguna categoría, por lo que entrará en cada condicional para su identificación.
 func resaltador(file string, dir string, iFile int) {
 	// Lista que guardará el contenido del archivo TXT
 	lista_sintaxis := []string{}
@@ -265,6 +289,7 @@ func resaltador(file string, dir string, iFile int) {
 	originPos := 0
 
 	// Lee cada enunciado del archivo de texto
+	// Complejidad: O(r), donde r es la cantidad de renglones en el archivo
 	for i := 0; i < len(lista_sintaxis); i++ {
 		// Acumulador de la expresion
 		acumExp := ""
@@ -279,16 +304,17 @@ func resaltador(file string, dir string, iFile int) {
 		libreria := false
 
 		// Lee cada caracter del enunciado
+		// Complejidad: O(n), donde n es la longitud de un renglón
 		for j := 0; j < len(lista_sintaxis[i]); j++ {
 			// Almacena el renglón
 			expresion := lista_sintaxis[i]
 			// Almacena un caracter del renglón
 			token := expresion[j : j+1]
-			// fmt.Println(token) // Imprime cada token
 
 			// Condicional para realizar la indentación
 			if !start {
 				k := 0
+				// Complejidad: O(n), ya que depende de cuantos espacios en blanco tenga la expresión.
 				for expresion[k:k+1] == " " {
 					espacio += "&nbsp;"
 					k += 1
@@ -319,6 +345,7 @@ func resaltador(file string, dir string, iFile int) {
 				// Almacenamos la posición de la lista de la expresión en donde se comenzó
 				originPos = i
 				// Ciclo que itera la cantidad de renglones del archivo
+				// Complejidad: O(r)
 				for k := 0; k < len(lista_sintaxis)-i; k++ {
 					exp := lista_sintaxis[i+k]
 					// Busca el cierre del comentario largo
@@ -335,6 +362,7 @@ func resaltador(file string, dir string, iFile int) {
 				if !comentarioLargo {
 					fileHtml.WriteString("\t\t<span class=\"error\">" + expresion[j:] + "</span>\n")
 					// Ciclo que itera la cantidad de renglones del archivo
+					// Complejidad: O(r)
 					for k := 0; k < len(lista_sintaxis)-i-1; k++ {
 						// Despliega cada renglón como error de sintaxis
 						fileHtml.WriteString("\t\t<br>\n")
@@ -348,7 +376,7 @@ func resaltador(file string, dir string, iFile int) {
 
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			// Verifica si se activo la lectura de comentarios largos
+			// Verifica si se activo la lectura de comentarios largos - O(1)
 			if comentarioLargo {
 				// Líneas de comentarios sin el cierre
 				if originPos != i && i != posComentarioLargo && j == len(expresion)-1 {
@@ -377,7 +405,7 @@ func resaltador(file string, dir string, iFile int) {
 					acumExp = ""
 					nullSpace = false
 				}
-				// Verifica si es un comentario normal
+				// Verifica si es un archivo - O(n)
 			} else if acumExp != "" && isFile(acumExp) && !comentarioLargo && !libreria {
 				// Busca si esta incluida la extensión del archivo en la expresión
 				pos := strings.Index(expresion, ".cpp") + 4
@@ -387,7 +415,7 @@ func resaltador(file string, dir string, iFile int) {
 					acumExp = ""
 					nullSpace = false
 				}
-				// Verifica si es un comentario normal
+				// Verifica si es un comentario normal - O(1)
 			} else if (acumExp != "" && isComentario(acumExp)) && !comentarioLargo && !libreria {
 				fileHtml.WriteString("\t\t<span class=\"comentario\">" + expresion[j-1:] + "</span>\n")
 				acumExp = ""
@@ -452,7 +480,7 @@ func resaltador(file string, dir string, iFile int) {
 					nullSpace = false
 					libreria = false
 				}
-				// Verifica si es una palabra reservada
+				// Verifica si es una palabra reservada - O(1)
 			} else if acumExp != "" && !comentarioLargo && isReservada(acumExp) {
 				// Verifica que despues de validar que la palabra reservada se encuentre en la expresión, haya un espacio en blanco o un salto de línea a continuación
 				if j == len(expresion)-1 || expresion[j+1:j+2] == " " || isDelimitador(expresion[j+1:j+2]) || isOperadorUnique(expresion[j+1:j+2], expresion, j) || expresion[j+1:j+2] == "\"" || expresion[j+1:j+2] == "'" {
@@ -460,7 +488,7 @@ func resaltador(file string, dir string, iFile int) {
 					acumExp = ""
 					nullSpace = false
 				}
-				// Verifica si es un operador
+				// Verifica si es un operador - O(n)
 			} else if acumExp != "" && !comentarioLargo && isOperador(acumExp, expresion, j) && !operadorOmit && !nullSpace {
 				// Casos de excepción para marcar que son syntax error
 				if len(acumExp) > 1 && (!isOperadorUnique(string(acumExp[0]), expresion, strings.Index(expresion, acumExp)) || isComentario(expresion[j:])) && !isOperadorUnique(acumExp, expresion, j) {
@@ -480,7 +508,7 @@ func resaltador(file string, dir string, iFile int) {
 					}
 					nullSpace = false
 				}
-				// Verifica si es un delimitador
+				// Verifica si es un delimitador - O(n)
 			} else if acumExp != "" && !comentarioLargo && isDelimitador(acumExp) && !nullSpace {
 				if len(acumExp) > 1 && !isDelimitador(string(acumExp[0])) {
 					fileHtml.WriteString("\t\t<span class=\"error\">" + acumExp + "</span>\n")
@@ -498,7 +526,7 @@ func resaltador(file string, dir string, iFile int) {
 					}
 					nullSpace = false
 				}
-				// Verifica si es un identificador
+				// Verifica si es un identificador - O(1)
 			} else if acumExp != "" && !comentarioLargo && isIdentificador(acumExp, expresion, j) {
 				// Verifica que a continuación haya un caracter diferente válido para desplegarlo
 				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isOperadorUnique(string(expresion[j+1]), expresion, j) || isDelimitador(string(expresion[j+1])) {
@@ -506,7 +534,7 @@ func resaltador(file string, dir string, iFile int) {
 					acumExp = ""
 					nullSpace = false
 				}
-				// Verifica si es una literal
+				// Verifica si es una literal - O(n)
 			} else if acumExp != "" && !comentarioLargo && isLiteral(acumExp, expresion, j, &operadorOmit) {
 				// Verifica que a continuación haya un caracter diferente válido para desplegarlo
 				if j == len(expresion)-1 || string(expresion[j+1]) == " " || isDelimitador(string(expresion[j+1])) || (isOperadorUnique(string(expresion[j+1]), expresion, j) && string(expresion[j+1]) != "-") || (j+1 <= len(acumExp) && isComentario(string(acumExp[j+1:]))) || (string(acumExp[0]) == "'" && string(acumExp[len(acumExp)-1]) == "'") || (string(acumExp[0]) == "\"" && string(acumExp[len(acumExp)-1]) == "\"") {
@@ -564,21 +592,18 @@ func main() {
 	}
 	defer file.Close()
 
-	// Array que guardará los nombres de los archivos txt
-	lista_file := []string{}
+	// Variable que almacenará la cantidad de archivos txt
+	iFile := 0
 
-	// Para buscar los archivos txt en la carpeta y almacenarlos en el array
+	// Para almacenar todos los archivos correspondientes al directorio
 	list, _ := file.Readdirnames(0)
+	// Complejidad: O(f), porque depende de la cantidad de archivos que existen en el directorio
 	for _, name := range list {
 		if strings.Contains(name, ".txt") {
-			lista_file = append(lista_file, name)
+			iFile++
+			wg.Add(1)
+			go resaltador(name, dir, iFile)
 		}
-	}
-
-	// Ciclo para que procese varios archivos
-	for iFile := 0; iFile < len(lista_file); iFile++ {
-		wg.Add(1)
-		go resaltador(lista_file[iFile], dir, iFile+1)
 	}
 
 	wg.Wait()
