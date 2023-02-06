@@ -166,15 +166,3 @@ Debe entregar la siguiente salida:
 
 1. Manual del usuario, indicando cómo correr su programa y qué se obtiene de salida.
 2. El autómata que resuelve el problema (como un anexo del punto 1).
-
-
-
-***
-
-
-
-# **RECORDAR QUE EL PROGRAMA DEBE SER HECHO EXCLUSIVAMENTE EN PYTHON.**
-
- 
-
-# **La actividad debe ser hecha usando los equipos de  personas de las actividades integradoras.**
