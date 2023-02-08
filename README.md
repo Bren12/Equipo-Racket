@@ -10,6 +10,11 @@ Source code developed for the projects of the TC2037 course.
 * [Brenda Saucedo](https://github.com/Bren12)
 * [José Ángel Rentería](https://github.com/Lignito79)
 
+## Project Description
+
+Computer programs developed to model a Syntax Highlighter, recognize a series of arithmetic 
+expressions and exercises to learn about parallel and concurrent programming.
+
 ## Files Description
 
 ### 📁 3.2
