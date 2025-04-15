@@ -3,6 +3,7 @@
 Source code developed for the projects of the TC2037 course.
 
 **Course:** TC2037 (Implementation of Computational Methods) <br>
+**Language:** Go & Python <br>
 **Semester:** FJ22
 
 **Developed by:**
